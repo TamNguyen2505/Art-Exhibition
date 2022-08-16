@@ -352,9 +352,6 @@
 				006EB54E28AB3CFC00BB9DCB /* JSONNull.swift */,
 				006EB55228AB3CFC00BB9DCB /* Media.swift */,
 				006EB54F28AB3CFC00BB9DCB /* HomeModels */,
-				006EB55328AB3CFC00BB9DCB /* GraphModels */,
-				006EB55428AB3CFC00BB9DCB /* SettingsModels */,
-				006EB55528AB3CFC00BB9DCB /* AudioModels */,
 				006EB55628AB3CFC00BB9DCB /* NewsModel */,
 			);
 			path = Models;
@@ -369,27 +366,6 @@
 			path = HomeModels;
 			sourceTree = "<group>";
 		};
-		006EB55328AB3CFC00BB9DCB /* GraphModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = GraphModels;
-			sourceTree = "<group>";
-		};
-		006EB55428AB3CFC00BB9DCB /* SettingsModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = SettingsModels;
-			sourceTree = "<group>";
-		};
-		006EB55528AB3CFC00BB9DCB /* AudioModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = AudioModels;
-			sourceTree = "<group>";
-		};
 		006EB55628AB3CFC00BB9DCB /* NewsModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -402,35 +378,10 @@
 		006EB55F28AB3D0600BB9DCB /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				006EB56028AB3D0600BB9DCB /* SettingsViewModels */,
-				006EB56128AB3D0600BB9DCB /* GraphViewModels */,
-				006EB56228AB3D0600BB9DCB /* LoginViewModels */,
 				006EB56328AB3D0600BB9DCB /* NewsViewModels */,
 				006EB56728AB3D0600BB9DCB /* HomeViewModels */,
-				006EB56C28AB3D0600BB9DCB /* AudioViewModels */,
 			);
 			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		006EB56028AB3D0600BB9DCB /* SettingsViewModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = SettingsViewModels;
-			sourceTree = "<group>";
-		};
-		006EB56128AB3D0600BB9DCB /* GraphViewModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = GraphViewModels;
-			sourceTree = "<group>";
-		};
-		006EB56228AB3D0600BB9DCB /* LoginViewModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = LoginViewModels;
 			sourceTree = "<group>";
 		};
 		006EB56328AB3D0600BB9DCB /* NewsViewModels */ = {
@@ -452,13 +403,6 @@
 				006EB56B28AB3D0600BB9DCB /* HomeHeaderCollectionViewModel.swift */,
 			);
 			path = HomeViewModels;
-			sourceTree = "<group>";
-		};
-		006EB56C28AB3D0600BB9DCB /* AudioViewModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = AudioViewModels;
 			sourceTree = "<group>";
 		};
 		006EB57428AB3E0000BB9DCB /* Networking */ = {
