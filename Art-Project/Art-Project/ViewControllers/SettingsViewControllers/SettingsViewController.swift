@@ -78,7 +78,8 @@ class SettingsViewController: BaseViewController {
     override func setupUI() {
         super.setupUI()
         
-        headerType = .headerWidthRightSlideMenu
+        
+        
         
         view.addSubview(scrollView)
         scrollView.snp.makeConstraints{ make in

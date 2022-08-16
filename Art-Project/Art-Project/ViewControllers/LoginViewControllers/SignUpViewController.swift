@@ -79,30 +79,11 @@ class SignUpViewController: BaseViewController {
     }()
     
     //MARK: View cycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setupUI()
-
-    }
-    
-    //MARK: Actions
-    @objc func handleEventFromSignUpButton(_ sender: UIButton) {
-        
-        
-        
-    }
-    
-    @objc func handleEventFromCancelButton(_ sender: UIButton) {
-        
-        self.navigationController?.popViewController(animated: true)
-        
-    }
-    
-    
-    //MARK: Helpers
     override func setupUI() {
         super.setupUI()
+        
+        let leftItem = setupUIForLeftItem(leftItemInfo: .backIcon)
+        constraintHeaderStack(accordingTo: .aLeftItem(leftItem: leftItem))
         
         view.addSubview(backgroundImageView)
         backgroundImageView.snp.makeConstraints{ make in
@@ -177,6 +158,27 @@ class SignUpViewController: BaseViewController {
             make.width.equalTo(signupButton.snp.width)
             
         }
+        
+    }
+
+    //MARK: Actions
+    override func handleEventFromLeftNavigationItem(_ sender: UIButton) {
+        super.handleEventFromLeftNavigationItem(sender)
+        
+        self.navigationController?.popViewController(animated: true)
+        
+    }
+    
+    
+    @objc func handleEventFromSignUpButton(_ sender: UIButton) {
+        
+        
+        
+    }
+    
+    @objc func handleEventFromCancelButton(_ sender: UIButton) {
+        
+        self.navigationController?.popViewController(animated: true)
         
     }
     

@@ -14,7 +14,6 @@ extension AppDelegate {
         guard let keyWindow = UIApplication.shared.connectedScenes.flatMap({ ($0 as? UIWindowScene)?.windows ?? [] }).first, keyWindow.isKeyWindow else {return}
         
         let rootVC = LoginViewController()
-        rootVC.headerType = .noHeader
         let nav = UINavigationController(rootViewController: rootVC)
         
         UIView.transition(with: keyWindow, duration: 0, options: [.transitionCrossDissolve]) {

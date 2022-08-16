@@ -45,19 +45,19 @@ enum TabItem: String, CaseIterable {
             
         case .news:
             let rootVC = NewsViewController()
-            return UINavigationController(rootViewController: rootVC)
+            return BaseNavigationController(rootViewController: rootVC)
             
         case .settings:
             
             let rootVC = SettingsViewController()
-            return UINavigationController(rootViewController: rootVC)
+            return BaseNavigationController(rootViewController: rootVC)
             
         case .graph:
             return GraphViewController()
             
         case .audio:
             let rootVC = ArtAudioViewController()
-            return UINavigationController(rootViewController: rootVC)
+            return BaseNavigationController(rootViewController: rootVC)
             
         }
     }

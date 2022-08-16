@@ -9,23 +9,24 @@ import UIKit
 
 class BaseViewController: UIViewController {
     //MARK: Properties
+    private let headerView: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
+    private let hHeaderStackView: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.spacing = 20
+        stack.alignment = .center
+        return stack
+    }()
+    
     let networkMonitor = NetworkMonitor.shared
     var observations = [NSKeyValueObservation]()
-
-    enum HeaderType {
-        
-    case noHeader, headerWidthRightSlideBarAndMiddleTitleAndLeftAvatar, headerWidthRightSlideMenu, headerWithMiddleTitle
     
-    }
-    var headerType: HeaderType = .noHeader {
-        didSet{
-            setupUIForHeaderView()
-        }
-    }
+    lazy var slideInTransitioningDelegate = SlideInPresentationManager()
     
-    private lazy var slideInTransitioningDelegate = SlideInPresentationManager()
-    
-    var navigationTitle = ""
     var hideTabBarController: Bool?
     
     //MARK: View cycle
@@ -34,14 +35,6 @@ class BaseViewController: UIViewController {
         
         setupUI()
         observeVM()
-        hideBottomTabBarController()
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        setupUIForHeaderView()
         
     }
     
@@ -56,6 +49,7 @@ class BaseViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
+        hHeaderStackView.subviews.forEach{$0.removeFromSuperview()}
         hideBottomTabBarController()
         
     }
@@ -72,7 +66,45 @@ class BaseViewController: UIViewController {
     }
     
     //MARK: Actions
-    @objc func handleEventFromSideBar() {
+    @objc func handleEventFromLeftNavigationItem(_ sender: UIButton) {
+                
+    }
+    
+    @objc func handleEventFromRightNavigationItem(_ sender: UIButton) {
+        
+    }
+    
+    //MARK: Helpers
+    func setupUI() {
+        
+        if let navigationController = self.navigationController {
+            
+            navigationController.navigationBar.addSubview(headerView)
+            headerView.snp.makeConstraints{ make in
+                
+                make.edges.equalToSuperview()
+                
+            }
+            
+            headerView.addSubview(hHeaderStackView)
+            hHeaderStackView.snp.makeConstraints{ make in
+                
+                make.top.bottom.equalToSuperview()
+                make.leading.trailing.equalToSuperview().inset(20)
+                
+            }
+            
+        }
+        
+        view.backgroundColor = .white
+        
+    }
+    
+    func observeVM() {}
+    
+    func setupVM() {}
+    
+    func openSideBar() {
         
         let targetVC = SideBarViewController()
         
@@ -84,40 +116,6 @@ class BaseViewController: UIViewController {
         self.present(targetVC, animated: true, completion: nil)
         
     }
-    
-    //MARK: Helpers
-    func setupUI() {
-        
-        view.backgroundColor = .white
-        
-    }
-    
-    func setupUIForHeaderView() {
-        
-        switch headerType {
-            
-        case .noHeader:
-            break
-            
-        case .headerWidthRightSlideBarAndMiddleTitleAndLeftAvatar:
-            setupUIForHeaderWidthRightSlideBarAndMiddleTitleAndLeftAvatar()
-            break
-            
-        case .headerWidthRightSlideMenu:
-            setupUIForHeaderWidthRightSlideMenu()
-            break
-            
-        case .headerWithMiddleTitle:
-            setupUIForHeaderWithMiddleTitle()
-            break
-            
-        }
-        
-    }
-    
-    func observeVM() {}
-    
-    func setupVM() {}
     
     private func observeTimer() {
         
@@ -136,81 +134,166 @@ class BaseViewController: UIViewController {
         guard let tabs = self.tabBarController as? BaseTabBarController, let hideTabBarController = hideTabBarController else {return}
         
         tabs.customTabBar?.isHidden = hideTabBarController
-        self.hideTabBarController?.toggle()
         
     }
 
 }
 
-//MARK: Functions used for setupUIForHeaderView
+//MARK: Functions used for navigation bar
 extension BaseViewController {
     
-    private func setupUIForHeaderWidthRightSlideBarAndMiddleTitleAndLeftAvatar() {
-        
-        setupUIForSlideBarImageView(onTheLeft: true)
-        
-        let titleNavigationLabel = UILabel()
-        titleNavigationLabel.attributedText = createCommonAttributedString()
-        titleNavigationLabel.textAlignment = .center
-        titleNavigationLabel.numberOfLines = 0
-        
-        let avatarImageView = UIImageView()
-        avatarImageView.image = UIImage(named: "default-avatar")?.resize(targetSize: .init(width: 40, height: 40))
-        avatarImageView.contentMode = .scaleAspectFit
-        
-        self.navigationItem.titleView = titleNavigationLabel
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: avatarImageView)
-        
-    }
-    
-    private func setupUIForHeaderWidthRightSlideMenu() {
-        
-        setupUIForSlideBarImageView(onTheLeft: true)
-
-        let titleNavigationLabel = UILabel()
-        titleNavigationLabel.font = UIFont.boldSystemFont(ofSize: 18)
-        titleNavigationLabel.textAlignment = .center
-        titleNavigationLabel.text = navigationTitle
-        
-        self.navigationItem.titleView = titleNavigationLabel
+    func constraintHeaderStack(accordingTo cases: BasicNavigationBarStyles) {
                 
-    }
-    
-    private func setupUIForHeaderWithMiddleTitle() {
-        
-        let titleNavigationLabel = UILabel()
-        titleNavigationLabel.attributedText = createCommonAttributedString()
-        titleNavigationLabel.textAlignment = .center
-        titleNavigationLabel.numberOfLines = 0
-        
-        self.navigationItem.titleView = titleNavigationLabel
-        
-    }
-    
-    //MARK: Reusable functions
-    private func setupUIForSlideBarImageView(onTheLeft: Bool) {
-
-        let tap = UITapGestureRecognizer(target: self, action: #selector(handleEventFromSideBar))
-        
-        let slideBarImageView = UIImageView()
-        slideBarImageView.image = UIImage(named: "icons8-menu")?.resize(targetSize: .init(width: 40, height: 40))
-        slideBarImageView.contentMode = .scaleAspectFit
-        slideBarImageView.isUserInteractionEnabled = true
-        slideBarImageView.addGestureRecognizer(tap)
-
-        if onTheLeft {
+        switch cases {
+        case .noHeader:
+            break
             
-            self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: slideBarImageView)
+        case .aLeftItem(let leftItem), .twoLeftItems(let leftItem):
+            let spacer = UIView()
+            
+            hHeaderStackView.addArrangedSubview(leftItem)
+            hHeaderStackView.addArrangedSubview(spacer)
+            
+            spacer.setContentHuggingPriority(.fittingSizeLevel, for: .horizontal)
+            spacer.setContentCompressionResistancePriority(.fittingSizeLevel, for: .horizontal)
+            
+            break
+            
+        case .aLeftItem_title(let leftItem, let title), .twoLeftItems_title(let leftItem, let title):
+            let rightSpace = UIView()
+            
+            leftItem.setContentHuggingPriority(.required, for: .horizontal)
+            
+            hHeaderStackView.addArrangedSubview(leftItem)
+            hHeaderStackView.addArrangedSubview(title)
+            hHeaderStackView.addArrangedSubview(rightSpace)
+            
+            rightSpace.snp.makeConstraints { make in
+                
+                make.width.equalTo(leftItem.snp.width)
+                
+            }
+            
+            break
+            
+        case .aLeftItem_title_aRightItem(let leftItem, let title, let rightItem),
+                .aLeftItem_title_TwoRightItems(let leftItem, let title, let rightItem),
+                .aLeftItem_title_ThreeRightItems(let leftItem, let title, let rightItem),
+                .twoLeftItems_title_aRightItem(let leftItem, let title, let rightItem),
+                .twoLeftItems_title_TwoRightItem(let leftItem, let title, let rightItem),
+                .twoLeftItems_title_ThreeRightItem(let leftItem, let title, let rightItem):
+            let leftSpace = UIView()
+            let rightSpace = UIView()
+            
+            let leftStack = UIStackView(arrangedSubviews: [leftItem, leftSpace])
+            leftStack.axis = .horizontal
+            
+            leftItem.setContentHuggingPriority(.required, for: .horizontal)
+            leftSpace.setContentHuggingPriority(.fittingSizeLevel, for: .horizontal)
+            leftSpace.setContentCompressionResistancePriority(.fittingSizeLevel, for: .horizontal)
+            
+            let rightStack = UIStackView(arrangedSubviews: [rightSpace, rightItem])
+            rightStack.axis = .horizontal
+            
+            rightItem.setContentHuggingPriority(.required, for: .horizontal)
+            rightSpace.setContentHuggingPriority(.fittingSizeLevel, for: .horizontal)
+            rightSpace.setContentCompressionResistancePriority(.fittingSizeLevel, for: .horizontal)
+            
+            hHeaderStackView.addArrangedSubview(leftStack)
+            hHeaderStackView.addArrangedSubview(title)
+            hHeaderStackView.addArrangedSubview(rightStack)
+            
+            leftStack.snp.makeConstraints{ make in
+                
+                make.width.equalTo(rightStack.snp.width)
+                
+            }
+            
+            title.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+            
+            break
+            
+        case .title_aRightItem(title: let title, rightItem: let rightItem),
+                .title_TwoRightItems(title: let title, rightItem: let rightItem),
+                .title_ThreeRightItems(title: let title, rightItem: let rightItem) :
+            let leftSpace = UIView()
+            
+            rightItem.setContentHuggingPriority(.required, for: .horizontal)
+            
+            hHeaderStackView.addArrangedSubview(leftSpace)
+            hHeaderStackView.addArrangedSubview(title)
+            hHeaderStackView.addArrangedSubview(rightItem)
+            
+            leftSpace.snp.makeConstraints{ make in
+                
+                make.width.equalTo(rightItem.snp.width)
+                
+            }
+            
+            break
+        }
+        
+    }
+    
+    func setupUIForLeftItem(leftItemInfo: NavigationIcons, tag: Int = 0) -> UIView {
+        
+        let leftItem = UIButton()
+        leftItem.addTarget(self, action: #selector(handleEventFromLeftNavigationItem(_:)), for: .allEvents)
+        leftItem.setImage(leftItemInfo.icon?.resize(targetSize: .init(width: 40, height: 40)), for: .normal)
+        leftItem.setTitle(leftItemInfo.additionalTitle, for: .normal)
+        leftItem.setTitleColor(UIColor.systemRed, for: .normal)
+        leftItem.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        leftItem.tag = tag
+        
+        return leftItem
+        
+    }
+    
+    func setupUIForTitle(titleName: NavigationTitles? = nil, attribuedTitle: NSMutableAttributedString? = nil) -> UIView {
+        
+        let title = UILabel()
+        title.textAlignment = .center
+        title.numberOfLines = 0
+        
+        if let attribuedTitle = attribuedTitle {
+            
+            title.attributedText = attribuedTitle
+            return title
             
         } else {
             
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: slideBarImageView)
+            title.text = titleName?.rawValue
+            title.font = UIFont.boldSystemFont(ofSize: 18)
+            return title
             
         }
         
+    }
+    
+    func setupUIForRightItem(rightItemInfo: NavigationIcons, tag: Int = 0) -> UIView {
+        
+        let rightItem = UIButton()
+        rightItem.addTarget(self, action: #selector(handleEventFromRightNavigationItem(_:)), for: .allEvents)
+        rightItem.setImage(rightItemInfo.icon?.resize(targetSize: .init(width: 40, height: 40)), for: .normal)
+        rightItem.setTitle(rightItemInfo.additionalTitle, for: .normal)
+        rightItem.setTitleColor(UIColor.systemRed, for: .normal)
+        rightItem.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        
+        return rightItem
         
     }
+    
+    func setupStackForItems(views: [UIView]) -> UIView {
         
+        let stackView = UIStackView(arrangedSubviews: views)
+        stackView.axis = .horizontal
+        stackView.spacing = 10
+        stackView.distribution = .fillProportionally
+        
+        return stackView
+        
+    }
+    
     func createCommonAttributedString() -> NSMutableAttributedString {
         
         let attributesLineOne: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 14)]

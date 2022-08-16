@@ -164,12 +164,6 @@ class LoginViewController: BaseViewController {
             
         }
         
-//        usernameTextField.snp.makeConstraints{ make in
-//
-//            make.height.equalTo(50)
-//
-//        }
-        
         let hStackForButton = UIStackView(arrangedSubviews: [loginButton, signupButton])
         hStackForButton.axis = .horizontal
         hStackForButton.spacing = 10

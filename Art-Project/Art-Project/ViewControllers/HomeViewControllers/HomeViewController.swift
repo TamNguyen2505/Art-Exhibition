@@ -108,6 +108,11 @@ class HomeViewController: BaseViewController {
         
         Loader.shared.show()
         
+        let leftItem = setupUIForLeftItem(leftItemInfo: .hamburgerIcon)
+        let title = setupUIForTitle(attribuedTitle: createCommonAttributedString())
+        let rightItem = setupUIForRightItem(rightItemInfo: .defaultIcon)
+        constraintHeaderStack(accordingTo: .aLeftItem_title_aRightItem(leftItem: leftItem, title: title, rightItem: rightItem))
+        
         view.addSubview(artCollectionView)
         artCollectionView.snp.makeConstraints{ make in
             
@@ -145,6 +150,14 @@ class HomeViewController: BaseViewController {
             Loader.shared.hide()
 
         }
+        
+    }
+    
+    //MARK: Actions
+    override func handleEventFromLeftNavigationItem(_ sender: UIButton) {
+        super.handleEventFromLeftNavigationItem(sender)
+        
+        openSideBar()
         
     }
     
@@ -208,7 +221,7 @@ extension HomeViewController: HomeCollectionViewDelegate {
         
         let targetVC = RecordInformationViewController()
         
-        targetVC.hideTabBarController = true
+        self.hideTabBarController = true
         targetVC.personid = viewModel.createPersonID(atIndexPath: indexPath)
         targetVC.firstRecordTitle = viewModel.createHardvardMuseumObjectRecord(atIndexPath: indexPath)?.title
         targetVC.firstRecordImage = withImage
