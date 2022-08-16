@@ -78,9 +78,6 @@ class SettingsViewController: BaseViewController {
     override func setupUI() {
         super.setupUI()
         
-        
-        
-        
         view.addSubview(scrollView)
         scrollView.snp.makeConstraints{ make in
             
@@ -142,6 +139,14 @@ class SettingsViewController: BaseViewController {
         
         observeLanguagesChange()
         translateLanguagesInSettingsVC()
+        
+    }
+    
+    override func setupNavigationStyle() {
+        super.setupNavigationStyle()
+        
+        let leftItem = setupUIForLeftItem(leftItemInfo: .hamburgerIcon)
+        constraintHeaderStack(accordingTo: .aLeftItem(leftItem: leftItem))
         
     }
     

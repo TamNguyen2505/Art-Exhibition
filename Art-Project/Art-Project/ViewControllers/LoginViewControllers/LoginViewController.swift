@@ -79,49 +79,6 @@ class LoginViewController: BaseViewController {
         }
     }
     //MARK: View cycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setupUI()
-            
-    }
-    
-    //MARK: Actions
-    @objc func handleEventFromLogInButton(_ sender: UIButton) {
-                
-        if networkMonitor.status == .satisfied {
-            
-            let targetVC = BaseTabBarController()
-            targetVC.modalPresentationStyle = .fullScreen
-            self.present(targetVC, animated: true, completion: nil)
-            
-        } else {
-            
-            showAlertView()
-            
-        }
-                
-    }
-    
-    
-    @objc func handleEventFromSignUpButton(_ sender: UIButton) {
-        
-        let targetVC = SignUpViewController()
-        self.navigationController?.pushViewController(targetVC, animated: true)
-        
-    }
-    
-    @objc func handleEventFromFaceIdButton(_ sender: UIButton) {
-        
-        Task {
-            
-            self.isRightHost = await faceID.evaluate().success
-            
-        }
-        
-    }
-    
-    //MARK: Helpers
     override func setupUI() {
         super.setupUI()
         
@@ -195,6 +152,42 @@ class LoginViewController: BaseViewController {
         
     }
     
+    //MARK: Actions
+    @objc func handleEventFromLogInButton(_ sender: UIButton) {
+                
+        if networkMonitor.status == .satisfied {
+            
+            let targetVC = BaseTabBarController()
+            targetVC.modalPresentationStyle = .fullScreen
+            self.present(targetVC, animated: true, completion: nil)
+            
+        } else {
+            
+            showAlertView()
+            
+        }
+                
+    }
+    
+    
+    @objc func handleEventFromSignUpButton(_ sender: UIButton) {
+        
+        let targetVC = SignUpViewController()
+        self.navigationController?.pushViewController(targetVC, animated: true)
+        
+    }
+    
+    @objc func handleEventFromFaceIdButton(_ sender: UIButton) {
+        
+        Task {
+            
+            self.isRightHost = await faceID.evaluate().success
+            
+        }
+        
+    }
+    
+    //MARK: Helpers
     private func showAlertView() {
         
         let alert = UIAlertController(title: "Notification", message: "Please check the Internet Access", preferredStyle: .alert)

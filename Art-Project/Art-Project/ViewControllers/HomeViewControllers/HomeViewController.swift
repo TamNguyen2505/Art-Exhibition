@@ -108,11 +108,6 @@ class HomeViewController: BaseViewController {
         
         Loader.shared.show()
         
-        let leftItem = setupUIForLeftItem(leftItemInfo: .hamburgerIcon)
-        let title = setupUIForTitle(attribuedTitle: createCommonAttributedString())
-        let rightItem = setupUIForRightItem(rightItemInfo: .defaultIcon)
-        constraintHeaderStack(accordingTo: .aLeftItem_title_aRightItem(leftItem: leftItem, title: title, rightItem: rightItem))
-        
         view.addSubview(artCollectionView)
         artCollectionView.snp.makeConstraints{ make in
             
@@ -120,6 +115,16 @@ class HomeViewController: BaseViewController {
             make.leading.trailing.bottom.equalToSuperview()
             
         }
+        
+    }
+    
+    override func setupNavigationStyle() {
+        super.setupNavigationStyle()
+        
+        let leftItem = setupUIForLeftItem(leftItemInfo: .hamburgerIcon)
+        let title = setupUIForTitle(attribuedTitle: createCommonAttributedString())
+        let rightItem = setupUIForRightItem(rightItemInfo: .defaultIcon)
+        constraintHeaderStack(accordingTo: .aLeftItem_title_aRightItem(leftItem: leftItem, title: title, rightItem: rightItem))
         
     }
     

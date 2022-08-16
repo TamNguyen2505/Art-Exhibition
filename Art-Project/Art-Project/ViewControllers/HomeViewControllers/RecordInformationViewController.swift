@@ -123,6 +123,14 @@ class RecordInformationViewController: BaseViewController {
                         
     }
     
+    override func setupNavigationStyle() {
+        super.setupNavigationStyle()
+        
+        let leftItem = setupUIForLeftItem(leftItemInfo: .backIcon)
+        constraintHeaderStack(accordingTo: .aLeftItem(leftItem: leftItem))
+        
+    }
+    
     override func observeVM() {
         super.observeVM()
         
@@ -166,6 +174,15 @@ class RecordInformationViewController: BaseViewController {
             Loader.shared.hide()
             
         }
+        
+    }
+    
+    //MARK: Actions
+    override func handleEventFromLeftNavigationItem(_ sender: UIButton) {
+        super.handleEventFromLeftNavigationItem(sender)
+        
+        self.navigationController?.popViewController(animated: true)
+        self.hideTabBarController = false
         
     }
     

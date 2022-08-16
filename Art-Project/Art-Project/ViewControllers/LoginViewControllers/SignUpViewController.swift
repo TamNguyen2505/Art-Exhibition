@@ -81,10 +81,7 @@ class SignUpViewController: BaseViewController {
     //MARK: View cycle
     override func setupUI() {
         super.setupUI()
-        
-        let leftItem = setupUIForLeftItem(leftItemInfo: .backIcon)
-        constraintHeaderStack(accordingTo: .aLeftItem(leftItem: leftItem))
-        
+
         view.addSubview(backgroundImageView)
         backgroundImageView.snp.makeConstraints{ make in
             
@@ -158,6 +155,14 @@ class SignUpViewController: BaseViewController {
             make.width.equalTo(signupButton.snp.width)
             
         }
+        
+    }
+    
+    override func setupNavigationStyle() {
+        super.setupNavigationStyle()
+        
+        let leftItem = setupUIForLeftItem(leftItemInfo: .backIcon)
+        constraintHeaderStack(accordingTo: .aLeftItem(leftItem: leftItem))
         
     }
 

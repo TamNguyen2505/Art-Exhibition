@@ -38,6 +38,13 @@ class BaseViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setupNavigationStyle()
+        
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -76,27 +83,29 @@ class BaseViewController: UIViewController {
     
     //MARK: Helpers
     func setupUI() {
+    
+        view.backgroundColor = .white
         
-        if let navigationController = self.navigationController {
+    }
+    
+    func setupNavigationStyle() {
+        
+        guard let navigationController = self.navigationController else {return}
+        
+        navigationController.navigationBar.addSubview(headerView)
+        headerView.snp.makeConstraints{ make in
             
-            navigationController.navigationBar.addSubview(headerView)
-            headerView.snp.makeConstraints{ make in
-                
-                make.edges.equalToSuperview()
-                
-            }
-            
-            headerView.addSubview(hHeaderStackView)
-            hHeaderStackView.snp.makeConstraints{ make in
-                
-                make.top.bottom.equalToSuperview()
-                make.leading.trailing.equalToSuperview().inset(20)
-                
-            }
+            make.edges.equalToSuperview()
             
         }
         
-        view.backgroundColor = .white
+        headerView.addSubview(hHeaderStackView)
+        hHeaderStackView.snp.makeConstraints{ make in
+            
+            make.top.bottom.equalToSuperview()
+            make.leading.trailing.equalToSuperview().inset(20)
+            
+        }
         
     }
     
@@ -134,6 +143,7 @@ class BaseViewController: UIViewController {
         guard let tabs = self.tabBarController as? BaseTabBarController, let hideTabBarController = hideTabBarController else {return}
         
         tabs.customTabBar?.isHidden = hideTabBarController
+        self.hideTabBarController = nil
         
     }
 
