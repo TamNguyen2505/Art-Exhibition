@@ -51,10 +51,16 @@ class SettingsViewController: BaseViewController {
         return sw
     }()
     
-    private lazy var englishSiwtch: UISwitch = {
+    private let faceIDLabel = UILabel()
+    
+    private lazy var japanesehSiwtch: UISwitch = {
         let sw = UISwitch()
+        sw.isOn = LocalizableManager.currentLanguage() != LocalizableManager.defaultLanguage()
+        sw.addTarget(self, action: #selector(handleEventFromJapaneseSwitch(_:)), for: .valueChanged)
         return sw
     }()
+    
+    private let languagesLabel = UILabel()
     
     private lazy var darkModeSiwtch: UISwitch = {
         let sw = UISwitch()
@@ -62,12 +68,11 @@ class SettingsViewController: BaseViewController {
         return sw
     }()
     
-    private let faceID = BiometricIDAuth.shared
-    private var isRightHost = false {
-        didSet{
-            saveKeychain()
-        }
-    }
+    private let darkModeLabel = UILabel()
+    
+    private let textFontLabel = UILabel()
+    
+    private let viewModel = SettingsViewModel()
     
     //MARK: View cycle
     override func setupUI() {
@@ -109,12 +114,12 @@ class SettingsViewController: BaseViewController {
             
         }
         
-        let faceIDView = createSingleButton(nameOfImageButton: "icons8-face-id", nameOfButton: "Face ID", optionalButton: faceIDSiwtch)
-        let englishView = createSingleButton(nameOfImageButton: "icons8-language", nameOfButton: "Languages", optionalButton: englishSiwtch)
-        let themeView = createSingleButton(nameOfImageButton: "icons8-light-automation", nameOfButton: "Theme", optionalButton: darkModeSiwtch)
-        let fontSizeView = createSingleButton(nameOfImageButton: "icons8-text-width", nameOfButton: "Font size")
+        let faceIDView = createSingleButton(nameOfImageButton: "icons8-face-id", label: faceIDLabel, optionalButton: faceIDSiwtch)
+        let japaneseView = createSingleButton(nameOfImageButton: "icons8-language", label: languagesLabel, optionalButton: japanesehSiwtch)
+        let themeView = createSingleButton(nameOfImageButton: "icons8-light-automation", label: darkModeLabel, optionalButton: darkModeSiwtch)
+        let fontSizeView = createSingleButton(nameOfImageButton: "icons8-text-width", label: textFontLabel)
         
-        let vStavk = UIStackView(arrangedSubviews: [faceIDView, englishView, themeView, fontSizeView])
+        let vStavk = UIStackView(arrangedSubviews: [faceIDView, japaneseView, themeView, fontSizeView])
         vStavk.axis = .vertical
         vStavk.spacing = 10
         vStavk.distribution = .fillEqually
@@ -134,6 +139,8 @@ class SettingsViewController: BaseViewController {
             
         }
         
+        observeLanguagesChange()
+        translateLanguagesInSettingsVC()
         
     }
     
@@ -143,16 +150,20 @@ class SettingsViewController: BaseViewController {
         
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: Notification.Name(LocalizableManager.LCLLanguageChangeNotification), object: nil)
+    }
+    
     //MARK: Actions
     @objc func handleEventFromFaceIDSwitch(_ sender: UISwitch) {
         
-        guard sender.isOn else {return}
+        viewModel.validateFaceID(switchOn: sender.isOn)
         
-        Task {
-            
-            self.isRightHost = await faceID.evaluate().success
-            
-        }
+    }
+    
+    @objc func handleEventFromJapaneseSwitch(_ sender: UISwitch) {
+        
+        viewModel.changeLanguages(switchOn: sender.isOn)
         
     }
     
@@ -162,7 +173,7 @@ class SettingsViewController: BaseViewController {
     }
     
     //MARK: Helpers
-    private func createSingleButton(nameOfImageButton: String, nameOfButton: String, optionalButton: UIControl? = nil) -> UIView {
+    private func createSingleButton(nameOfImageButton: String, label: UILabel, optionalButton: UIControl? = nil) -> UIView {
         
         let outView = UIView()
         outView.backgroundColor = .white
@@ -179,16 +190,14 @@ class SettingsViewController: BaseViewController {
         buttonImageView.contentMode = .center
         buttonImageView.setContentHuggingPriority(.required, for: .horizontal)
         
-        let buttonNameTitle = UILabel()
-        buttonNameTitle.font = UIFont.systemFont(ofSize: 14)
-        buttonNameTitle.text = nameOfButton
-        buttonNameTitle.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
                 
         let hStackHolder: UIStackView
         
         if let optionalButton = optionalButton {
             
-            let hStack = UIStackView(arrangedSubviews: [buttonImageView, buttonNameTitle, optionalButton])
+            let hStack = UIStackView(arrangedSubviews: [buttonImageView, label, optionalButton])
             hStack.axis = .horizontal
             hStack.spacing = 10
             hStack.alignment = .center
@@ -203,7 +212,7 @@ class SettingsViewController: BaseViewController {
             arrowImageView.contentMode = .center
             arrowImageView.setContentHuggingPriority(.required, for: .horizontal)
             
-            let hStack = UIStackView(arrangedSubviews: [buttonImageView, buttonNameTitle, arrowImageView])
+            let hStack = UIStackView(arrangedSubviews: [buttonImageView, label, arrowImageView])
             hStack.axis = .horizontal
             hStack.spacing = 10
             hStack.alignment = .center
@@ -223,25 +232,24 @@ class SettingsViewController: BaseViewController {
         
     }
     
-    //MARK: Helpers
-    private func saveKeychain() {
+    
+}
+
+//MARK: Languages changes
+extension SettingsViewController {
+    private func observeLanguagesChange() {
         
-        guard isRightHost else {return}
-        
-        let genericQuery = GenericPasswordQuery()
-        let keychainManager = KeychainManager(keychainQuery: genericQuery)
-        
-        do{
-            
-            try keychainManager.addPasswordToKeychains(key: .JWT, password: "tamnm1996")
-            
-        }
-        
-        catch {
-            
-        }
+        NotificationCenter.default.addObserver(self, selector: #selector(self.translateLanguagesInSettingsVC), name: Notification.Name(LocalizableManager.LCLLanguageChangeNotification), object: nil)
         
     }
     
+    @objc private func translateLanguagesInSettingsVC() {
+        
+        self.faceIDLabel.text = LocalizableManager.getLocalizableString(key: .text_faceID)
+        self.darkModeLabel.text = LocalizableManager.getLocalizableString(key: .text_dark_mode)
+        self.textFontLabel.text = LocalizableManager.getLocalizableString(key: .text_font_size)
+        self.languagesLabel.text = LocalizableManager.getLocalizableString(key: .text_languages)
+                
+    }
     
 }

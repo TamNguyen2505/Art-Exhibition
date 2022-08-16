@@ -8,11 +8,33 @@
 import UIKit
 
 enum TabItem: String, CaseIterable {
-    case home = "home"
-    case news = "news"
-    case audio = "audio"
-    case graph = "graph"
-    case settings = "settings"
+    case home
+    case news
+    case audio
+    case graph
+    case settings
+    
+    var rawValue: String {
+        get {
+            switch self {
+            case .home:
+                return LocalizableManager.getLocalizableString(key: .text_home)
+                
+            case .news:
+                return LocalizableManager.getLocalizableString(key: .text_news)
+                
+            case .audio:
+                return LocalizableManager.getLocalizableString(key: .text_audio)
+                
+            case .graph:
+                return LocalizableManager.getLocalizableString(key: .text_graph)
+                
+            case .settings:
+                return LocalizableManager.getLocalizableString(key: .text_settings)
+                
+            }
+        }
+    }
 
     var viewController: UIViewController {
         switch self {
@@ -71,20 +93,26 @@ class BaseTabBarController: UITabBarController {
     //MARK: Properties
     var customTabBar: CustomTabBar?
     var tabBarHeight: CGFloat = 82.0
+    private var tabbarItems = [TabItem]()
     
     //MARK: View cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.loadTabBar()
+        self.observeLanguagesChange()
         
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: Notification.Name(LocalizableManager.LCLLanguageChangeNotification), object: nil)
+    }
     
     //MARK: Helpers
     func loadTabBar() {
                 
         let tabbarItems: [TabItem] = [.home, .news, .audio, .graph, .settings]
+        self.tabbarItems = tabbarItems
         
         setupCustomTabMenu(tabbarItems) { [weak self] viewControllers in
             guard let self = self else {return}
@@ -130,5 +158,21 @@ class BaseTabBarController: UITabBarController {
         
     }
  
+}
+
+//MARK: Languages changes
+extension BaseTabBarController {
+    private func observeLanguagesChange() {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.translateLanguagesInBaseTabBarController), name: Notification.Name(LocalizableManager.LCLLanguageChangeNotification), object: nil)
+        
+    }
+    
+    @objc private func translateLanguagesInBaseTabBarController() {
+        
+        self.customTabBar?.translateNameForTabItemLabel(items: self.tabbarItems)
+                
+    }
+    
 }
 

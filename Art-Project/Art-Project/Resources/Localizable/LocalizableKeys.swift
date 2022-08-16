@@ -14,6 +14,10 @@ public enum LocalizableKey: String {
     case text_audio = "Audios"
     case text_graph = "Graphs"
     case text_settings = "Settings"
+    case text_faceID = "Face ID"
+    case text_languages = "Languages"
+    case text_dark_mode = "Dark mode"
+    case text_font_size = "Font size"
     
 }
 
@@ -42,6 +46,18 @@ extension LocalizableKey: Languages {
             
         case .text_settings:
             return "設定"
+            
+        case .text_faceID:
+            return "顔認証"
+            
+        case .text_languages:
+            return "言語"
+            
+        case .text_dark_mode:
+            return "ダークモード"
+            
+        case .text_font_size:
+            return "フォントサイズ"
             
         }
         

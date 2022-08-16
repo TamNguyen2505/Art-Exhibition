@@ -12,6 +12,7 @@ class CustomTabBar: UIView {
     var itemTapped: ((_ tab: Int) -> Void)?
     var activeItem: Int = 0
     private var imageArray = [UIImageView]()
+    var labelArray = [UILabel]()
     
     private var waveSubLayer = CAShapeLayer()
     private let duration = 0.4
@@ -34,10 +35,12 @@ class CustomTabBar: UIView {
             
             let itemWidth = frame.width / CGFloat(menuItems.count)
             let offsetX = itemWidth * CGFloat(index)
+            let menuItem = menuItems[index]
             
-            let itemView = createTabItem(item: menuItems[index])
+            let (itemView, label) = createTabItem(item: menuItem)
             itemView.clipsToBounds = true
             itemView.tag = index
+            self.labelArray.append(label)
             
             addSubview(itemView)
             itemView.snp.makeConstraints{ make in
@@ -73,7 +76,7 @@ class CustomTabBar: UIView {
     }
     
     //MARK: Helpers
-    func createTabItem(item: TabItem) -> UIView {
+    func createTabItem(item: TabItem) -> (containerView: UIView, label: UILabel) {
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         
@@ -113,7 +116,17 @@ class CustomTabBar: UIView {
             
         }
         
-        return tabBarItem
+        return (tabBarItem, itemTitleLabel)
+        
+    }
+    
+    func translateNameForTabItemLabel(items: [TabItem]) {
+        
+        for index in 0..<items.count {
+            
+            self.labelArray[index].text = items[index].displayTitle
+            
+        }
         
     }
     
