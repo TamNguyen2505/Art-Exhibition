@@ -11,7 +11,6 @@ class CustomTextView: UIView {
     //MARK: Properties
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "label"
         label.textColor = .darkText
         label.font = UIFont.boldSystemFont(ofSize: 14)
         return label
@@ -34,13 +33,12 @@ class CustomTextView: UIView {
     
     private lazy var trailingHelperButton: UIButton = {
         let btn = UIButton()
-        btn.setImage(UIImage(named: "icons8-calendar"), for: .normal)
+        btn.isHidden = true
         return btn
     }()
     
     private let bottomHelperLabel: UILabel = {
         let label = UILabel()
-        label.text = "label"
         return label
     }()
     
@@ -96,6 +94,35 @@ class CustomTextView: UIView {
             
         }
         
+    }
+    
+    //MARK: Features
+    func setTitle(text: String, placeHolder: String? = nil) {
+        
+        let attributedString = NSMutableAttributedString(string: text, attributes: [.backgroundColor: UIColor.white])
+        titleLabel.attributedText = attributedString
+        
+        guard let placeHolder = placeHolder else {return}
+        textField.attributedPlaceholder = NSMutableAttributedString(string: placeHolder, attributes: [.font: UIFont.systemFont(ofSize: 14), .foregroundColor: UIColor.lightGray])
+        
+    }
+    
+    func setLeadingIconImage(image: UIImage) {
+        
+        self.leadingIconImageView.image = image
+        
+    }
+    
+    func setTrailingIconImage(image: UIImage) {
+        
+        self.trailingHelperButton.isHidden = false
+        self.trailingHelperButton.setImage(image, for: .normal)
+        
+    }
+    
+    func setAttributedStringForBottomLabel(text: NSMutableAttributedString) {
+        
+        self.bottomHelperLabel.attributedText = text
         
     }
     
