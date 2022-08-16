@@ -82,6 +82,9 @@
 		006EB5B628AB3E1B00BB9DCB /* BiometricIDAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EB5A528AB3E1B00BB9DCB /* BiometricIDAuth.swift */; };
 		006EB5B728AB3E1B00BB9DCB /* PublicFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EB5A628AB3E1B00BB9DCB /* PublicFunction.swift */; };
 		006EB5B828AB3E1B00BB9DCB /* SessionTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EB5A728AB3E1B00BB9DCB /* SessionTimer.swift */; };
+		006EB5BD28AB42E900BB9DCB /* LocalizableKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EB5BA28AB42E900BB9DCB /* LocalizableKeys.swift */; };
+		006EB5BE28AB42E900BB9DCB /* LocalizableManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EB5BB28AB42E900BB9DCB /* LocalizableManager.swift */; };
+		006EB5BF28AB42E900BB9DCB /* Languages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EB5BC28AB42E900BB9DCB /* Languages.swift */; };
 		8098C6A6256981BBA3BBE5EF /* Pods_Art_Project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 724ABA61EF127A7D2839E3F8 /* Pods_Art_Project.framework */; };
 /* End PBXBuildFile section */
 
@@ -163,6 +166,9 @@
 		006EB5A528AB3E1B00BB9DCB /* BiometricIDAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BiometricIDAuth.swift; sourceTree = "<group>"; };
 		006EB5A628AB3E1B00BB9DCB /* PublicFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicFunction.swift; sourceTree = "<group>"; };
 		006EB5A728AB3E1B00BB9DCB /* SessionTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionTimer.swift; sourceTree = "<group>"; };
+		006EB5BA28AB42E900BB9DCB /* LocalizableKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizableKeys.swift; sourceTree = "<group>"; };
+		006EB5BB28AB42E900BB9DCB /* LocalizableManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizableManager.swift; sourceTree = "<group>"; };
+		006EB5BC28AB42E900BB9DCB /* Languages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Languages.swift; sourceTree = "<group>"; };
 		724ABA61EF127A7D2839E3F8 /* Pods_Art_Project.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Art_Project.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C79D637B3166DC845241F7E4 /* Pods-Art-Project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Art-Project.debug.xcconfig"; path = "Target Support Files/Pods-Art-Project/Pods-Art-Project.debug.xcconfig"; sourceTree = "<group>"; };
 		EF049535A091D8C7E9CED3C5 /* Pods-Art-Project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Art-Project.release.xcconfig"; path = "Target Support Files/Pods-Art-Project/Pods-Art-Project.release.xcconfig"; sourceTree = "<group>"; };
@@ -227,6 +233,7 @@
 		006EB50228AB3CA000BB9DCB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				006EB5B928AB42E900BB9DCB /* Localizable */,
 				006EB4F228AB395B00BB9DCB /* Assets.xcassets */,
 				006EB4F428AB395B00BB9DCB /* LaunchScreen.storyboard */,
 				006EB4F728AB395B00BB9DCB /* Info.plist */,
@@ -553,6 +560,16 @@
 			path = Keychain;
 			sourceTree = "<group>";
 		};
+		006EB5B928AB42E900BB9DCB /* Localizable */ = {
+			isa = PBXGroup;
+			children = (
+				006EB5BA28AB42E900BB9DCB /* LocalizableKeys.swift */,
+				006EB5BB28AB42E900BB9DCB /* LocalizableManager.swift */,
+				006EB5BC28AB42E900BB9DCB /* Languages.swift */,
+			);
+			path = Localizable;
+			sourceTree = "<group>";
+		};
 		124E23B46C2E53A56074661F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -703,6 +720,7 @@
 				006EB58828AB3E0000BB9DCB /* URLParameterEncoder.swift in Sources */,
 				006EB56F28AB3D0600BB9DCB /* NewsViewModel.swift in Sources */,
 				006EB5AA28AB3E1B00BB9DCB /* UIImage + Extension.swift in Sources */,
+				006EB5BE28AB42E900BB9DCB /* LocalizableManager.swift in Sources */,
 				006EB58F28AB3E0000BB9DCB /* Router.swift in Sources */,
 				006EB51D28AB3CE300BB9DCB /* HomeHeaderCollectionView.swift in Sources */,
 				006EB54928AB3CF100BB9DCB /* GraphViewController.swift in Sources */,
@@ -746,7 +764,9 @@
 				006EB54628AB3CF100BB9DCB /* SettingsViewController.swift in Sources */,
 				006EB54228AB3CF100BB9DCB /* BaseViewController.swift in Sources */,
 				006EB51328AB3CE300BB9DCB /* CustomCircleSlider.swift in Sources */,
+				006EB5BD28AB42E900BB9DCB /* LocalizableKeys.swift in Sources */,
 				006EB58728AB3E0000BB9DCB /* ParameterEncoding.swift in Sources */,
+				006EB5BF28AB42E900BB9DCB /* Languages.swift in Sources */,
 				006EB54C28AB3CF100BB9DCB /* LoginViewController.swift in Sources */,
 				006EB53E28AB3CF100BB9DCB /* NewsViewController.swift in Sources */,
 				006EB5AC28AB3E1B00BB9DCB /* UIView + Extension.swift in Sources */,
