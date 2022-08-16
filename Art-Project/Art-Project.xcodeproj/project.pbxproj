@@ -208,14 +208,14 @@
 		006EB4E828AB395A00BB9DCB /* Art-Project */ = {
 			isa = PBXGroup;
 			children = (
-				006EB59428AB3E1B00BB9DCB /* Ulities */,
+				006EB4FD28AB3C0300BB9DCB /* AppDelegate */,
 				006EB57428AB3E0000BB9DCB /* Networking */,
-				006EB55F28AB3D0600BB9DCB /* ViewModels */,
 				006EB54D28AB3CFC00BB9DCB /* Models */,
+				006EB55F28AB3D0600BB9DCB /* ViewModels */,
 				006EB51F28AB3CF100BB9DCB /* ViewControllers */,
 				006EB50328AB3CE300BB9DCB /* Views */,
+				006EB59428AB3E1B00BB9DCB /* Ulities */,
 				006EB50228AB3CA000BB9DCB /* Resources */,
-				006EB4FD28AB3C0300BB9DCB /* AppDelegate */,
 			);
 			path = "Art-Project";
 			sourceTree = "<group>";
