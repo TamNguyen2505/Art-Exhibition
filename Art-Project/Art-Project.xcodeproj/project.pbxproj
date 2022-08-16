@@ -13,6 +13,7 @@
 		006EB4F128AB395A00BB9DCB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 006EB4EF28AB395A00BB9DCB /* Main.storyboard */; };
 		006EB4F328AB395B00BB9DCB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 006EB4F228AB395B00BB9DCB /* Assets.xcassets */; };
 		006EB4F628AB395B00BB9DCB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 006EB4F428AB395B00BB9DCB /* LaunchScreen.storyboard */; };
+		8098C6A6256981BBA3BBE5EF /* Pods_Art_Project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 724ABA61EF127A7D2839E3F8 /* Pods_Art_Project.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,9 @@
 		006EB4F228AB395B00BB9DCB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		006EB4F528AB395B00BB9DCB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		006EB4F728AB395B00BB9DCB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		724ABA61EF127A7D2839E3F8 /* Pods_Art_Project.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Art_Project.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C79D637B3166DC845241F7E4 /* Pods-Art-Project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Art-Project.debug.xcconfig"; path = "Target Support Files/Pods-Art-Project/Pods-Art-Project.debug.xcconfig"; sourceTree = "<group>"; };
+		EF049535A091D8C7E9CED3C5 /* Pods-Art-Project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Art-Project.release.xcconfig"; path = "Target Support Files/Pods-Art-Project/Pods-Art-Project.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8098C6A6256981BBA3BBE5EF /* Pods_Art_Project.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +47,8 @@
 			children = (
 				006EB4E828AB395A00BB9DCB /* Art-Project */,
 				006EB4E728AB395A00BB9DCB /* Products */,
+				6FD253C87AD4217E43FF910E /* Pods */,
+				124E23B46C2E53A56074661F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +74,24 @@
 			path = "Art-Project";
 			sourceTree = "<group>";
 		};
+		124E23B46C2E53A56074661F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				724ABA61EF127A7D2839E3F8 /* Pods_Art_Project.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6FD253C87AD4217E43FF910E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C79D637B3166DC845241F7E4 /* Pods-Art-Project.debug.xcconfig */,
+				EF049535A091D8C7E9CED3C5 /* Pods-Art-Project.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +99,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 006EB4FA28AB395B00BB9DCB /* Build configuration list for PBXNativeTarget "Art-Project" */;
 			buildPhases = (
+				EB7AB3C51F773B34014AA867 /* [CP] Check Pods Manifest.lock */,
 				006EB4E228AB395A00BB9DCB /* Sources */,
 				006EB4E328AB395A00BB9DCB /* Frameworks */,
 				006EB4E428AB395A00BB9DCB /* Resources */,
+				C5E22708938F80B36EDEA421 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -132,6 +159,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C5E22708938F80B36EDEA421 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Art-Project/Pods-Art-Project-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Art-Project/Pods-Art-Project-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Art-Project/Pods-Art-Project-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EB7AB3C51F773B34014AA867 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Art-Project-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		006EB4E228AB395A00BB9DCB /* Sources */ = {
@@ -284,6 +353,7 @@
 		};
 		006EB4FB28AB395B00BB9DCB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C79D637B3166DC845241F7E4 /* Pods-Art-Project.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -312,6 +382,7 @@
 		};
 		006EB4FC28AB395B00BB9DCB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EF049535A091D8C7E9CED3C5 /* Pods-Art-Project.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
