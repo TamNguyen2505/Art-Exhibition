@@ -273,13 +273,13 @@
 		006EB51F28AB3CF100BB9DCB /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				006EB52128AB3CF100BB9DCB /* AudioViewControllers */,
-				006EB52428AB3CF100BB9DCB /* NewsViewControllers */,
 				006EB52928AB3CF100BB9DCB /* BaseViewControllers */,
-				006EB52F28AB3CF100BB9DCB /* SettingsViewControllers */,
-				006EB53128AB3CF100BB9DCB /* HomeViewControllers */,
-				006EB53428AB3CF100BB9DCB /* GraphViewControllers */,
 				006EB53728AB3CF100BB9DCB /* LoginViewControllers */,
+				006EB53128AB3CF100BB9DCB /* HomeViewControllers */,
+				006EB52428AB3CF100BB9DCB /* NewsViewControllers */,
+				006EB52128AB3CF100BB9DCB /* AudioViewControllers */,
+				006EB53428AB3CF100BB9DCB /* GraphViewControllers */,
+				006EB52F28AB3CF100BB9DCB /* SettingsViewControllers */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -351,8 +351,8 @@
 			children = (
 				006EB54E28AB3CFC00BB9DCB /* JSONNull.swift */,
 				006EB55228AB3CFC00BB9DCB /* Media.swift */,
-				006EB54F28AB3CFC00BB9DCB /* HomeModels */,
 				006EB55628AB3CFC00BB9DCB /* NewsModel */,
+				006EB54F28AB3CFC00BB9DCB /* HomeModels */,
 			);
 			path = Models;
 			sourceTree = "<group>";
