@@ -33,6 +33,9 @@ class CustomTextView: UIView {
     
     private lazy var trailingHelperButton: UIButton = {
         let btn = UIButton()
+        btn.layer.cornerRadius = 5
+        btn.layer.borderWidth = 1
+        btn.layer.borderColor = UIColor.lightGray.cgColor
         btn.isHidden = true
         return btn
     }()
@@ -96,7 +99,13 @@ class CustomTextView: UIView {
         
     }
     
-    //MARK: Features
+    //MARK: Features to set
+    func setText(string: String?) {
+        
+        self.textField.text = string
+        
+    }
+    
     func setTitle(text: String, placeHolder: String? = nil) {
         
         let attributedString = NSMutableAttributedString(string: text, attributes: [.backgroundColor: UIColor.white])
@@ -107,13 +116,13 @@ class CustomTextView: UIView {
         
     }
     
-    func setLeadingIconImage(image: UIImage) {
+    func setLeadingIconImage(image: UIImage?) {
         
         self.leadingIconImageView.image = image
         
     }
     
-    func setTrailingIconImage(image: UIImage) {
+    func setTrailingIconImage(image: UIImage?) {
         
         self.trailingHelperButton.isHidden = false
         self.trailingHelperButton.setImage(image, for: .normal)
@@ -123,6 +132,13 @@ class CustomTextView: UIView {
     func setAttributedStringForBottomLabel(text: NSMutableAttributedString) {
         
         self.bottomHelperLabel.attributedText = text
+        
+    }
+    
+    //MARK: Features to get
+    func getString() -> String? {
+        
+        return self.textField.text
         
     }
     

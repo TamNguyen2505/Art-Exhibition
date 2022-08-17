@@ -40,19 +40,26 @@ class SignUpViewController: BaseViewController {
         return btn
     }()
     
-    private let usernameTextField: UITextField = {
-        let tf = UITextField()
-        tf.layer.cornerRadius = 5
-        tf.layer.borderWidth = 1
-        tf.layer.borderColor = UIColor.lightGray.cgColor
+    private let usernameTextField: CustomTextView = {
+        let tf = CustomTextView()
+        tf.setTitle(text: "Login")
+        tf.setLeadingIconImage(image: UIImage(named: "icons8-user"))
         return tf
     }()
     
-    private let passwordTextField: UITextField = {
-        let tf = UITextField()
-        tf.layer.cornerRadius = 5
-        tf.layer.borderWidth = 1
-        tf.layer.borderColor = UIColor.lightGray.cgColor
+    private let passwordTextField: CustomTextView = {
+        let tf = CustomTextView()
+        tf.setTitle(text: "Password")
+        tf.setLeadingIconImage(image: UIImage(named: "icons8-password"))
+        tf.setTrailingIconImage(image: UIImage(named: "icons8-open-eye"))
+        return tf
+    }()
+    
+    private let confirmPasswordTextField: CustomTextView = {
+        let tf = CustomTextView()
+        tf.setTitle(text: "Password")
+        tf.setLeadingIconImage(image: UIImage(named: "icons8-password"))
+        tf.setTrailingIconImage(image: UIImage(named: "icons8-open-eye"))
         return tf
     }()
     
@@ -117,7 +124,7 @@ class SignUpViewController: BaseViewController {
             
         }
         
-        let vStackForTextField = UIStackView(arrangedSubviews: [usernameTextField, passwordTextField])
+        let vStackForTextField = UIStackView(arrangedSubviews: [usernameTextField, passwordTextField, confirmPasswordTextField])
         vStackForTextField.axis = .vertical
         vStackForTextField.spacing = 10
         vStackForTextField.distribution = .fillEqually

@@ -31,11 +31,16 @@ class LoginViewController: BaseViewController {
     
     private let usernameTextField: CustomTextView = {
         let tf = CustomTextView()
+        tf.setTitle(text: "Login")
+        tf.setLeadingIconImage(image: UIImage(named: "icons8-user"))
         return tf
     }()
     
     private let passwordTextField: CustomTextView = {
         let tf = CustomTextView()
+        tf.setTitle(text: "Password")
+        tf.setLeadingIconImage(image: UIImage(named: "icons8-password"))
+        tf.setTrailingIconImage(image: UIImage(named: "icons8-open-eye"))
         return tf
     }()
     
@@ -221,7 +226,7 @@ class LoginViewController: BaseViewController {
         
         do{
             let password = try keychainManager.findPasswordInKeychains(key: .JWT)
-//            passwordTextField.text = password
+            passwordTextField.setText(string: password)
         }
         catch {
             

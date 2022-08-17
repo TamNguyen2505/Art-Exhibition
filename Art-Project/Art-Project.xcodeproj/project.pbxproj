@@ -342,8 +342,8 @@
 		006EB53728AB3CF100BB9DCB /* LoginViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				006EB53828AB3CF100BB9DCB /* SignUpViewController.swift */,
 				006EB53928AB3CF100BB9DCB /* LoginViewController.swift */,
+				006EB53828AB3CF100BB9DCB /* SignUpViewController.swift */,
 			);
 			path = LoginViewControllers;
 			sourceTree = "<group>";
