@@ -52,14 +52,16 @@ class SignUpViewController: BaseViewController {
         tf.setTitle(text: "Password")
         tf.setLeadingIconImage(image: UIImage(named: "icons8-password"))
         tf.setTrailingIconImage(image: UIImage(named: "icons8-open-eye"))
+        tf.publicTextField.isSecureTextEntry = true
         return tf
     }()
     
     private let confirmPasswordTextField: CustomTextView = {
         let tf = CustomTextView()
-        tf.setTitle(text: "Password")
+        tf.setTitle(text: "Confirmation password")
         tf.setLeadingIconImage(image: UIImage(named: "icons8-password"))
         tf.setTrailingIconImage(image: UIImage(named: "icons8-open-eye"))
+        tf.publicTextField.isSecureTextEntry = true
         return tf
     }()
     
@@ -81,9 +83,12 @@ class SignUpViewController: BaseViewController {
         btn.layer.borderWidth = 2
         btn.layer.borderColor = UIColor.systemOrange.cgColor
         btn.layer.cornerRadius = 5
+        btn.backgroundColor = .white
         btn.addTarget(self, action: #selector(handleEventFromSignUpButton(_:)), for: .touchUpInside)
         return btn
     }()
+    
+    private let viewModel = SignUpViewModel()
     
     //MARK: View cycle
     override func setupUI() {
@@ -127,19 +132,12 @@ class SignUpViewController: BaseViewController {
         let vStackForTextField = UIStackView(arrangedSubviews: [usernameTextField, passwordTextField, confirmPasswordTextField])
         vStackForTextField.axis = .vertical
         vStackForTextField.spacing = 10
-        vStackForTextField.distribution = .fillEqually
         
         view.addSubview(vStackForTextField)
         vStackForTextField.snp.makeConstraints{ make in
             
             make.top.equalTo(avatarImageView.snp.bottom).offset(20)
             make.leading.trailing.equalToSuperview().inset(20)
-            
-        }
-        
-        usernameTextField.snp.makeConstraints{ make in
-            
-            make.height.equalTo(50)
             
         }
         
@@ -163,6 +161,17 @@ class SignUpViewController: BaseViewController {
             
         }
         
+        let switchUIForTrailingButton: ((UITextField, UIButton) -> Void) = { [weak self] (textField, sender) in
+            guard let self = self else {return}
+            
+            textField.isSecureTextEntry.toggle()
+            sender.setImage(self.viewModel.trailingIconForPasswordTextField(securityOn: textField.isSecureTextEntry), for: .normal)
+            
+        }
+        
+        self.passwordTextField.handleEventFromTrailingButtonToTextField = switchUIForTrailingButton
+        self.confirmPasswordTextField.handleEventFromTrailingButtonToTextField = switchUIForTrailingButton
+        
     }
     
     override func setupNavigationStyle() {
@@ -170,6 +179,31 @@ class SignUpViewController: BaseViewController {
         
         let leftItem = setupUIForLeftItem(leftItemInfo: .backIcon)
         constraintHeaderStack(accordingTo: .aLeftItem(leftItem: leftItem))
+        
+    }
+    
+    override func observeVM() {
+        super.observeVM()
+        
+        let obserCreateUserSuccessfully = viewModel.observe(\.createUserSuccessfully, options: [.new]) { _, receivedValue in
+            guard let valid = receivedValue.newValue, valid else {return}
+            
+            DispatchQueue.main.async {
+                
+                if valid {
+                    
+                    AppDelegate.switchToArtHomeViewController()
+                    
+                } else {
+                    
+                    Loader.shared.hide()
+                    
+                }
+                
+            }
+            
+        }
+        self.observations.append(obserCreateUserSuccessfully)
         
     }
 
@@ -184,8 +218,24 @@ class SignUpViewController: BaseViewController {
     
     @objc func handleEventFromSignUpButton(_ sender: UIButton) {
         
+        viewModel.userName = usernameTextField.getString()
+        let (alertFromUserName, userNameIsValid) = viewModel.checkUserName()
+        usernameTextField.setAttributedStringForBottomLabel(text: alertFromUserName)
+        guard userNameIsValid else {return}
         
+        viewModel.password = passwordTextField.getString()
+        let (alertFromPassword, passwordIsValid) = viewModel.checkPassword()
+        passwordTextField.setAttributedStringForBottomLabel(text: alertFromPassword)
+        guard passwordIsValid else {return}
         
+        viewModel.confirmationPassword = confirmPasswordTextField.getString()
+        let (alertFromConfirmationPassword, confirmationPasswordIsValid) = viewModel.checkConfirmationPassword()
+        confirmPasswordTextField.setAttributedStringForBottomLabel(text: alertFromConfirmationPassword)
+        guard confirmationPasswordIsValid else {return}
+        
+        Loader.shared.show()
+        viewModel.createNewUserName()
+                
     }
     
     @objc func handleEventFromCancelButton(_ sender: UIButton) {

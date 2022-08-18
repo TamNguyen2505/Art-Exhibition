@@ -18,6 +18,12 @@ public enum LocalizableKey: String {
     case text_languages = "Languages"
     case text_dark_mode = "Dark mode"
     case text_font_size = "Font size"
+    case text_lack_of_username_alert = "Please enter your username!"
+    case text_lack_of_password_alert = "Please enter your password!"
+    case text_lack_of_password_confirmation_alert = "Please confirm your password!"
+    case text_differences_between_passwords = "Please correct your confirmation password!"
+    case text_wrong_username = "Please check your username!"
+    case text_wrong_passowrd = "Please check your password!"
     
 }
 
@@ -59,6 +65,23 @@ extension LocalizableKey: Languages {
         case .text_font_size:
             return "フォントサイズ"
             
+        case .text_lack_of_username_alert:
+            return "ユーザー名を入力してください!"
+            
+        case .text_lack_of_password_alert:
+            return "パスワードを入力してください"
+            
+        case .text_lack_of_password_confirmation_alert:
+            return "パスワードを確認してください。!"
+            
+        case .text_differences_between_passwords:
+            return "確認パスワードを修正してください。!"
+            
+        case .text_wrong_username:
+            return "ユーザー名を確認してください。!"
+            
+        case .text_wrong_passowrd:
+            return "パスワードを確認してください。!"
         }
         
     }

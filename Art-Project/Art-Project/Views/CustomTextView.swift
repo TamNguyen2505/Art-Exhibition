@@ -37,6 +37,7 @@ class CustomTextView: UIView {
         btn.layer.borderWidth = 1
         btn.layer.borderColor = UIColor.lightGray.cgColor
         btn.isHidden = true
+        btn.addTarget(self, action: #selector(handleEventFromTrailingHelperButton), for: .touchUpInside)
         return btn
     }()
     
@@ -44,6 +45,12 @@ class CustomTextView: UIView {
         let label = UILabel()
         return label
     }()
+    
+    var publicTextField: UITextField {
+        return self.textField
+    }
+    
+    var handleEventFromTrailingButtonToTextField: ((_ textfield: UITextField,_ sender: UIButton) -> Void)?
     
     //MARK: Init
     override init(frame: CGRect) {
@@ -57,6 +64,17 @@ class CustomTextView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: Actions
+    @objc func handleEventFromTrailingHelperButton(_ sender: UIButton) {
+        
+        DispatchQueue.main.async {[weak self] in
+            guard let self = self else {return}
+            
+            self.handleEventFromTrailingButtonToTextField?(self.textField, sender)
+            
+        }
+        
+    }
     
     //MARK: Helpers
     private func setupUI() {
@@ -129,7 +147,8 @@ class CustomTextView: UIView {
         
     }
     
-    func setAttributedStringForBottomLabel(text: NSMutableAttributedString) {
+    func setAttributedStringForBottomLabel(text: NSMutableAttributedString?) {
+        guard let text = text else {return}
         
         self.bottomHelperLabel.attributedText = text
         

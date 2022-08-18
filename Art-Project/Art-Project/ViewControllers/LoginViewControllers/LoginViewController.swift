@@ -62,6 +62,7 @@ class LoginViewController: BaseViewController {
         btn.layer.borderWidth = 2
         btn.layer.borderColor = UIColor.systemOrange.cgColor
         btn.layer.cornerRadius = 5
+        btn.backgroundColor = .white
         btn.addTarget(self, action: #selector(handleEventFromSignUpButton(_:)), for: .touchUpInside)
         return btn
     }()
@@ -116,7 +117,6 @@ class LoginViewController: BaseViewController {
         let vStackForTextField = UIStackView(arrangedSubviews: [usernameTextField, passwordTextField])
         vStackForTextField.axis = .vertical
         vStackForTextField.spacing = 10
-        vStackForTextField.distribution = .fillEqually
         
         view.addSubview(vStackForTextField)
         vStackForTextField.snp.makeConstraints{ make in
