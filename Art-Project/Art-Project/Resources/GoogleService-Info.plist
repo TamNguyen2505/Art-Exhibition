@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>103519931467-5gnrrfu7g9uk683pkjqekocfu8927mej.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.103519931467-5gnrrfu7g9uk683pkjqekocfu8927mej</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCmFwifElPNEBRK1DVsY_jldFnr2jMOgHQ</string>
+	<key>GCM_SENDER_ID</key>
+	<string>103519931467</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>tamnm-minerva.vn.Art-Project</string>
+	<key>PROJECT_ID</key>
+	<string>art-exhibition-26c7e</string>
+	<key>STORAGE_BUCKET</key>
+	<string>art-exhibition-26c7e.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:103519931467:ios:a0a188e266dfbaa11dd1ce</string>
+</dict>
+</plist>
