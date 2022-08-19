@@ -41,6 +41,7 @@ class LoginViewController: BaseViewController {
         tf.setTitle(text: "Password")
         tf.setLeadingIconImage(image: UIImage(named: "icons8-password"))
         tf.setTrailingIconImage(image: UIImage(named: "icons8-open-eye"))
+        tf.publicTextField.isSecureTextEntry = true
         return tf
     }()
     
@@ -84,6 +85,9 @@ class LoginViewController: BaseViewController {
             retrievePassword()
         }
     }
+    
+    private let viewModel = AuthenticationViewModel()
+    
     //MARK: View cycle
     override func setupUI() {
         super.setupUI()
@@ -155,6 +159,41 @@ class LoginViewController: BaseViewController {
             
         }
         
+        let switchUIForTrailingButton: ((UITextField, UIButton) -> Void) = { [weak self] (textField, sender) in
+            guard let self = self else {return}
+            
+            textField.isSecureTextEntry.toggle()
+            sender.setImage(self.viewModel.trailingIconForPasswordTextField(securityOn: textField.isSecureTextEntry), for: .normal)
+            
+        }
+        
+        self.passwordTextField.handleEventFromTrailingButtonToTextField = switchUIForTrailingButton
+        
+    }
+    
+    override func observeVM() {
+        super.observeVM()
+        
+        let logInUSerSuccessfully = viewModel.observe(\.logInUserSuccessfully, options: [.new]) { _, receivedValue in
+            guard let valid = receivedValue.newValue, valid else {return}
+            
+            DispatchQueue.main.async {
+                
+                if valid {
+                    
+                    AppDelegate.switchToArtHomeViewController()
+                    
+                } else {
+                    
+                    Loader.shared.hide()
+                    
+                }
+                
+            }
+            
+        }
+        self.observations.append(logInUSerSuccessfully)
+        
     }
     
     //MARK: Actions
@@ -162,9 +201,18 @@ class LoginViewController: BaseViewController {
                 
         if networkMonitor.status == .satisfied {
             
-            let targetVC = BaseTabBarController()
-            targetVC.modalPresentationStyle = .fullScreen
-            self.present(targetVC, animated: true, completion: nil)
+            viewModel.userName = usernameTextField.getString()
+            let (alertFromUserName, userNameIsValid) = viewModel.checkUserName()
+            usernameTextField.setAttributedStringForBottomLabel(text: alertFromUserName)
+            guard userNameIsValid else {return}
+            
+            viewModel.password = passwordTextField.getString()
+            let (alertFromPassword, passwordIsValid) = viewModel.checkPassword()
+            passwordTextField.setAttributedStringForBottomLabel(text: alertFromPassword)
+            guard passwordIsValid else {return}
+            
+            Loader.shared.show()
+            viewModel.logIn()
             
         } else {
             

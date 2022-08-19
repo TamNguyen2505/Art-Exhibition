@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0065156328ADD9ED0043BEA7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0065156228ADD9ED0043BEA7 /* GoogleService-Info.plist */; };
-		0065156628ADE0450043BEA7 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065156528ADE0450043BEA7 /* SignUpViewModel.swift */; };
 		006EB4EA28AB395A00BB9DCB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EB4E928AB395A00BB9DCB /* AppDelegate.swift */; };
 		006EB4EC28AB395A00BB9DCB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EB4EB28AB395A00BB9DCB /* SceneDelegate.swift */; };
 		006EB4F328AB395B00BB9DCB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 006EB4F228AB395B00BB9DCB /* Assets.xcassets */; };
@@ -88,12 +87,12 @@
 		006EB5BE28AB42E900BB9DCB /* LocalizableManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EB5BB28AB42E900BB9DCB /* LocalizableManager.swift */; };
 		006EB5BF28AB42E900BB9DCB /* Languages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EB5BC28AB42E900BB9DCB /* Languages.swift */; };
 		006EB5C428AB4D1800BB9DCB /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EB5C328AB4D1800BB9DCB /* SettingsViewModel.swift */; };
+		0086BBCE28AF261E00C916D3 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0086BBCD28AF261E00C916D3 /* AuthenticationViewModel.swift */; };
 		8098C6A6256981BBA3BBE5EF /* Pods_Art_Project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 724ABA61EF127A7D2839E3F8 /* Pods_Art_Project.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0065156228ADD9ED0043BEA7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		0065156528ADE0450043BEA7 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		006EB4E628AB395A00BB9DCB /* Art-Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Art-Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		006EB4E928AB395A00BB9DCB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		006EB4EB28AB395A00BB9DCB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -176,6 +175,7 @@
 		006EB5BC28AB42E900BB9DCB /* Languages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Languages.swift; sourceTree = "<group>"; };
 		006EB5C028AB43F300BB9DCB /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ja; path = ja.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		006EB5C328AB4D1800BB9DCB /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		0086BBCD28AF261E00C916D3 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		724ABA61EF127A7D2839E3F8 /* Pods_Art_Project.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Art_Project.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C79D637B3166DC845241F7E4 /* Pods-Art-Project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Art-Project.debug.xcconfig"; path = "Target Support Files/Pods-Art-Project/Pods-Art-Project.debug.xcconfig"; sourceTree = "<group>"; };
 		EF049535A091D8C7E9CED3C5 /* Pods-Art-Project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Art-Project.release.xcconfig"; path = "Target Support Files/Pods-Art-Project/Pods-Art-Project.release.xcconfig"; sourceTree = "<group>"; };
@@ -196,7 +196,7 @@
 		0065156428ADE0050043BEA7 /* LoginViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				0065156528ADE0450043BEA7 /* SignUpViewModel.swift */,
+				0086BBCD28AF261E00C916D3 /* AuthenticationViewModel.swift */,
 			);
 			path = LoginViewModels;
 			sourceTree = "<group>";
@@ -709,11 +709,11 @@
 				006EB5B128AB3E1B00BB9DCB /* Data + Extension.swift in Sources */,
 				006EB56E28AB3D0600BB9DCB /* DetailedNewsViewModel.swift in Sources */,
 				006EB5B328AB3E1B00BB9DCB /* KeychainError.swift in Sources */,
+				0086BBCE28AF261E00C916D3 /* AuthenticationViewModel.swift in Sources */,
 				006EB55B28AB3CFC00BB9DCB /* HardvardMuseumObjectModel.swift in Sources */,
 				006EB4EA28AB395A00BB9DCB /* AppDelegate.swift in Sources */,
 				006EB57328AB3D0600BB9DCB /* HomeHeaderCollectionViewModel.swift in Sources */,
 				006EB51B28AB3CE300BB9DCB /* SlideInPresentationManager.swift in Sources */,
-				0065156628ADE0450043BEA7 /* SignUpViewModel.swift in Sources */,
 				006EB54128AB3CF100BB9DCB /* BaseTabBarController.swift in Sources */,
 				006EB5C428AB4D1800BB9DCB /* SettingsViewModel.swift in Sources */,
 				006EB57028AB3D0600BB9DCB /* RecordInfomationViewModel.swift in Sources */,

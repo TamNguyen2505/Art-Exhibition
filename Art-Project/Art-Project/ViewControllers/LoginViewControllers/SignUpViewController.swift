@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Photos
 
 class SignUpViewController: BaseViewController {
     //MARK: Properties
@@ -26,6 +27,7 @@ class SignUpViewController: BaseViewController {
         iv.image = UIImage(named: "default-avatar")
         iv.layer.borderWidth = 1
         iv.layer.borderColor = UIColor.lightGray.cgColor
+        iv.clipsToBounds = true
         return iv
     }()
     
@@ -37,6 +39,7 @@ class SignUpViewController: BaseViewController {
         btn.layer.borderWidth = 2
         btn.layer.borderColor = #colorLiteral(red: 0.1597932875, green: 0.253477037, blue: 0.4077349007, alpha: 1).cgColor
         btn.scalesLargeContentImage = true
+        btn.addTarget(self, action: #selector(handleEventFromCameraButton(_:)), for: .touchUpInside)
         return btn
     }()
     
@@ -88,12 +91,12 @@ class SignUpViewController: BaseViewController {
         return btn
     }()
     
-    private let viewModel = SignUpViewModel()
+    private let viewModel = AuthenticationViewModel()
     
     //MARK: View cycle
     override func setupUI() {
         super.setupUI()
-
+        
         view.addSubview(backgroundImageView)
         backgroundImageView.snp.makeConstraints{ make in
             
@@ -205,8 +208,27 @@ class SignUpViewController: BaseViewController {
         }
         self.observations.append(obserCreateUserSuccessfully)
         
-    }
+        let observeCreateUserWidthAvatarSuccessfully = viewModel.observe(\.createUserWidthAvatarSuccessfully, options: [.new]) { _, receivedValue in
+            guard let valid = receivedValue.newValue else {return}
 
+            DispatchQueue.main.async {
+                
+                if valid {
+                    
+                    AppDelegate.switchToArtHomeViewController()
+                    
+                } else {
+                    
+                    Loader.shared.hide()
+                    
+                }
+                
+            }
+        }
+        self.observations.append(observeCreateUserWidthAvatarSuccessfully)
+        
+    }
+    
     //MARK: Actions
     override func handleEventFromLeftNavigationItem(_ sender: UIButton) {
         super.handleEventFromLeftNavigationItem(sender)
@@ -215,27 +237,44 @@ class SignUpViewController: BaseViewController {
         
     }
     
+    @objc func handleEventFromCameraButton(_ sender: UIButton) {
+        
+        showAlertForPickingUpPhoto()
+        
+    }
     
     @objc func handleEventFromSignUpButton(_ sender: UIButton) {
         
-        viewModel.userName = usernameTextField.getString()
-        let (alertFromUserName, userNameIsValid) = viewModel.checkUserName()
-        usernameTextField.setAttributedStringForBottomLabel(text: alertFromUserName)
-        guard userNameIsValid else {return}
+        if networkMonitor.status == .satisfied {
+            
+            viewModel.userName = usernameTextField.getString()
+            let (alertFromUserName, userNameIsValid) = viewModel.checkUserName()
+            usernameTextField.setAttributedStringForBottomLabel(text: alertFromUserName)
+            guard userNameIsValid else {return}
+            
+            viewModel.password = passwordTextField.getString()
+            let (alertFromPassword, passwordIsValid) = viewModel.checkPassword()
+            passwordTextField.setAttributedStringForBottomLabel(text: alertFromPassword)
+            guard passwordIsValid else {return}
+            
+            viewModel.confirmationPassword = confirmPasswordTextField.getString()
+            let (alertFromConfirmationPassword, confirmationPasswordIsValid) = viewModel.checkConfirmationPassword()
+            confirmPasswordTextField.setAttributedStringForBottomLabel(text: alertFromConfirmationPassword)
+            guard confirmationPasswordIsValid else {return}
+            
+            Loader.shared.show()
+            
+            Task {
+                try await viewModel.createNewUserName()
+            }
+            
+        } else {
+            
+            showAlertViewAfterInternetChecking()
+            
+        }
         
-        viewModel.password = passwordTextField.getString()
-        let (alertFromPassword, passwordIsValid) = viewModel.checkPassword()
-        passwordTextField.setAttributedStringForBottomLabel(text: alertFromPassword)
-        guard passwordIsValid else {return}
         
-        viewModel.confirmationPassword = confirmPasswordTextField.getString()
-        let (alertFromConfirmationPassword, confirmationPasswordIsValid) = viewModel.checkConfirmationPassword()
-        confirmPasswordTextField.setAttributedStringForBottomLabel(text: alertFromConfirmationPassword)
-        guard confirmationPasswordIsValid else {return}
-        
-        Loader.shared.show()
-        viewModel.createNewUserName()
-                
     }
     
     @objc func handleEventFromCancelButton(_ sender: UIButton) {
@@ -244,5 +283,89 @@ class SignUpViewController: BaseViewController {
         
     }
     
+    //MARK: Helpers
+    private func showAlertViewAfterInternetChecking() {
+        
+        let alert = UIAlertController(title: "Notification", message: "Please check the Internet Access", preferredStyle: .alert)
+        
+        let open = UIAlertAction(title: "Settings", style: .default) { _ in
+            
+            guard let settingUrl = URL(string: UIApplication.openSettingsURLString) else {return}
+            
+            if UIApplication.shared.canOpenURL(settingUrl) {
+                
+                UIApplication.shared.open(settingUrl, options: [:], completionHandler: nil)
+                
+            }
+            
+        }
+        alert.addAction(open)
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alert.addAction(cancel)
+        
+        self.present(alert, animated: true, completion: nil)
+        
+    }
+    
+    private func showAlertForPickingUpPhoto() {
+        
+        let alert = UIAlertController(title: "Image Selection", message: "From where you want to pick this image?", preferredStyle: .actionSheet)
+        let camera = UIAlertAction(title: "Camera", style: .default){ [weak self] (action: UIAlertAction) in
+            guard let self = self else {return}
+            
+            self.getImage(fromSourceType: .camera)
+            
+        }
+        alert.addAction(camera)
+        
+        let library = UIAlertAction(title: "Photo Library", style: .default){ [weak self] (action: UIAlertAction) in
+            guard let self = self else {return}
+            
+            self.getImage(fromSourceType: .photoLibrary)
+            
+        }
+        alert.addAction(library)
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
+        alert.addAction(cancel)
+        
+        self.present(alert, animated: true, completion: nil)
+        
+    }
+    
+    private func getImage(fromSourceType sourceType: UIImagePickerController.SourceType) {
+        
+        guard UIImagePickerController.isSourceTypeAvailable(sourceType) else {return}
+        
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = sourceType
+        self.present(imagePickerController, animated: true, completion: nil)
+        
+    }
+    
+    
+}
 
+extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        self.dismiss(animated: true) { [weak self] in
+            guard let self = self, let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
+            
+            self.viewModel.avatarImage = image
+            self.avatarImageView.image = image
+            
+        }
+        
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        
+        picker.dismiss(animated: true, completion: nil)
+        
+    }
+    
 }
