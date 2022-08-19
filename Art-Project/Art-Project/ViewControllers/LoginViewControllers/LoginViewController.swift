@@ -29,7 +29,7 @@ class LoginViewController: BaseViewController {
         return iv
     }()
     
-    private let usernameTextField: CustomTextView = {
+    private let emailTextField: CustomTextView = {
         let tf = CustomTextView()
         tf.setTitle(text: "Login")
         tf.setLeadingIconImage(image: UIImage(named: "icons8-user"))
@@ -118,7 +118,7 @@ class LoginViewController: BaseViewController {
         }
         view.bringSubviewToFront(avatarImageView)
         
-        let vStackForTextField = UIStackView(arrangedSubviews: [usernameTextField, passwordTextField])
+        let vStackForTextField = UIStackView(arrangedSubviews: [emailTextField, passwordTextField])
         vStackForTextField.axis = .vertical
         vStackForTextField.spacing = 10
         
@@ -201,9 +201,9 @@ class LoginViewController: BaseViewController {
                 
         if networkMonitor.status == .satisfied {
             
-            viewModel.userName = usernameTextField.getString()
+            viewModel.email = emailTextField.getString()
             let (alertFromUserName, userNameIsValid) = viewModel.checkUserName()
-            usernameTextField.setAttributedStringForBottomLabel(text: alertFromUserName)
+            emailTextField.setAttributedStringForBottomLabel(text: alertFromUserName)
             guard userNameIsValid else {return}
             
             viewModel.password = passwordTextField.getString()

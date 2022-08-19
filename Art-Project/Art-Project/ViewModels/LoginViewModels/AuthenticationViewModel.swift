@@ -12,7 +12,9 @@ import FirebaseStorage
 
 class AuthenticationViewModel: NSObject {
     //MARK: Properties
-    var userName: String?
+    var username: String?
+    var fullname: String?
+    var email: String?
     var password: String?
     var confirmationPassword: String?
     var avatarImage: UIImage?
@@ -20,10 +22,11 @@ class AuthenticationViewModel: NSObject {
     @objc dynamic var createUserSuccessfully = false
     @objc dynamic var createUserWidthAvatarSuccessfully = false
     private let storage = Storage.storage()
-    
+    private let Collection_User = Firestore.firestore().collection("users")
+
     //MARK: Features
     func checkUserName() -> (alert: NSMutableAttributedString?, valid: Bool) {
-        guard let userName = userName, userName != "" else {return (createRedAlertString(string: LocalizableManager.getLocalizableString(key: .text_lack_of_username_alert)), false)}
+        guard let userName = email, userName != "" else {return (createRedAlertString(string: LocalizableManager.getLocalizableString(key: .text_lack_of_username_alert)), false)}
         
         return (nil, true)
         
@@ -54,11 +57,11 @@ class AuthenticationViewModel: NSObject {
     
     func createNewUserName() async throws {
         
-        guard let userName = userName, userName != "", let password = password, password != "", checkConfirmationPassword().valid else {return}
+        guard let email = email, email != "", let password = password, password != "", checkConfirmationPassword().valid else {return}
         
         let userID: String = try await withCheckedThrowingContinuation{ Continuation in
             
-            Auth.auth().createUser(withEmail: userName, password: password) { authResult, error in
+            Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
                 switch (authResult, error) {
                 case (nil, let error?):
                     Continuation.resume(throwing: error)
@@ -77,11 +80,15 @@ class AuthenticationViewModel: NSObject {
             }
             
         }
+        
+        var data: [String: Any] = ["email": email, "fullname": fullname ?? "", "username": username ?? "", "uid": userID]
                 
-        let metaData: StorageMetadata? = try await withCheckedThrowingContinuation{ [weak self] Continuation in
+        let imageURL: String? = try await withCheckedThrowingContinuation{ [weak self] Continuation in
             guard let self = self, let imageData = self.avatarImage?.jpegData(compressionQuality: 0.75) else {
                 
                 if !userID.isEmpty {
+                                        
+                    Collection_User.document(userID).setData(data)
                     self?.createUserSuccessfully = true
 
                 } else {
@@ -98,14 +105,28 @@ class AuthenticationViewModel: NSObject {
                 case (nil, let error?):
                     Continuation.resume(throwing: error)
                     
-                case ( let metadata?, nil):
-                    Continuation.resume(returning: metadata)
+                case ( _ , nil):
                     
-                case (nil, nil):
-                    Continuation.resume(throwing: "Address encoding failed" as! Error)
+                    ref.downloadURL { (url, erro) in
+                        switch (url, error) {
+                        case (nil, let error?):
+                            Continuation.resume(throwing: error)
+                            
+                        case (let url?, nil):
+                            Continuation.resume(returning: url.absoluteString)
+                            
+                        case (nil, nil):
+                            Continuation.resume(throwing: "Address encoding failed" as! Error)
+                            
+                        case let (_?, error?):
+                            Continuation.resume(returning: url?.absoluteString)
+                            print(error)
+                        }
+                        
+                    }
                     
-                case let (metadata?, error?):
-                    Continuation.resume(returning: metadata)
+                case let (_?, error?):
+                    Continuation.resume(returning: nil)
                     print(error)
                
                 }
@@ -114,15 +135,17 @@ class AuthenticationViewModel: NSObject {
             
         }
         
-        guard metaData != nil else {return}
+        guard let imageURL = imageURL else {return}
         
+        data.updateValue(imageURL, forKey: "profileImageURL")
+        try await Collection_User.document(userID).setData(data)
         self.createUserWidthAvatarSuccessfully = true
         
     }
     
     func logIn() {
         
-        guard let userName = userName, userName != "", let password = password, password != "" else {return}
+        guard let userName = email, userName != "", let password = password, password != "" else {return}
         
         Auth.auth().signIn(withEmail: userName, password: password) { [weak self] authResult, error in
             guard let self = self else { return }

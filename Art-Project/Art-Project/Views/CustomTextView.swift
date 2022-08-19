@@ -28,6 +28,7 @@ class CustomTextView: UIView {
         tf.layer.borderColor = UIColor.lightGray.cgColor
         tf.layer.borderWidth = 1
         tf.layer.cornerRadius = 5
+        tf.backgroundColor = .white
         return tf
     }()
     

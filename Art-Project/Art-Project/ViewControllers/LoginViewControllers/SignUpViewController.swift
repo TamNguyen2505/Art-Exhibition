@@ -43,9 +43,23 @@ class SignUpViewController: BaseViewController {
         return btn
     }()
     
-    private let usernameTextField: CustomTextView = {
+    private let userNameTextField: CustomTextView = {
         let tf = CustomTextView()
-        tf.setTitle(text: "Login")
+        tf.setTitle(text: "Username")
+        tf.setLeadingIconImage(image: UIImage(named: "icons8-user"))
+        return tf
+    }()
+    
+    private let userFullNameTextField: CustomTextView = {
+        let tf = CustomTextView()
+        tf.setTitle(text: "Full name")
+        tf.setLeadingIconImage(image: UIImage(named: "icons8-user"))
+        return tf
+    }()
+    
+    private let emailTextField: CustomTextView = {
+        let tf = CustomTextView()
+        tf.setTitle(text: "Email")
         tf.setLeadingIconImage(image: UIImage(named: "icons8-user"))
         return tf
     }()
@@ -132,7 +146,7 @@ class SignUpViewController: BaseViewController {
             
         }
         
-        let vStackForTextField = UIStackView(arrangedSubviews: [usernameTextField, passwordTextField, confirmPasswordTextField])
+        let vStackForTextField = UIStackView(arrangedSubviews: [userNameTextField, userFullNameTextField, emailTextField, passwordTextField, confirmPasswordTextField])
         vStackForTextField.axis = .vertical
         vStackForTextField.spacing = 10
         
@@ -247,9 +261,12 @@ class SignUpViewController: BaseViewController {
         
         if networkMonitor.status == .satisfied {
             
-            viewModel.userName = usernameTextField.getString()
+            viewModel.username = userNameTextField.getString()
+            viewModel.fullname = userFullNameTextField.getString()
+            
+            viewModel.email = emailTextField.getString()
             let (alertFromUserName, userNameIsValid) = viewModel.checkUserName()
-            usernameTextField.setAttributedStringForBottomLabel(text: alertFromUserName)
+            emailTextField.setAttributedStringForBottomLabel(text: alertFromUserName)
             guard userNameIsValid else {return}
             
             viewModel.password = passwordTextField.getString()

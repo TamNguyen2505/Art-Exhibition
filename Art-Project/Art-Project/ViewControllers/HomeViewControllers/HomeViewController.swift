@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class HomeViewController: BaseViewController {
     //MARK: Properties
@@ -115,7 +116,7 @@ class HomeViewController: BaseViewController {
             make.leading.trailing.bottom.equalToSuperview()
             
         }
-        
+                
     }
     
     override func setupNavigationStyle() {

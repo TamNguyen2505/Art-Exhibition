@@ -31,6 +31,7 @@ class SettingsViewController: BaseViewController {
         iv.image = UIImage(named: "default-avatar")
         iv.layer.borderWidth = 1
         iv.layer.borderColor = UIColor.lightGray.cgColor
+        iv.clipsToBounds = true
         return iv
     }()
     
@@ -77,6 +78,8 @@ class SettingsViewController: BaseViewController {
     //MARK: View cycle
     override func setupUI() {
         super.setupUI()
+        
+        Loader.shared.show()
         
         view.addSubview(scrollView)
         scrollView.snp.makeConstraints{ make in
@@ -150,9 +153,32 @@ class SettingsViewController: BaseViewController {
         
     }
     
+    override func observeVM() {
+        super.observeVM()
+        
+        let observationDidGetUserInformation = viewModel.observe(\.didGetUserInformation, options: [.new]) { [weak self] _ , _ in
+            guard let self = self else {return}
+            
+            DispatchQueue.main.async {
+                
+                self.avatarImageView.image = self.viewModel.avtarImage
+                
+            }
+            
+        }
+        self.observations.append(observationDidGetUserInformation)
+        
+    }
+    
     override func setupVM() {
         super.setupVM()
         
+        Task {
+            
+            try await viewModel.getUserInformation()
+            Loader.shared.hide()
+            
+        }
         
     }
     
