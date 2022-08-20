@@ -11,5 +11,6 @@ target 'Art-Project' do
   pod 'FirebaseAuth'
   pod 'FirebaseFirestore'
   pod 'Firebase/Storage'
+  pod 'GoogleSignIn'
 
 end

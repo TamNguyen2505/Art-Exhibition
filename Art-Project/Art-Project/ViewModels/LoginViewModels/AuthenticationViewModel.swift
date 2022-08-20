@@ -14,7 +14,7 @@ class AuthenticationViewModel: NSObject {
     private let storage = Storage.storage()
     private let Collection_User = Firestore.firestore().collection("users")
     
-    //MARK: Fire base
+    //MARK: Email
     func createNewUserNameInFireBase(email: String, password: String, fullName: String? = nil, userName: String? = nil, profileImage: UIImage? = nil) async throws -> Bool {
         
         let userID: String = try await withCheckedThrowingContinuation{ Continuation in
