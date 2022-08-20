@@ -105,7 +105,7 @@ class SignUpViewController: BaseViewController {
         return btn
     }()
     
-    private let viewModel = AuthenticationViewModel()
+    private let viewModel = LogIn_SignUpViewModel()
     
     //MARK: View cycle
     override func setupUI() {
@@ -222,25 +222,6 @@ class SignUpViewController: BaseViewController {
         }
         self.observations.append(obserCreateUserSuccessfully)
         
-        let observeCreateUserWidthAvatarSuccessfully = viewModel.observe(\.createUserWidthAvatarSuccessfully, options: [.new]) { _, receivedValue in
-            guard let valid = receivedValue.newValue else {return}
-
-            DispatchQueue.main.async {
-                
-                if valid {
-                    
-                    AppDelegate.switchToArtHomeViewController()
-                    
-                } else {
-                    
-                    Loader.shared.hide()
-                    
-                }
-                
-            }
-        }
-        self.observations.append(observeCreateUserWidthAvatarSuccessfully)
-        
     }
     
     //MARK: Actions
@@ -282,7 +263,7 @@ class SignUpViewController: BaseViewController {
             Loader.shared.show()
             
             Task {
-                try await viewModel.createNewUserName()
+                await viewModel.createNewAccountByEmail()
             }
             
         } else {

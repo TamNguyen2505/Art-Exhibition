@@ -127,7 +127,7 @@ class LoginViewController: BaseViewController {
         }
     }
 
-    private let viewModel = AuthenticationViewModel()
+    private let viewModel = LogIn_SignUpViewModel()
     
     //MARK: View cycle
     override func setupUI() {
@@ -262,7 +262,6 @@ class LoginViewController: BaseViewController {
             guard passwordIsValid else {return}
             
             Loader.shared.show()
-            viewModel.logIn()
             
         } else {
             
