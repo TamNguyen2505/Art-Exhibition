@@ -79,6 +79,68 @@ class LoginViewController: BaseViewController {
         return btn
     }()
     
+    private lazy var authGoogleAction: UIAction = {
+        let authGoogle = UIAction(title: LocalizableManager.getLocalizableString(key: .text_login_by_google), image: UIImage(named: "icons8-google")) { [weak self] (action) in
+            guard let self = self else {return}
+            
+            self.handleEventFromGoogleButton?(action.title)
+            
+        }
+        
+        return authGoogle
+    }()
+    
+    private lazy var authFacebookAction: UIAction = {
+        let authFacebook = UIAction(title: LocalizableManager.getLocalizableString(key: .text_login_by_facebook), image: UIImage(named: "icons8-facebook")) { [weak self] (action) in
+            guard let self = self else {return}
+
+            self.handleEventFromFacebookButton?(action.title)
+            
+        }
+        
+        return authFacebook
+    }()
+    
+    private lazy var authAppleAction: UIAction = {
+        let authApple = UIAction(title: LocalizableManager.getLocalizableString(key: .text_login_by_apple), image: UIImage(named: "icons8-apple-logo")) { [weak self] (action) in
+            guard let self = self else {return}
+
+            self.handleEventFromAppleButton?(action.title)
+            
+        }
+        
+        return authApple
+    }()
+    
+    private lazy var authZaloAction: UIAction = {
+        let authZalo = UIAction(title: LocalizableManager.getLocalizableString(key: .text_login_by_zalo), image: UIImage(named: "icons8-zalo")) { [weak self] (action) in
+            guard let self = self else {return}
+
+            self.handleEventFromZaloButton?(action.title)
+            
+        }
+        
+        return authZalo
+    }()
+    
+    private lazy var authMenu: UIMenu = {
+        let menu = UIMenu(title: LocalizableManager.getLocalizableString(key: .text_login), options: UIMenu.Options.displayInline, children: [authGoogleAction, authFacebookAction, authAppleAction, authZaloAction])
+        return menu
+    }()
+    
+    private lazy var otherAuthLoginButton: UIButton = {
+        let btn = UIButton()
+        btn.menu = authMenu
+        btn.showsMenuAsPrimaryAction = true
+        btn.setImage(UIImage(named: "icons8-log-in"), for: .normal)
+        btn.setTitle("Log in by other forms", for: .normal)
+        btn.setTitleColor(#colorLiteral(red: 0.1597932875, green: 0.253477037, blue: 0.4077349007, alpha: 1), for: .normal)
+        btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        btn.tintColor = #colorLiteral(red: 0.1597932875, green: 0.253477037, blue: 0.4077349007, alpha: 1)
+        btn.addTarget(self, action: #selector(handleEventFromOtherLoginButton(_:)), for: .menuActionTriggered)
+        return btn
+    }()
+    
     private let faceID = BiometricIDAuth.shared
     private var isRightHost = false {
         didSet{
@@ -86,6 +148,12 @@ class LoginViewController: BaseViewController {
         }
     }
     
+    typealias actionHandler = ((_ titleOfButton: String) -> Void)
+    private var handleEventFromGoogleButton: actionHandler? = nil
+    private var handleEventFromFacebookButton: actionHandler? = nil
+    private var handleEventFromAppleButton: actionHandler? = nil
+    private var handleEventFromZaloButton: actionHandler? = nil
+
     private let viewModel = AuthenticationViewModel()
     
     //MARK: View cycle
@@ -154,6 +222,15 @@ class LoginViewController: BaseViewController {
         faceIdButton.snp.makeConstraints{ make in
             
             make.top.equalTo(hStackForButton.snp.bottom).offset(20)
+            make.centerX.equalToSuperview()
+            make.leading.greaterThanOrEqualToSuperview()
+            
+        }
+        
+        view.addSubview(otherAuthLoginButton)
+        otherAuthLoginButton.snp.makeConstraints{ make in
+            
+            make.top.equalTo(faceIdButton.snp.bottom).offset(10)
             make.centerX.equalToSuperview()
             make.leading.greaterThanOrEqualToSuperview()
             
@@ -237,6 +314,22 @@ class LoginViewController: BaseViewController {
             self.isRightHost = await faceID.evaluate().success
             
         }
+        
+    }
+    
+    @objc func handleEventFromOtherLoginButton(_ sender: UIButton) {
+        
+        let loginBasedOnTitle: actionHandler = { [weak self] title in
+            guard let self = self else {return}
+            
+            print(title)
+            
+        }
+        
+        self.handleEventFromGoogleButton = loginBasedOnTitle
+        self.handleEventFromFacebookButton = loginBasedOnTitle
+        self.handleEventFromAppleButton = loginBasedOnTitle
+        self.handleEventFromZaloButton = loginBasedOnTitle
         
     }
     

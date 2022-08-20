@@ -7,12 +7,6 @@
 
 import UIKit
 
-protocol SideBarViewControllerDelegate: AnyObject {
-    
-    func handleEventFromLogoutButton(from vc: SideBarViewController)
-    
-}
-
 class SideBarViewController: BaseViewController {
     //MARK: Properties
     private lazy var titlViewLabel: UILabel = {
@@ -35,8 +29,8 @@ class SideBarViewController: BaseViewController {
         return button
     }()
     
-    weak var delegate: SideBarViewControllerDelegate?
-    
+    private let authenticationViewModel = AuthenticationViewModel()
+        
     //MARK: View cycle
     override func setupUI() {
         super.setupUI()
@@ -66,7 +60,7 @@ class SideBarViewController: BaseViewController {
     //MARK: Actions
     @objc func handleEventFromLogOutButton(_ sender: UIButton) {
         
-        self.delegate?.handleEventFromLogoutButton(from: self)
+        authenticationViewModel.logOut()
         
     }
     

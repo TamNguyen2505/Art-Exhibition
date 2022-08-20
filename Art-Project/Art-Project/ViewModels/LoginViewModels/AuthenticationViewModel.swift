@@ -23,7 +23,7 @@ class AuthenticationViewModel: NSObject {
     @objc dynamic var createUserWidthAvatarSuccessfully = false
     private let storage = Storage.storage()
     private let Collection_User = Firestore.firestore().collection("users")
-
+    
     //MARK: Features
     func checkUserName() -> (alert: NSMutableAttributedString?, valid: Bool) {
         guard let userName = email, userName != "" else {return (createRedAlertString(string: LocalizableManager.getLocalizableString(key: .text_lack_of_username_alert)), false)}
@@ -55,6 +55,23 @@ class AuthenticationViewModel: NSObject {
         
     }
     
+    private func createRedAlertString(string: String) -> NSMutableAttributedString {
+        
+        return NSMutableAttributedString(string: string, attributes: [.foregroundColor: UIColor.systemRed, .font: UIFont.boldSystemFont(ofSize: 12)])
+        
+    }
+    
+    func trailingIconForPasswordTextField(securityOn: Bool) -> UIImage? {
+        
+        return securityOn ? UIImage(named: "icons8-open-eye") : UIImage(named: "icons8-closed-eye")
+        
+    }
+    
+}
+
+//MARK: Fire base login
+extension AuthenticationViewModel {
+    
     func createNewUserName() async throws {
         
         guard let email = email, email != "", let password = password, password != "", checkConfirmationPassword().valid else {return}
@@ -82,15 +99,15 @@ class AuthenticationViewModel: NSObject {
         }
         
         var data: [String: Any] = ["email": email, "fullname": fullname ?? "", "username": username ?? "", "uid": userID]
-                
+        
         let imageURL: String? = try await withCheckedThrowingContinuation{ [weak self] Continuation in
             guard let self = self, let imageData = self.avatarImage?.jpegData(compressionQuality: 0.75) else {
                 
                 if !userID.isEmpty {
-                                        
+                    
                     Collection_User.document(userID).setData(data)
                     self?.createUserSuccessfully = true
-
+                    
                 } else {
                     self?.createUserSuccessfully = false
                     
@@ -128,7 +145,7 @@ class AuthenticationViewModel: NSObject {
                 case let (_?, error?):
                     Continuation.resume(returning: nil)
                     print(error)
-               
+                    
                 }
                 
             }
@@ -156,17 +173,19 @@ class AuthenticationViewModel: NSObject {
         
     }
     
-    private func createRedAlertString(string: String) -> NSMutableAttributedString {
+    func logOut() {
         
-        return NSMutableAttributedString(string: string, attributes: [.foregroundColor: UIColor.systemRed, .font: UIFont.boldSystemFont(ofSize: 12)])
+        do {
+            try Auth.auth().signOut()
+            AppDelegate.switchToLoginViewController()
+            
+        }
+        
+        catch {
+            return
+            
+        }
         
     }
-    
-    func trailingIconForPasswordTextField(securityOn: Bool) -> UIImage? {
-        
-        return securityOn ? UIImage(named: "icons8-open-eye") : UIImage(named: "icons8-closed-eye")
-        
-    }
-    
     
 }

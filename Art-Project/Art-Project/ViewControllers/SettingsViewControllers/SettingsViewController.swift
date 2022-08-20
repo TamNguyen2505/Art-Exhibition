@@ -187,6 +187,13 @@ class SettingsViewController: BaseViewController {
     }
     
     //MARK: Actions
+    override func handleEventFromLeftNavigationItem(_ sender: UIButton) {
+        super.handleEventFromLeftNavigationItem(sender)
+        
+        self.openSideBar()
+        
+    }
+    
     @objc func handleEventFromFaceIDSwitch(_ sender: UISwitch) {
         
         viewModel.validateFaceID(switchOn: sender.isOn)

@@ -120,7 +120,6 @@ class BaseViewController: UIViewController {
         slideInTransitioningDelegate.direction = .left
         targetVC.transitioningDelegate = slideInTransitioningDelegate
         targetVC.modalPresentationStyle = .custom
-        targetVC.delegate = self
         
         self.present(targetVC, animated: true, completion: nil)
         
@@ -317,17 +316,6 @@ extension BaseViewController {
         totalString.append(lineTwo)
         
         return totalString
-        
-    }
-    
-}
-
-//MARK: SideBarViewControllerDelegate
-extension BaseViewController: SideBarViewControllerDelegate {
-    
-    func handleEventFromLogoutButton(from vc: SideBarViewController) {
-        
-        AppDelegate.switchToLoginViewController()
         
     }
     

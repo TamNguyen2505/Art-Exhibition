@@ -24,6 +24,11 @@ public enum LocalizableKey: String {
     case text_differences_between_passwords = "Please correct your confirmation password!"
     case text_wrong_username = "Please check your username!"
     case text_wrong_passowrd = "Please check your password!"
+    case text_login_by_google = "Log In by Google"
+    case text_login_by_facebook = "Log In by Facebook"
+    case text_login_by_apple = "Log In by Apple"
+    case text_login_by_zalo = "Log In by Zalo"
+    case text_login = "Log In"
     
 }
 
@@ -82,6 +87,21 @@ extension LocalizableKey: Languages {
             
         case .text_wrong_passowrd:
             return "パスワードを確認してください。!"
+            
+        case .text_login_by_google:
+            return "Google でログイン"
+            
+        case .text_login_by_facebook:
+            return "Facebook でログイン"
+            
+        case .text_login_by_apple:
+            return "Apple でログイン"
+            
+        case .text_login_by_zalo:
+            return "Zalo でログイン"
+            
+        case .text_login:
+            return "でログイン"
         }
         
     }
