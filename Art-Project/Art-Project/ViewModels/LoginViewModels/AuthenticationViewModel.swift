@@ -202,7 +202,7 @@ class AuthenticationViewModel: NSObject {
       }
     
     //MARK: Google
-    func loginWithGoogle(presentingViewController: UIViewController) async throws -> Bool {
+    @MainActor func loginWithGoogle(presentingViewController: UIViewController) async throws -> Bool {
         guard let clientID = FirebaseApp.app()?.options.clientID else {return false}
         let config = GIDConfiguration(clientID: clientID)
 

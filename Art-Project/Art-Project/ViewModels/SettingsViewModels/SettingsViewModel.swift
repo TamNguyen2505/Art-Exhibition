@@ -9,6 +9,7 @@ import FirebaseCore
 import FirebaseFirestore
 import FirebaseAuth
 import FirebaseStorage
+import GoogleSignIn
 
 class SettingsViewModel: NSObject {
     //MARK: Properties
@@ -28,37 +29,55 @@ class SettingsViewModel: NSObject {
     //MARK: Features
     func getUserInformation() async throws {
         
-        guard let userID = Auth.auth().currentUser?.uid else {return}
+        guard let currentUser = Auth.auth().currentUser else {return}
         
-        let user: UserModel = try await withCheckedThrowingContinuation{ Continuation in
-            
-            Collection_User.document(userID).getDocument{ (snapshot, error) in
-                switch (snapshot, error) {
-                case (nil, let error?):
-                    Continuation.resume(throwing: error)
+        for provider in currentUser.providerData {
+            switch provider.providerID {
+            case GoogleAuthProviderID:
+                guard let googleUser = GIDSignIn.sharedInstance.currentUser else {return}
+                let user = UserModel(googleUser: googleUser)
+                
+                async let image = getImageFromUserInformation(urlString: user.profileImageURL)
+                self.avtarImage = await image
+                
+                self.didGetUserInformation = true
+                break
+                
+            default:
+                let user: UserModel = try await withCheckedThrowingContinuation{ Continuation in
                     
-                case (let snapshot?, nil):
-                    guard let dictionary = snapshot.data() else {return}
-                    let user = UserModel(dictionary: dictionary)
+                    Collection_User.document(currentUser.uid).getDocument{ (snapshot, error) in
+                        switch (snapshot, error) {
+                        case (nil, let error?):
+                            Continuation.resume(throwing: error)
+                            
+                        case (let snapshot?, nil):
+                            guard let dictionary = snapshot.data() else {return}
+                            let user = UserModel(dictionary: dictionary)
+                            
+                            Continuation.resume(returning: user)
+                            
+                        case (nil, nil):
+                            Continuation.resume(throwing: "Address encoding failed" as! Error)
+                            
+                        case let (_?, error?):
+                            print(error)
+                            break
+                        }
+                        
+                    }
                     
-                    Continuation.resume(returning: user)
-                    
-                case (nil, nil):
-                    Continuation.resume(throwing: "Address encoding failed" as! Error)
-                    
-                case let (_?, error?):
-                    print(error)
-                    break
                 }
                 
+                async let image = getImageFromUserInformation(urlString: user.profileImageURL)
+                self.avtarImage = await image
+                
+                self.didGetUserInformation = true
+                break
             }
             
         }
         
-        async let image = getImageFromUserInformation(urlString: user.profileImageURL)
-        self.avtarImage = await image
-        
-        self.didGetUserInformation = true
         
     }
     
