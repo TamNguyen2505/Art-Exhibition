@@ -5,9 +5,11 @@
 //  Created by MINERVA on 19/08/2022.
 //
 
+import FirebaseCore
 import FirebaseFirestore
 import FirebaseAuth
 import FirebaseStorage
+import GoogleSignIn
 
 class AuthenticationViewModel: NSObject {
     //MARK: Properties
@@ -138,6 +140,97 @@ class AuthenticationViewModel: NSObject {
             return
             
         }
+        
+    }
+    
+    private func firebaseLogin(_ credential: AuthCredential) async throws -> Bool {
+        
+        if let user = Auth.auth().currentUser {
+            
+            let succes: Bool = try await withCheckedThrowingContinuation{ Continuation in
+                
+                user.link(with: credential) { authResult, error in
+                    switch (authResult, error) {
+                    case (nil, let error?):
+                        Continuation.resume(throwing: error)
+                        
+                    case ( _?, nil):
+                        Continuation.resume(returning: true)
+                        
+                    case (nil, nil):
+                        Continuation.resume(throwing: "Address encoding failed" as! Error)
+                        
+                    case let (_?, error?):
+                        Continuation.resume(throwing: error)
+
+                    }
+                    
+                }
+                
+            }
+            
+            return succes
+            
+        } else {
+            
+            let succes: Bool = try await withCheckedThrowingContinuation{ Continuation in
+                
+                Auth.auth().signIn(with: credential) { authResult, error in
+                    switch (authResult, error) {
+                    case (nil, let error?):
+                        Continuation.resume(throwing: error)
+                        
+                    case ( _?, nil):
+                        Continuation.resume(returning: true)
+                        
+                    case (nil, nil):
+                        Continuation.resume(throwing: "Address encoding failed" as! Error)
+                        
+                    case let (_?, error?):
+                        Continuation.resume(throwing: error)
+
+                    }
+                    
+                }
+                
+            }
+            
+            return succes
+            
+        }
+        
+      }
+    
+    //MARK: Google
+    func loginWithGoogle(presentingViewController: UIViewController) async throws -> Bool {
+        guard let clientID = FirebaseApp.app()?.options.clientID else {return false}
+        let config = GIDConfiguration(clientID: clientID)
+
+        let authCredential: AuthCredential = try await withCheckedThrowingContinuation { Continuation in
+            
+            GIDSignIn.sharedInstance.signIn(with: config, presenting: presentingViewController) { user, error in
+                switch (user, error) {
+                case (nil, let error?):
+                    Continuation.resume(throwing: error)
+                    
+                case (let user, nil):
+                    guard let authentication = user?.authentication,
+                          let idToken = authentication.idToken else {return}
+
+                    let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: authentication.accessToken)
+                    
+                    Continuation.resume(returning: credential)
+                    
+                case let (_?, error?):
+                    Continuation.resume(throwing: error)
+
+                }
+                
+            }
+        
+        }
+        
+        return try await firebaseLogin(authCredential)
         
     }
  

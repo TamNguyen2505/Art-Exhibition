@@ -263,6 +263,10 @@ class LoginViewController: BaseViewController {
             
             Loader.shared.show()
             
+            Task {
+                try await viewModel.logInBasedOn(cases: .authEmail)
+            }
+            
         } else {
             
             showAlertView()
@@ -290,6 +294,10 @@ class LoginViewController: BaseViewController {
     }
     
     @objc func handleEventFromGoogleLogin(_ sender: UICommand) {
+        
+        Task {
+            try await viewModel.logInBasedOn(cases: .authGoogle(presentingViewController: self))
+        }
         
     }
     
