@@ -6,6 +6,12 @@
 	<true/>
 	<key>CFBundleURLTypes</key>
 	<array>
+        <dict>
+        <key>CFBundleURLSchemes</key>
+        <array>
+          <string>fb421240223192947</string>
+        </array>
+        </dict>
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
@@ -15,6 +21,17 @@
 			</array>
 		</dict>
 	</array>
+    <key>FacebookAppID</key>
+    <string>421240223192947</string>
+    <key>FacebookClientToken</key>
+    <string>994121af35d157f3df11e69d54871c1e</string>
+    <key>FacebookDisplayName</key>
+    <string>Art Exhibition</string>
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+      <string>fbapi</string>
+      <string>fb-messenger-share-api</string>
+    </array>
 	<key>Camera Usage Description</key>
 	<string>Please allow camera access!</string>
 	<key>Media Library Usage Description</key>

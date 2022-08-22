@@ -10,6 +10,7 @@ import FirebaseFirestore
 import FirebaseAuth
 import FirebaseStorage
 import GoogleSignIn
+import FacebookCore
 
 class SettingsViewModel: NSObject {
     //MARK: Properties
@@ -88,7 +89,7 @@ class SettingsViewModel: NSObject {
             return nil
             
         }
-
+        
         do {
             
             guard let data = try await networkManager.downloadData(accordingTo: .downloadPortraitImage(baseURL: url)) else {return nil}
@@ -144,7 +145,7 @@ class SettingsViewModel: NSObject {
             LocalizableManager.resetCurrentLanguageToDefault()
             
         }
-                
+        
     }
     
     

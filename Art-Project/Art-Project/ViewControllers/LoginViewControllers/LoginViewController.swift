@@ -303,6 +303,10 @@ class LoginViewController: BaseViewController {
     
     @objc func handleEventFromFacebookLogin(_ sender: UICommand) {
         
+        Task {
+            try await viewModel.logInBasedOn(cases: .authFacebook(presentingViewController: self))
+        }
+        
     }
     
     @objc func handleEventFromAppleLogin(_ sender: UICommand) {

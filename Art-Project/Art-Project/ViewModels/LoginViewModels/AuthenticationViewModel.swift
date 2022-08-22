@@ -10,6 +10,7 @@ import FirebaseFirestore
 import FirebaseAuth
 import FirebaseStorage
 import GoogleSignIn
+import FacebookLogin
 
 class AuthenticationViewModel: NSObject {
     //MARK: Properties
@@ -228,6 +229,38 @@ class AuthenticationViewModel: NSObject {
                 
             }
         
+        }
+        
+        return try await firebaseLogin(authCredential)
+        
+    }
+    
+    //MARK: Facebook
+    @MainActor func loginWithFacebook(presentingViewController: UIViewController) async throws -> Bool {
+        let loginManager = LoginManager()
+        
+        let authCredential: AuthCredential = try await withCheckedThrowingContinuation { Continuation in
+            
+            loginManager.logIn(permissions: ["email"], from: presentingViewController) { user, error in
+                switch (user, error) {
+                case (nil, let error?):
+                    Continuation.resume(throwing: error)
+                    
+                case (_, nil):
+                    guard let idToken = AccessToken.current?.tokenString else {return}
+                    
+                    let credential = FacebookAuthProvider.credential(withAccessToken: idToken)
+                    
+                    Continuation.resume(returning: credential)
+                    
+                case let (_?, error?):
+                    Continuation.resume(throwing: error)
+
+                }
+                
+            }
+                
+            
         }
         
         return try await firebaseLogin(authCredential)
