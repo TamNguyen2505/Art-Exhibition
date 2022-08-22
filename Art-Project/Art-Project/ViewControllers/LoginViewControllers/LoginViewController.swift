@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AuthenticationServices
 
 class LoginViewController: BaseViewController {
     //MARK: Properties
@@ -311,6 +312,10 @@ class LoginViewController: BaseViewController {
     
     @objc func handleEventFromAppleLogin(_ sender: UICommand) {
         
+        Task {
+            try await viewModel.logInBasedOn(cases: .authApple(presentingViewController: self))
+        }
+        
     }
     
     @objc func handleEventFromZaloLogin(_ sender: UICommand) {
@@ -356,6 +361,16 @@ class LoginViewController: BaseViewController {
         catch {
             
         }
+        
+    }
+    
+}
+
+extension LoginViewController: ASAuthorizationControllerPresentationContextProviding {
+    
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        
+        return view.window!
         
     }
     

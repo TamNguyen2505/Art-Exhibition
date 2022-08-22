@@ -11,6 +11,8 @@ import FirebaseAuth
 import FirebaseStorage
 import GoogleSignIn
 import FacebookLogin
+import AuthenticationServices
+import CryptoKit
 
 class AuthenticationViewModel: NSObject {
     //MARK: Properties
@@ -58,7 +60,7 @@ class AuthenticationViewModel: NSObject {
         }
         
         let imageURL: String = try await withCheckedThrowingContinuation{ Continuation in
-        
+            
             let fileName = userID
             let ref = Storage.storage().reference(withPath: "avatars/\(fileName)")
             
@@ -88,13 +90,13 @@ class AuthenticationViewModel: NSObject {
                     
                 case let (_?, error?):
                     Continuation.resume(throwing: error)
-
+                    
                 }
-            
+                
             }
             
         }
-            
+        
         data.updateValue(imageURL, forKey: "profileImageURL")
         try await Collection_User.document(userID).setData(data)
         return true
@@ -118,7 +120,7 @@ class AuthenticationViewModel: NSObject {
                     
                 case let (_?, error?):
                     Continuation.resume(throwing: error)
-
+                    
                 }
                 
             }
@@ -126,7 +128,7 @@ class AuthenticationViewModel: NSObject {
         }
         
         return sucess
-    
+        
     }
     
     func logOut() {
@@ -163,7 +165,7 @@ class AuthenticationViewModel: NSObject {
                         
                     case let (_?, error?):
                         Continuation.resume(throwing: error)
-
+                        
                     }
                     
                 }
@@ -189,7 +191,7 @@ class AuthenticationViewModel: NSObject {
                         
                     case let (_?, error?):
                         Continuation.resume(throwing: error)
-
+                        
                     }
                     
                 }
@@ -200,13 +202,13 @@ class AuthenticationViewModel: NSObject {
             
         }
         
-      }
+    }
     
     //MARK: Google
     @MainActor func loginWithGoogle(presentingViewController: UIViewController) async throws -> Bool {
         guard let clientID = FirebaseApp.app()?.options.clientID else {return false}
         let config = GIDConfiguration(clientID: clientID)
-
+        
         let authCredential: AuthCredential = try await withCheckedThrowingContinuation { Continuation in
             
             GIDSignIn.sharedInstance.signIn(with: config, presenting: presentingViewController) { user, error in
@@ -217,18 +219,18 @@ class AuthenticationViewModel: NSObject {
                 case (let user, nil):
                     guard let authentication = user?.authentication,
                           let idToken = authentication.idToken else {return}
-
+                    
                     let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: authentication.accessToken)
                     
                     Continuation.resume(returning: credential)
                     
                 case let (_?, error?):
                     Continuation.resume(throwing: error)
-
+                    
                 }
                 
             }
-        
+            
         }
         
         return try await firebaseLogin(authCredential)
@@ -255,16 +257,90 @@ class AuthenticationViewModel: NSObject {
                     
                 case let (_?, error?):
                     Continuation.resume(throwing: error)
-
+                    
                 }
                 
             }
-                
+            
             
         }
         
         return try await firebaseLogin(authCredential)
         
     }
- 
+    
+    //MARK: Apple
+    typealias AuthCredentialContinuation = CheckedContinuation<AuthCredential, Error>
+    fileprivate var delegateContinuation: AppleAuthenticationViewModel?
+    
+    @MainActor func loginWithApple<T: UIViewController & ASAuthorizationControllerPresentationContextProviding>(presentingController: T) async throws -> Bool {
+        let nonce = randomNonceString()
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        
+        request.requestedScopes = [.fullName, .email]
+        request.nonce = sha256(nonce)
+        
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.presentationContextProvider = presentingController
+        authorizationController.performRequests()
+        
+        let authCredential: AuthCredential = try await withCheckedThrowingContinuation{ [weak self] Continuation in
+            guard let self = self else {return}
+            
+            self.delegateContinuation = AppleAuthenticationViewModel(continuation: Continuation, currentNonce: nonce, authorizationController: authorizationController)
+            
+        }
+        
+        return try await firebaseLogin(authCredential)
+        
+    }
+    
+    private func randomNonceString(length: Int = 32) -> String {
+        precondition(length > 0)
+        let charset: [Character] =
+        Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
+        var result = ""
+        var remainingLength = length
+        
+        while remainingLength > 0 {
+            let randoms: [UInt8] = (0 ..< 16).map { _ in
+                var random: UInt8 = 0
+                let errorCode = SecRandomCopyBytes(kSecRandomDefault, 1, &random)
+                if errorCode != errSecSuccess {
+                    fatalError(
+                        "Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)"
+                    )
+                }
+                return random
+            }
+            
+            randoms.forEach { random in
+                if remainingLength == 0 {
+                    return
+                }
+                
+                if random < charset.count {
+                    result.append(charset[Int(random)])
+                    remainingLength -= 1
+                }
+            }
+        }
+        
+        return result
+    }
+    
+    @available(iOS 13, *)
+    private func sha256(_ input: String) -> String {
+        let inputData = Data(input.utf8)
+        let hashedData = SHA256.hash(data: inputData)
+        let hashString = hashedData.compactMap {
+            String(format: "%02x", $0)
+        }.joined()
+        
+        return hashString
+    }
+    
+    
 }
+

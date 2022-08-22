@@ -89,6 +89,7 @@
 		006EB5C428AB4D1800BB9DCB /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EB5C328AB4D1800BB9DCB /* SettingsViewModel.swift */; };
 		0086BBCE28AF261E00C916D3 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0086BBCD28AF261E00C916D3 /* AuthenticationViewModel.swift */; };
 		0086BBD328AF4A8F00C916D3 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0086BBD228AF4A8F00C916D3 /* UserModel.swift */; };
+		009CB77028B3608F00CF714E /* AppleAuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009CB76F28B3608F00CF714E /* AppleAuthenticationViewModel.swift */; };
 		8098C6A6256981BBA3BBE5EF /* Pods_Art_Project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 724ABA61EF127A7D2839E3F8 /* Pods_Art_Project.framework */; };
 		E9A71DD528B1073E00A34351 /* LogIn_SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A71DD428B1073E00A34351 /* LogIn_SignUpViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -179,6 +180,7 @@
 		006EB5C328AB4D1800BB9DCB /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		0086BBCD28AF261E00C916D3 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		0086BBD228AF4A8F00C916D3 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		009CB76F28B3608F00CF714E /* AppleAuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleAuthenticationViewModel.swift; sourceTree = "<group>"; };
 		724ABA61EF127A7D2839E3F8 /* Pods_Art_Project.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Art_Project.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C79D637B3166DC845241F7E4 /* Pods-Art-Project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Art-Project.debug.xcconfig"; path = "Target Support Files/Pods-Art-Project/Pods-Art-Project.debug.xcconfig"; sourceTree = "<group>"; };
 		E9A71DD428B1073E00A34351 /* LogIn_SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogIn_SignUpViewModel.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				0086BBCD28AF261E00C916D3 /* AuthenticationViewModel.swift */,
+				009CB76F28B3608F00CF714E /* AppleAuthenticationViewModel.swift */,
 				E9A71DD428B1073E00A34351 /* LogIn_SignUpViewModel.swift */,
 			);
 			path = LoginViewModels;
@@ -729,6 +732,7 @@
 				006EB4EA28AB395A00BB9DCB /* AppDelegate.swift in Sources */,
 				006EB57328AB3D0600BB9DCB /* HomeHeaderCollectionViewModel.swift in Sources */,
 				006EB51B28AB3CE300BB9DCB /* SlideInPresentationManager.swift in Sources */,
+				009CB77028B3608F00CF714E /* AppleAuthenticationViewModel.swift in Sources */,
 				0086BBD328AF4A8F00C916D3 /* UserModel.swift in Sources */,
 				006EB54128AB3CF100BB9DCB /* BaseTabBarController.swift in Sources */,
 				006EB5C428AB4D1800BB9DCB /* SettingsViewModel.swift in Sources */,

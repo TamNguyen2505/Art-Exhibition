@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AuthenticationServices
 
 class LogIn_SignUpViewModel: NSObject {
     //MARK: Properties
@@ -22,7 +23,7 @@ class LogIn_SignUpViewModel: NSObject {
     
     enum AuthProvider {
         case authEmail
-        case authApple
+        case authApple(presentingViewController: UIViewController & ASAuthorizationControllerPresentationContextProviding)
         case authFacebook(presentingViewController: UIViewController)
         case authGoogle(presentingViewController: UIViewController)
         case authZalo
@@ -95,7 +96,10 @@ class LogIn_SignUpViewModel: NSObject {
             self.logInUserSuccessfully = try await success
             break
             
-        case .authApple:
+        case .authApple (let presentingViewController):
+            async let success = try await authenticationViewModel.loginWithApple(presentingController: presentingViewController)
+            
+            self.logInUserSuccessfully = try await success
             break
             
         case .authFacebook(let presentingViewController):
