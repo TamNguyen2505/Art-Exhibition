@@ -9,6 +9,7 @@ import UIKit
 import FirebaseCore
 import GoogleSignIn
 import FacebookCore
+import ZaloSDK
 
 //@UIApplicationMain
 
@@ -19,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         FirebaseApp.configure()
+        ZaloSDK.sharedInstance().initialize(withAppId: "2921235391973454953")
         return true
         
     }
@@ -26,9 +28,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     @available(iOS 9.0, *)
     func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any]) -> Bool {
         
+        var share: Bool
+        
         if #available(* , iOS 11) {
             
-            ApplicationDelegate.shared.application(
+            share = ApplicationDelegate.shared.application(
                 application,
                 open: url,
                 sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
@@ -37,8 +41,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         }
         
-        return GIDSignIn.sharedInstance.handle(url)
+        share = ZDKApplicationDelegate.sharedInstance().application(
+            application,
+            open: url,
+            options: options[UIApplication.OpenURLOptionsKey.annotation] as? [UIApplication.OpenURLOptionsKey : Any])
         
+        share = GIDSignIn.sharedInstance.handle(url)
+        
+        return share
     }
     
     // MARK: UISceneSession Lifecycle

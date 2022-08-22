@@ -13,6 +13,7 @@ import GoogleSignIn
 import FacebookLogin
 import AuthenticationServices
 import CryptoKit
+import ZaloSDK
 
 class AuthenticationViewModel: NSObject {
     //MARK: Properties
@@ -341,6 +342,25 @@ class AuthenticationViewModel: NSObject {
         return hashString
     }
     
+    //MARK: Zalo
+    @MainActor func loginWithZalo(presentingViewController: UIViewController) async -> Bool {
+        let codeVerifier = randomNonceString(length: 43)
+        let codeChallenge = sha256(codeVerifier)
+        
+        let success: Bool = await withCheckedContinuation{ Continuation in
+            
+            ZaloSDK.sharedInstance().authenticateZalo(with: ZAZAloSDKAuthenTypeViaZaloAppAndWebView, parentController: presentingViewController, codeChallenge: codeChallenge, extInfo: nil) { (response) in
+                guard let response = response, response.isSucess else {return Continuation.resume(returning: false)}
+                
+                Continuation.resume(returning: true)
+                
+            }
+            
+        }
+        
+        return success
+        
+    }
     
 }
 

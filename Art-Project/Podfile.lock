@@ -819,6 +819,12 @@ PODS:
   - nanopb/encode (2.30909.0)
   - PromisesObjC (2.1.1)
   - SnapKit (5.6.0)
+  - ZaloSDK (4.1.0120):
+    - ZaloSDK/Core (= 4.1.0120)
+    - ZaloSDK/Main (= 4.1.0120)
+  - ZaloSDK/Core (4.1.0120)
+  - ZaloSDK/Main (4.1.0120):
+    - ZaloSDK/Core
 
 DEPENDENCIES:
   - FacebookCore
@@ -830,6 +836,7 @@ DEPENDENCIES:
   - FirebaseFirestore
   - GoogleSignIn
   - SnapKit (~> 5.6)
+  - ZaloSDK
 
 SPEC REPOS:
   trunk:
@@ -868,6 +875,7 @@ SPEC REPOS:
     - nanopb
     - PromisesObjC
     - SnapKit
+    - ZaloSDK
 
 SPEC CHECKSUMS:
   abseil: ebe5b5529fb05d93a8bdb7951607be08b7fa71bc
@@ -905,7 +913,8 @@ SPEC CHECKSUMS:
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
+  ZaloSDK: 233c5cb5247bd6891f4a7d2d9505f6a2b9aa38c6
 
-PODFILE CHECKSUM: 1982d51d4aa6d6e26aeef6d2f5ca3474b0ebdeac
+PODFILE CHECKSUM: d36871fbbe5563373516d99e8bd91cb07745cd72
 
 COCOAPODS: 1.11.2

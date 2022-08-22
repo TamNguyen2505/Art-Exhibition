@@ -26,7 +26,7 @@ class LogIn_SignUpViewModel: NSObject {
         case authApple(presentingViewController: UIViewController & ASAuthorizationControllerPresentationContextProviding)
         case authFacebook(presentingViewController: UIViewController)
         case authGoogle(presentingViewController: UIViewController)
-        case authZalo
+        case authZalo(presentingViewController: UIViewController)
     }
     
     //MARK: Features
@@ -103,20 +103,21 @@ class LogIn_SignUpViewModel: NSObject {
             break
             
         case .authFacebook(let presentingViewController):
-            
             async let success = try await authenticationViewModel.loginWithFacebook(presentingViewController: presentingViewController)
             
             self.logInUserSuccessfully = try await success
             break
             
         case .authGoogle(let presentingViewController):
-            
             async let success = try await authenticationViewModel.loginWithGoogle(presentingViewController: presentingViewController)
             
             self.logInUserSuccessfully = try await success
             break
             
-        case .authZalo:
+        case .authZalo(let presentingViewController):
+            async let success = await authenticationViewModel.loginWithZalo(presentingViewController: presentingViewController)
+            
+            self.logInUserSuccessfully = try await success
             break
         }
         

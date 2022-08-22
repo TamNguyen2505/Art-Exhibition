@@ -320,6 +320,10 @@ class LoginViewController: BaseViewController {
     
     @objc func handleEventFromZaloLogin(_ sender: UICommand) {
         
+        Task {
+            try await viewModel.logInBasedOn(cases: .authZalo(presentingViewController: self))
+        }
+        
     }
     
     //MARK: Helpers
