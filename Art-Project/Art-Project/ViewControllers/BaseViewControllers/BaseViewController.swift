@@ -34,13 +34,13 @@ class BaseViewController: UIViewController {
         super.viewDidLoad()
         
         setupUI()
-        observeVM()
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        observeVM()
         setupNavigationStyle()
         
     }
@@ -64,6 +64,7 @@ class BaseViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
+        observations.forEach { $0.invalidate() }
         observations.removeAll()
         
     }

@@ -226,7 +226,7 @@ class LoginViewController: BaseViewController {
     override func observeVM() {
         super.observeVM()
         
-        let logInUSerSuccessfully = viewModel.observe(\.logInUserSuccessfully, options: [.new]) { _, receivedValue in
+        let logInUSerSuccessfully = viewModel.observe(\.logInUserSuccessfully, options: [.new, .initial]) { _, receivedValue in
             guard let valid = receivedValue.newValue, valid else {return}
             
             DispatchQueue.main.async {
@@ -246,6 +246,7 @@ class LoginViewController: BaseViewController {
         }
         self.observations.append(logInUSerSuccessfully)
         
+            
     }
     
     //MARK: Actions

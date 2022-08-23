@@ -14,6 +14,7 @@ import FBSDKLoginKit
 import AuthenticationServices
 import CryptoKit
 import ZaloSDK
+import CommonCrypto
 
 class AuthenticationViewModel: NSObject {
     //MARK: Properties
@@ -250,7 +251,7 @@ class AuthenticationViewModel: NSObject {
                     Continuation.resume(throwing: error)
                     
                 case (_, nil):
-                    guard let idToken = AccessToken.current?.tokenString else {return}
+                    guard let idToken = AccessToken.current?.tokenString, user?.isCancelled == false else {return}
                     
                     let credential = FacebookAuthProvider.credential(withAccessToken: idToken)
                     
@@ -297,10 +298,10 @@ class AuthenticationViewModel: NSObject {
         
     }
     
-    private func randomNonceString(length: Int = 32) -> String {
+    private func randomNonceString(length: Int = 32, includesSpecialCharaters: Bool = false) -> String {
         precondition(length > 0)
-        let charset: [Character] =
-        Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
+        let charset: [Character] = includesSpecialCharaters ? Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._") : Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz")
+        
         var result = ""
         var remainingLength = length
         
@@ -343,22 +344,49 @@ class AuthenticationViewModel: NSObject {
     }
     
     //MARK: Zalo
-    @MainActor func loginWithZalo(presentingViewController: UIViewController) async -> Bool {
-        let codeVerifier = randomNonceString(length: 43)
-        let codeChallenge = sha256(codeVerifier)
+    private func challenge(verifier: String) -> String {
+        guard let verifierData = verifier.data(using: String.Encoding.utf8) else { return "error" }
+        var buffer = [UInt8](repeating: 0, count:Int(CC_SHA256_DIGEST_LENGTH))
         
-        let success: Bool = await withCheckedContinuation{ Continuation in
+        _ = verifierData.withUnsafeBytes {
+            CC_SHA256($0.baseAddress, CC_LONG(verifierData.count), &buffer)
+        }
+        let hash = Data(_: buffer)
+        let challenge = hash.base64EncodedData()
+        return String(decoding: challenge, as: UTF8.self)
+            .replacingOccurrences(of: "+", with: "-")
+            .replacingOccurrences(of: "/", with: "_")
+            .replacingOccurrences(of: "=", with: "")
+            .trimmingCharacters(in: .whitespaces)
+        
+    }
+    
+    func loginWithZalo(presentingViewController: UIViewController, completionHandler: @escaping (Bool) -> Void) {
+        
+        let group = DispatchGroup()
+        
+        group.enter()
+        let randomString = randomNonceString(length: 43, includesSpecialCharaters: false)
+        let codeChallenge = challenge(verifier: randomString)
+        group.leave()
+        
+        group.notify(queue: .main) {
             
             ZaloSDK.sharedInstance().authenticateZalo(with: ZAZAloSDKAuthenTypeViaZaloAppAndWebView, parentController: presentingViewController, codeChallenge: codeChallenge, extInfo: nil) { (response) in
-                guard let response = response, response.isSucess else {return Continuation.resume(returning: false)}
                 
-                Continuation.resume(returning: true)
+                if response?.isSucess == true {
+                    
+                    completionHandler(true)
+                    
+                } else {
+                    
+                    completionHandler(false)
+                    
+                }
                 
             }
             
         }
-        
-        return success
         
     }
     
