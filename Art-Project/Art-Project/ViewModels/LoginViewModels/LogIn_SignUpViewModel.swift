@@ -117,7 +117,7 @@ class LogIn_SignUpViewModel: NSObject {
         case .authZalo(let presentingViewController):
             async let success = await authenticationViewModel.loginWithZalo(presentingViewController: presentingViewController)
             
-            self.logInUserSuccessfully = try await success
+            self.logInUserSuccessfully = await success
             break
         }
         

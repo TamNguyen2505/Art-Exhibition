@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Firebase
 
 class HomeViewController: BaseViewController {
     //MARK: Properties

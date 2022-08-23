@@ -10,7 +10,7 @@ import FirebaseFirestore
 import FirebaseAuth
 import FirebaseStorage
 import GoogleSignIn
-import FacebookLogin
+import FBSDKLoginKit
 import AuthenticationServices
 import CryptoKit
 import ZaloSDK

@@ -8,7 +8,7 @@
 import UIKit
 import FirebaseCore
 import GoogleSignIn
-import FacebookCore
+import FBSDKCoreKit
 import ZaloSDK
 
 //@UIApplicationMain
@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         ZaloSDK.sharedInstance().initialize(withAppId: "2921235391973454953")
+        FBSDKCoreKit.ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         return true
         
     }
@@ -40,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             )
             
         }
-        
+                
         share = ZDKApplicationDelegate.sharedInstance().application(
             application,
             open: url,

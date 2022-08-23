@@ -90,7 +90,7 @@
 		0086BBCE28AF261E00C916D3 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0086BBCD28AF261E00C916D3 /* AuthenticationViewModel.swift */; };
 		0086BBD328AF4A8F00C916D3 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0086BBD228AF4A8F00C916D3 /* UserModel.swift */; };
 		009CB77028B3608F00CF714E /* AppleAuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009CB76F28B3608F00CF714E /* AppleAuthenticationViewModel.swift */; };
-		8098C6A6256981BBA3BBE5EF /* Pods_Art_Project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 724ABA61EF127A7D2839E3F8 /* Pods_Art_Project.framework */; };
+		B88A09E6D1510819E8A71796 /* Pods_Art_Project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA7461D0FE8BB62956FB4B1 /* Pods_Art_Project.framework */; };
 		E9A71DD528B1073E00A34351 /* LogIn_SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A71DD428B1073E00A34351 /* LogIn_SignUpViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -178,13 +178,15 @@
 		006EB5BC28AB42E900BB9DCB /* Languages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Languages.swift; sourceTree = "<group>"; };
 		006EB5C028AB43F300BB9DCB /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ja; path = ja.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		006EB5C328AB4D1800BB9DCB /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		00860BF128B4726100DA0E75 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		00860BF228B4729400DA0E75 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		0086BBCD28AF261E00C916D3 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		0086BBD228AF4A8F00C916D3 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		009CB76F28B3608F00CF714E /* AppleAuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleAuthenticationViewModel.swift; sourceTree = "<group>"; };
-		724ABA61EF127A7D2839E3F8 /* Pods_Art_Project.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Art_Project.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C79D637B3166DC845241F7E4 /* Pods-Art-Project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Art-Project.debug.xcconfig"; path = "Target Support Files/Pods-Art-Project/Pods-Art-Project.debug.xcconfig"; sourceTree = "<group>"; };
+		032552EA5555A5C441FD6167 /* Pods-Art-Project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Art-Project.release.xcconfig"; path = "Target Support Files/Pods-Art-Project/Pods-Art-Project.release.xcconfig"; sourceTree = "<group>"; };
+		24323F472A8849C512B1E5C2 /* Pods-Art-Project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Art-Project.debug.xcconfig"; path = "Target Support Files/Pods-Art-Project/Pods-Art-Project.debug.xcconfig"; sourceTree = "<group>"; };
+		BAA7461D0FE8BB62956FB4B1 /* Pods_Art_Project.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Art_Project.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9A71DD428B1073E00A34351 /* LogIn_SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogIn_SignUpViewModel.swift; sourceTree = "<group>"; };
-		EF049535A091D8C7E9CED3C5 /* Pods-Art-Project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Art-Project.release.xcconfig"; path = "Target Support Files/Pods-Art-Project/Pods-Art-Project.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,7 +194,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8098C6A6256981BBA3BBE5EF /* Pods_Art_Project.framework in Frameworks */,
+				B88A09E6D1510819E8A71796 /* Pods_Art_Project.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -560,7 +562,9 @@
 		124E23B46C2E53A56074661F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				724ABA61EF127A7D2839E3F8 /* Pods_Art_Project.framework */,
+				00860BF228B4729400DA0E75 /* libc++.tbd */,
+				00860BF128B4726100DA0E75 /* libsqlite3.tbd */,
+				BAA7461D0FE8BB62956FB4B1 /* Pods_Art_Project.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -568,8 +572,8 @@
 		6FD253C87AD4217E43FF910E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				C79D637B3166DC845241F7E4 /* Pods-Art-Project.debug.xcconfig */,
-				EF049535A091D8C7E9CED3C5 /* Pods-Art-Project.release.xcconfig */,
+				24323F472A8849C512B1E5C2 /* Pods-Art-Project.debug.xcconfig */,
+				032552EA5555A5C441FD6167 /* Pods-Art-Project.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -581,11 +585,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 006EB4FA28AB395B00BB9DCB /* Build configuration list for PBXNativeTarget "Art-Project" */;
 			buildPhases = (
-				EB7AB3C51F773B34014AA867 /* [CP] Check Pods Manifest.lock */,
+				FE749AB00065EB04702A7FF2 /* [CP] Check Pods Manifest.lock */,
 				006EB4E228AB395A00BB9DCB /* Sources */,
 				006EB4E328AB395A00BB9DCB /* Frameworks */,
 				006EB4E428AB395A00BB9DCB /* Resources */,
-				C5E22708938F80B36EDEA421 /* [CP] Embed Pods Frameworks */,
+				09D5D28F77C89C8A47E3B2B8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -644,7 +648,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		C5E22708938F80B36EDEA421 /* [CP] Embed Pods Frameworks */ = {
+		09D5D28F77C89C8A47E3B2B8 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -661,7 +665,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Art-Project/Pods-Art-Project-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		EB7AB3C51F773B34014AA867 /* [CP] Check Pods Manifest.lock */ = {
+		FE749AB00065EB04702A7FF2 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -909,7 +913,7 @@
 		};
 		006EB4FB28AB395B00BB9DCB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C79D637B3166DC845241F7E4 /* Pods-Art-Project.debug.xcconfig */;
+			baseConfigurationReference = 24323F472A8849C512B1E5C2 /* Pods-Art-Project.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -926,7 +930,99 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MACH_O_TYPE = mh_execute;
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"c++\"",
+					"-l\"sqlite3\"",
+					"-l\"z\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"FBAEMKit\"",
+					"-framework",
+					"\"FBLPromises\"",
+					"-framework",
+					"\"FBSDKCoreKit\"",
+					"-framework",
+					"\"FBSDKCoreKit_Basics\"",
+					"-framework",
+					"\"FBSDKLoginKit\"",
+					"-framework",
+					"\"FBSDKShareKit\"",
+					"-framework",
+					"\"FirebaseAnalytics\"",
+					"-framework",
+					"\"FirebaseAppCheckInterop\"",
+					"-framework",
+					"\"FirebaseAuth\"",
+					"-framework",
+					"\"FirebaseAuthInterop\"",
+					"-framework",
+					"\"FirebaseCore\"",
+					"-framework",
+					"\"FirebaseCoreDiagnostics\"",
+					"-framework",
+					"\"FirebaseCoreExtension\"",
+					"-framework",
+					"\"FirebaseCoreInternal\"",
+					"-framework",
+					"\"FirebaseFirestore\"",
+					"-framework",
+					"\"FirebaseInstallations\"",
+					"-framework",
+					"\"FirebaseStorage\"",
+					"-framework",
+					"\"FirebaseStorageInternal\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"GoogleAppMeasurement\"",
+					"-framework",
+					"\"GoogleAppMeasurementIdentitySupport\"",
+					"-framework",
+					"\"GoogleDataTransport\"",
+					"-framework",
+					"\"GoogleUtilities\"",
+					"-framework",
+					"\"LocalAuthentication\"",
+					"-framework",
+					"\"SafariServices\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SnapKit\"",
+					"-framework",
+					"\"StoreKit\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"ZaloSDK\"",
+					"-framework",
+					"\"ZaloSDKCoreKit\"",
+					"-framework",
+					"\"absl\"",
+					"-framework",
+					"\"grpc\"",
+					"-framework",
+					"\"grpcpp\"",
+					"-framework",
+					"\"leveldb\"",
+					"-framework",
+					"\"nanopb\"",
+					"-framework",
+					"\"openssl_grpc\"",
+					"-framework",
+					"\"uv\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "tamnm-minerva.vn.Art-Project";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -937,7 +1033,7 @@
 		};
 		006EB4FC28AB395B00BB9DCB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EF049535A091D8C7E9CED3C5 /* Pods-Art-Project.release.xcconfig */;
+			baseConfigurationReference = 032552EA5555A5C441FD6167 /* Pods-Art-Project.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -954,7 +1050,99 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MACH_O_TYPE = mh_execute;
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"c++\"",
+					"-l\"sqlite3\"",
+					"-l\"z\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"FBAEMKit\"",
+					"-framework",
+					"\"FBLPromises\"",
+					"-framework",
+					"\"FBSDKCoreKit\"",
+					"-framework",
+					"\"FBSDKCoreKit_Basics\"",
+					"-framework",
+					"\"FBSDKLoginKit\"",
+					"-framework",
+					"\"FBSDKShareKit\"",
+					"-framework",
+					"\"FirebaseAnalytics\"",
+					"-framework",
+					"\"FirebaseAppCheckInterop\"",
+					"-framework",
+					"\"FirebaseAuth\"",
+					"-framework",
+					"\"FirebaseAuthInterop\"",
+					"-framework",
+					"\"FirebaseCore\"",
+					"-framework",
+					"\"FirebaseCoreDiagnostics\"",
+					"-framework",
+					"\"FirebaseCoreExtension\"",
+					"-framework",
+					"\"FirebaseCoreInternal\"",
+					"-framework",
+					"\"FirebaseFirestore\"",
+					"-framework",
+					"\"FirebaseInstallations\"",
+					"-framework",
+					"\"FirebaseStorage\"",
+					"-framework",
+					"\"FirebaseStorageInternal\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"GoogleAppMeasurement\"",
+					"-framework",
+					"\"GoogleAppMeasurementIdentitySupport\"",
+					"-framework",
+					"\"GoogleDataTransport\"",
+					"-framework",
+					"\"GoogleUtilities\"",
+					"-framework",
+					"\"LocalAuthentication\"",
+					"-framework",
+					"\"SafariServices\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SnapKit\"",
+					"-framework",
+					"\"StoreKit\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"ZaloSDK\"",
+					"-framework",
+					"\"ZaloSDKCoreKit\"",
+					"-framework",
+					"\"absl\"",
+					"-framework",
+					"\"grpc\"",
+					"-framework",
+					"\"grpcpp\"",
+					"-framework",
+					"\"leveldb\"",
+					"-framework",
+					"\"nanopb\"",
+					"-framework",
+					"\"openssl_grpc\"",
+					"-framework",
+					"\"uv\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "tamnm-minerva.vn.Art-Project";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

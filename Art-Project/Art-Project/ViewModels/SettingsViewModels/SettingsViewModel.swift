@@ -10,7 +10,7 @@ import FirebaseFirestore
 import FirebaseAuth
 import FirebaseStorage
 import GoogleSignIn
-import FacebookCore
+import FBSDKCoreKit
 
 class SettingsViewModel: NSObject {
     //MARK: Properties

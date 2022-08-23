@@ -7,6 +7,7 @@
 
 import UIKit
 import AuthenticationServices
+import FBSDKLoginKit
 
 class LoginViewController: BaseViewController {
     //MARK: Properties
