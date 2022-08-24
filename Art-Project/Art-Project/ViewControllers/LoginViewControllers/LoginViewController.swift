@@ -35,6 +35,8 @@ class LoginViewController: BaseViewController {
         let tf = CustomTextView()
         tf.setTitle(text: "Login")
         tf.setLeadingIconImage(image: UIImage(named: "icons8-user"))
+        tf.publicTextField.autocapitalizationType = .none
+        tf.publicTextField.autocorrectionType = .no
         return tf
     }()
     
@@ -259,7 +261,7 @@ class LoginViewController: BaseViewController {
             emailTextField.setAttributedStringForBottomLabel(text: alertFromUserName)
             guard userNameIsValid else {return}
             
-            viewModel.password = passwordTextField.getString()
+            viewModel.password = passwordTextField.getHashedString()
             let (alertFromPassword, passwordIsValid) = viewModel.checkPassword()
             passwordTextField.setAttributedStringForBottomLabel(text: alertFromPassword)
             guard passwordIsValid else {return}

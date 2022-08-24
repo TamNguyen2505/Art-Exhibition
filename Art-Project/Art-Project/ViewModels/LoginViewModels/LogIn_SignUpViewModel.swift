@@ -31,14 +31,14 @@ class LogIn_SignUpViewModel: NSObject {
     
     //MARK: Features
     func checkUserName() -> (alert: NSMutableAttributedString?, valid: Bool) {
-        guard let userName = email, userName != "" else {return (createRedAlertString(string: LocalizableManager.getLocalizableString(key: .text_lack_of_username_alert)), false)}
+        guard let userName = email, !userName.isEmpty else {return (createRedAlertString(string: LocalizableManager.getLocalizableString(key: .text_lack_of_username_alert)), false)}
         
         return (nil, true)
         
     }
     
     func checkPassword() -> (alert: NSMutableAttributedString?, valid: Bool) {
-        guard let password = password, password != "" else {return (createRedAlertString(string: LocalizableManager.getLocalizableString(key: .text_lack_of_password_alert)), false)}
+        guard let password = password, !password.isEmpty else {return (createRedAlertString(string: LocalizableManager.getLocalizableString(key: .text_lack_of_password_alert)), false)}
         
         return (nil, true)
         
@@ -46,7 +46,7 @@ class LogIn_SignUpViewModel: NSObject {
     
     func checkConfirmationPassword() -> (alert: NSMutableAttributedString?, valid: Bool) {
         
-        guard let confirmationPassword = confirmationPassword, confirmationPassword != "" else {return (createRedAlertString(string: LocalizableManager.getLocalizableString(key: .text_lack_of_password_confirmation_alert)), false)}
+        guard let confirmationPassword = confirmationPassword, !confirmationPassword.isEmpty else {return (createRedAlertString(string: LocalizableManager.getLocalizableString(key: .text_lack_of_password_confirmation_alert)), false)}
         
         if confirmationPassword != password {
             

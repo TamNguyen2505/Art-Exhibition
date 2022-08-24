@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CommonCrypto
 
 extension String {
     
@@ -30,6 +31,24 @@ extension String {
         dateFormatter.locale = Locale.current
         dateFormatter.dateFormat = format
         return dateFormatter.string(from: Date())
+        
+    }
+    
+    func challenge() -> String {
+        guard let verifierData = self.data(using: String.Encoding.utf8) else { return "error" }
+        var buffer = [UInt8](repeating: 0, count:Int(CC_SHA256_DIGEST_LENGTH))
+        
+        _ = verifierData.withUnsafeBytes {
+            CC_SHA256($0.baseAddress, CC_LONG(verifierData.count), &buffer)
+        }
+        let hash = Data(_: buffer)
+        
+        let challenge = hash.base64EncodedData()
+        return String(decoding: challenge, as: UTF8.self)
+            .replacingOccurrences(of: "+", with: "-")
+            .replacingOccurrences(of: "/", with: "_")
+            .replacingOccurrences(of: "=", with: "")
+            .trimmingCharacters(in: .whitespaces)
         
     }
     

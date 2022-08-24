@@ -162,4 +162,10 @@ class CustomTextView: UIView {
         
     }
     
+    func getHashedString() -> String? {
+        
+        return self.textField.text?.challenge()
+        
+    }
+    
 }
