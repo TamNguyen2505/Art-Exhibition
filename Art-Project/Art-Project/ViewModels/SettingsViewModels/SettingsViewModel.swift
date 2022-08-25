@@ -18,6 +18,7 @@ class SettingsViewModel: NSObject {
     private let networkManager = NetworkManager()
     private let Collection_User = Firestore.firestore().collection("users")
     @objc dynamic var didGetUserInformation = false
+    @objc dynamic var didValidRightFace = false
     private var userInformation: UserModel? = nil
     var avtarImage: UIImage? = nil
     private var isRightHost = false {
@@ -109,7 +110,8 @@ class SettingsViewModel: NSObject {
         
         Task {
             
-            self.isRightHost = await faceID.evaluate().success
+            async let isRightHost = await faceID.evaluate().success
+            self.didValidRightFace = await isRightHost
             
         }
         
@@ -119,7 +121,7 @@ class SettingsViewModel: NSObject {
         
         guard isRightHost else {return}
         
-        let genericQuery = GenericPasswordQuery()
+        let genericQuery = GenericPasswordQuery(service: KeychainKey.FirebasePassword.rawValue)
         let keychainManager = KeychainManager(keychainQuery: genericQuery)
         
         do{

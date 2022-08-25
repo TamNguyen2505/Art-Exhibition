@@ -7,6 +7,7 @@
 
 import Foundation
 import CommonCrypto
+import CryptoKit
 
 extension String {
     
@@ -34,21 +35,41 @@ extension String {
         
     }
     
-    func challenge() -> String {
-        guard let verifierData = self.data(using: String.Encoding.utf8) else { return "error" }
-        var buffer = [UInt8](repeating: 0, count:Int(CC_SHA256_DIGEST_LENGTH))
+    func pbkdf2(prf: CCPseudoRandomAlgorithm = CCPseudoRandomAlgorithm(kCCPRFHmacAlgSHA256), rounds: Int = 5000) -> String? {
+        guard let passwordData = self.data(using: .utf8) else { return nil }
         
-        _ = verifierData.withUnsafeBytes {
-            CC_SHA256($0.baseAddress, CC_LONG(verifierData.count), &buffer)
+        let randomSymmetricKey = SymmetricKey(size: .bits256)
+        let saltData = randomSymmetricKey.withUnsafeBytes { Data($0) }
+
+        var derivedKeyData = Data(repeating: 0, count: Int(CC_SHA256_DIGEST_LENGTH))
+        let derivedCount = derivedKeyData.count
+        
+        let derivationStatus: Int32 = derivedKeyData.withUnsafeMutableBytes { derivedKeyBytes in
+            
+            let keyBuffer: UnsafeMutablePointer<UInt8> =
+            derivedKeyBytes.baseAddress!.assumingMemoryBound(to: UInt8.self)
+            
+            return saltData.withUnsafeBytes { saltBytes -> Int32 in
+                let saltBuffer: UnsafePointer<UInt8> = saltBytes.baseAddress!.assumingMemoryBound(to: UInt8.self)
+                return CCKeyDerivationPBKDF(
+                    CCPBKDFAlgorithm(kCCPBKDF2),
+                    self,
+                    passwordData.count,
+                    saltBuffer,
+                    saltData.count,
+                    prf,
+                    UInt32(rounds),
+                    keyBuffer,
+                    derivedCount)
+                
+            }
+            
         }
-        let hash = Data(_: buffer)
         
-        let challenge = hash.base64EncodedData()
-        return String(decoding: challenge, as: UTF8.self)
-            .replacingOccurrences(of: "+", with: "-")
-            .replacingOccurrences(of: "/", with: "_")
-            .replacingOccurrences(of: "=", with: "")
-            .trimmingCharacters(in: .whitespaces)
+        guard derivationStatus == kCCSuccess else {return nil}
+        
+        return derivedKeyData.base64EncodedString()
+        
         
     }
     

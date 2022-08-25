@@ -24,7 +24,7 @@ class AuthenticationViewModel: NSObject {
     //MARK: Email
     func createNewUserNameInFireBase(email: String, password: String, fullName: String? = nil, userName: String? = nil, profileImage: UIImage? = nil) async throws -> Bool {
         
-        let challenge = password.challenge()
+        let challenge = challenge(string: password)
                 
         let userID: String = try await withCheckedThrowingContinuation{ Continuation in
             
@@ -109,8 +109,8 @@ class AuthenticationViewModel: NSObject {
     
     func logIn(email: String, password: String) async throws -> Bool {
         
-        let challenge = password.challenge()
-                
+        let challenge = challenge(string: password)
+
         let sucess: Bool = try await withCheckedThrowingContinuation { Continuation in
             
             Auth.auth().signIn(withEmail: email, password: challenge) { authResult, error in
@@ -308,7 +308,8 @@ class AuthenticationViewModel: NSObject {
         let group = DispatchGroup()
         
         group.enter()
-        let codeChallenge = randomNonceString(length: 43, includesSpecialCharaters: false).challenge()
+        let randomNonce = randomNonceString(length: 43, includesSpecialCharaters: false)
+        let codeChallenge = challenge(string: randomNonce)
         group.leave()
         
         group.notify(queue: .main) {
@@ -377,6 +378,24 @@ class AuthenticationViewModel: NSObject {
         }.joined()
         
         return hashString
+    }
+    
+    func challenge(string: String) -> String {
+        guard let verifierData = string.data(using: String.Encoding.utf8) else { return "error" }
+        var buffer = [UInt8](repeating: 0, count:Int(CC_SHA256_DIGEST_LENGTH))
+        
+        _ = verifierData.withUnsafeBytes {
+            CC_SHA256($0.baseAddress, CC_LONG(verifierData.count), &buffer)
+        }
+        let hash = Data(_: buffer)
+        
+        let challenge = hash.base64EncodedData()
+        return String(decoding: challenge, as: UTF8.self)
+            .replacingOccurrences(of: "+", with: "-")
+            .replacingOccurrences(of: "/", with: "_")
+            .replacingOccurrences(of: "=", with: "")
+            .trimmingCharacters(in: .whitespaces)
+        
     }
     
 }

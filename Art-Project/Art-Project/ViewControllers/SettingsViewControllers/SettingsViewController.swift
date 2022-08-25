@@ -168,6 +168,22 @@ class SettingsViewController: BaseViewController {
         }
         self.observations.append(observationDidGetUserInformation)
         
+        let observationDidValidRightFace = viewModel.observe(\.didValidRightFace, options: [.new]) { [weak self] _, receivedValue in
+            guard let self = self, let value = receivedValue.newValue, value else {return}
+            
+            DispatchQueue.main.async {
+                
+                let targetVC = FaceIDPasswordViewController()
+                
+                self.hideTabBarController = true
+                self.navigationController?.pushViewController(targetVC, animated: true)
+                
+            }
+            
+            
+        }
+        self.observations.append(observationDidValidRightFace)
+        
     }
     
     override func setupVM() {

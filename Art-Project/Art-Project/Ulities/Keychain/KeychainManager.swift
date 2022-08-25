@@ -12,6 +12,7 @@ enum KeychainKey: String {
     case JWT = "user-jwt"
     case SoftOTPPin = "soft-otp-pin"
     case TokenSeed = "token-seed"
+    case FirebasePassword = "firebase-password"
     
 }
 
