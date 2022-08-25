@@ -252,12 +252,16 @@ class SignUpViewController: BaseViewController {
             emailTextField.setAttributedStringForBottomLabel(text: alertFromUserName)
             guard userNameIsValid else {return}
             
-            viewModel.password = passwordTextField.getHashedString()
-            let (alertFromPassword, passwordIsValid) = viewModel.checkPassword()
+            viewModel.password = passwordTextField.getString()
+            let (alertFromPassword, passwordIsNotEmpty) = viewModel.checkPassword()
             passwordTextField.setAttributedStringForBottomLabel(text: alertFromPassword)
-            guard passwordIsValid else {return}
             
-            viewModel.confirmationPassword = confirmPasswordTextField.getHashedString()
+            let (alerFromWrongPassword, passwordIsRightFormat) = viewModel.checkPasswordIsRightFormat()
+            passwordTextField.setAttributedStringForBottomLabel(text: alerFromWrongPassword)
+            
+            guard passwordIsNotEmpty, passwordIsRightFormat else {return}
+            
+            viewModel.confirmationPassword = confirmPasswordTextField.getString()
             let (alertFromConfirmationPassword, confirmationPasswordIsValid) = viewModel.checkConfirmationPassword()
             confirmPasswordTextField.setAttributedStringForBottomLabel(text: alertFromConfirmationPassword)
             guard confirmationPasswordIsValid else {return}

@@ -44,6 +44,27 @@ class LogIn_SignUpViewModel: NSObject {
         
     }
     
+    func checkPasswordIsRightFormat() -> (alert: NSMutableAttributedString?, valid: Bool) {
+        
+        guard let password = password, !password.isEmpty else {return (nil,false)}
+        
+        let passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[ !\"\\\\#$%&'\\(\\)\\*+,\\-\\./:;<=>?@\\[\\]^_`\\{|\\}~])[A-Za-z\\d !\"\\\\#$%&'\\(\\)\\*+,\\-\\./:;<=>?@\\[\\]^_`\\{|\\}~]{12,}"
+
+        let result = NSPredicate(format: "SELF MATCHES %@", passwordRegex).evaluate(with: password)
+        
+        if !result {
+            
+            return (createRedAlertString(string: LocalizableManager.getLocalizableString(key: .text_wrong_format_password)), false)
+            
+        } else {
+            
+            return (nil, true)
+            
+        }
+
+        
+    }
+    
     func checkConfirmationPassword() -> (alert: NSMutableAttributedString?, valid: Bool) {
         
         guard let confirmationPassword = confirmationPassword, !confirmationPassword.isEmpty else {return (createRedAlertString(string: LocalizableManager.getLocalizableString(key: .text_lack_of_password_confirmation_alert)), false)}
@@ -121,7 +142,7 @@ class LogIn_SignUpViewModel: NSObject {
                 self.logInUserSuccessfully = success
                 
             }
-                                    
+            
             break
         }
         

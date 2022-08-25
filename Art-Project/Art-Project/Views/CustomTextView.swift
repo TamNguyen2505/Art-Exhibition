@@ -44,6 +44,7 @@ class CustomTextView: UIView {
     
     private let bottomHelperLabel: UILabel = {
         let label = UILabel()
+        label.numberOfLines = 0
         return label
     }()
     
@@ -159,12 +160,6 @@ class CustomTextView: UIView {
     func getString() -> String? {
         
         return self.textField.text
-        
-    }
-    
-    func getHashedString() -> String? {
-        
-        return self.textField.text?.challenge()
         
     }
     

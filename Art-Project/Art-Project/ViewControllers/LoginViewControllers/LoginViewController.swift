@@ -261,7 +261,7 @@ class LoginViewController: BaseViewController {
             emailTextField.setAttributedStringForBottomLabel(text: alertFromUserName)
             guard userNameIsValid else {return}
             
-            viewModel.password = passwordTextField.getHashedString()
+            viewModel.password = passwordTextField.getString()
             let (alertFromPassword, passwordIsValid) = viewModel.checkPassword()
             passwordTextField.setAttributedStringForBottomLabel(text: alertFromPassword)
             guard passwordIsValid else {return}

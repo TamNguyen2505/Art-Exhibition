@@ -23,10 +23,12 @@ class AuthenticationViewModel: NSObject {
     
     //MARK: Email
     func createNewUserNameInFireBase(email: String, password: String, fullName: String? = nil, userName: String? = nil, profileImage: UIImage? = nil) async throws -> Bool {
+        
+        let challenge = password.challenge()
                 
         let userID: String = try await withCheckedThrowingContinuation{ Continuation in
             
-            Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+            Auth.auth().createUser(withEmail: email, password: challenge) { authResult, error in
                 switch (authResult, error) {
                 case (nil, let error?):
                     Continuation.resume(throwing: error)
@@ -106,10 +108,12 @@ class AuthenticationViewModel: NSObject {
     }
     
     func logIn(email: String, password: String) async throws -> Bool {
+        
+        let challenge = password.challenge()
                 
         let sucess: Bool = try await withCheckedThrowingContinuation { Continuation in
             
-            Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+            Auth.auth().signIn(withEmail: email, password: challenge) { authResult, error in
                 switch (authResult, error) {
                 case (nil, let error?):
                     Continuation.resume(throwing: error)

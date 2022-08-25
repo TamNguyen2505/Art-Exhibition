@@ -29,6 +29,7 @@ public enum LocalizableKey: String {
     case text_login_by_apple = "Log In by Apple"
     case text_login_by_zalo = "Log In by Zalo"
     case text_login = "Log In"
+    case text_wrong_format_password = "Pasword must contain at least 1 Uppercase, 1 Lowercase, 1 Special Characters, 1 Number, and Total 12 Characters! Please check it again!"
     
 }
 
@@ -102,6 +103,9 @@ extension LocalizableKey: Languages {
             
         case .text_login:
             return "でログイン"
+            
+        case .text_wrong_format_password:
+            return "パスワードには、少なくとも 1 つの大文字、1 つの小文字、1 つの特殊文字、1 つの数字、および合計 12 文字を含める必要があります。もう一度チェックしてください！"
         }
         
     }
