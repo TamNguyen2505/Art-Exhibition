@@ -183,7 +183,7 @@ class AuthenticationViewModel: NSObject {
         } else {
             
             let succes: Bool = try await withCheckedThrowingContinuation{ Continuation in
-                
+
                 Auth.auth().signIn(with: credential) { authResult, error in
                     switch (authResult, error) {
                     case (nil, let error?):

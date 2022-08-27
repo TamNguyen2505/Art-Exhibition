@@ -21,12 +21,6 @@ class SettingsViewModel: NSObject {
     @objc dynamic var didValidRightFace = false
     private var userInformation: UserModel? = nil
     var avtarImage: UIImage? = nil
-    private var isRightHost = false {
-        didSet{
-            saveKeychain()
-        }
-    }
-    
     
     //MARK: Features
     func getUserInformation() async throws {
@@ -112,25 +106,6 @@ class SettingsViewModel: NSObject {
             
             async let isRightHost = await faceID.evaluate().success
             self.didValidRightFace = await isRightHost
-            
-        }
-        
-    }
-    
-    private func saveKeychain() {
-        
-        guard isRightHost else {return}
-        
-        let genericQuery = GenericPasswordQuery(service: KeychainKey.FirebasePassword.rawValue)
-        let keychainManager = KeychainManager(keychainQuery: genericQuery)
-        
-        do{
-            
-            try keychainManager.addPasswordToKeychains(key: .JWT, password: "tamnm1996")
-            
-        }
-        
-        catch {
             
         }
         

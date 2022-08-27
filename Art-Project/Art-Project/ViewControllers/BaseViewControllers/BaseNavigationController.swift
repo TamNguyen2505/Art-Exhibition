@@ -72,6 +72,41 @@ enum NavigationTitles: String {
     case artAudioViewController
     case graphViewController
     case settingsViewController
+    case faceIDPasswordViewController
+    
+    var title: String? {
+        switch self {
+        case .logInViewController:
+            return nil
+            
+        case .signUpViewController:
+            return nil
+
+        case .homeViewController:
+            return nil
+
+        case .recordInformationViewController:
+            return nil
+
+        case .detailedNewsViewController:
+            return nil
+
+        case .newsViewController:
+            return nil
+
+        case .artAudioViewController:
+            return nil
+
+        case .graphViewController:
+            return nil
+
+        case .settingsViewController:
+            return nil
+
+        case .faceIDPasswordViewController:
+            return LocalizableManager.getLocalizableString(key: .text_enroll_faceID_login)
+        }
+    }
     
 }
 

@@ -28,7 +28,7 @@ struct KeychainManager {
     }
     
     //MARK: Features
-    func addPasswordToKeychains(key: KeychainKey, password: String) throws {
+    func addPasswordToKeychains(key: KeychainKey, password: String) throws -> Bool {
         guard let encodedPassword = password.data(using: .utf8) else {throw KeychainError.stringToDataConversionError}
         
         var basicQuery = keychainQuery.query
@@ -43,7 +43,7 @@ struct KeychainManager {
             status = SecItemUpdate(basicQuery as CFDictionary, attributesToUpdate as CFDictionary)
             
             guard status == errSecSuccess else { throw error(from: status) }
-            break
+            return true
             
         case errSecItemNotFound:
             basicQuery.updateValue(encodedPassword, forKey: kSecValueData as String)
@@ -51,7 +51,7 @@ struct KeychainManager {
             status = SecItemAdd(basicQuery as CFDictionary, nil)
             
             guard status == errSecSuccess else {throw error(from: status) }
-            break
+            return true
 
         default:
             throw error(from: status)

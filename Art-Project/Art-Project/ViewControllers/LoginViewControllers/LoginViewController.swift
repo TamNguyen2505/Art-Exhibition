@@ -248,6 +248,17 @@ class LoginViewController: BaseViewController {
         }
         self.observations.append(logInUSerSuccessfully)
         
+        let didGetPasswordFromKeyChain = viewModel.observe(\.didGetPasswordFromKeyChain, options: [.new]) { [weak self] _ , receivedValue in
+            guard let self = self, let value = receivedValue.newValue else {return}
+            
+            DispatchQueue.main.async {
+                
+                self.passwordTextField.setText(string: value)
+                
+            }
+            
+        }
+        self.observations.append(didGetPasswordFromKeyChain)
             
     }
     
@@ -292,7 +303,7 @@ class LoginViewController: BaseViewController {
         
         Task {
             
-            self.isRightHost = await faceID.evaluate().success
+            await viewModel.loginByFaceID()
             
         }
         

@@ -92,6 +92,7 @@
 		008EE30428B7793700723AAF /* FaceIDPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008EE30328B7793700723AAF /* FaceIDPasswordViewController.swift */; };
 		009CB77028B3608F00CF714E /* AppleAuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009CB76F28B3608F00CF714E /* AppleAuthenticationViewModel.swift */; };
 		B88A09E6D1510819E8A71796 /* Pods_Art_Project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA7461D0FE8BB62956FB4B1 /* Pods_Art_Project.framework */; };
+		E9A4F00628B8B1C6006D60D6 /* FaceIDPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A4F00528B8B1C6006D60D6 /* FaceIDPasswordViewModel.swift */; };
 		E9A71DD528B1073E00A34351 /* LogIn_SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A71DD428B1073E00A34351 /* LogIn_SignUpViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -188,6 +189,7 @@
 		032552EA5555A5C441FD6167 /* Pods-Art-Project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Art-Project.release.xcconfig"; path = "Target Support Files/Pods-Art-Project/Pods-Art-Project.release.xcconfig"; sourceTree = "<group>"; };
 		24323F472A8849C512B1E5C2 /* Pods-Art-Project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Art-Project.debug.xcconfig"; path = "Target Support Files/Pods-Art-Project/Pods-Art-Project.debug.xcconfig"; sourceTree = "<group>"; };
 		BAA7461D0FE8BB62956FB4B1 /* Pods_Art_Project.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Art_Project.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9A4F00528B8B1C6006D60D6 /* FaceIDPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceIDPasswordViewModel.swift; sourceTree = "<group>"; };
 		E9A71DD428B1073E00A34351 /* LogIn_SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogIn_SignUpViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -550,6 +552,7 @@
 			isa = PBXGroup;
 			children = (
 				006EB5C328AB4D1800BB9DCB /* SettingsViewModel.swift */,
+				E9A4F00528B8B1C6006D60D6 /* FaceIDPasswordViewModel.swift */,
 			);
 			path = SettingsViewModels;
 			sourceTree = "<group>";
@@ -737,6 +740,7 @@
 				006EB5B328AB3E1B00BB9DCB /* KeychainError.swift in Sources */,
 				0086BBCE28AF261E00C916D3 /* AuthenticationViewModel.swift in Sources */,
 				006EB55B28AB3CFC00BB9DCB /* HardvardMuseumObjectModel.swift in Sources */,
+				E9A4F00628B8B1C6006D60D6 /* FaceIDPasswordViewModel.swift in Sources */,
 				006EB4EA28AB395A00BB9DCB /* AppDelegate.swift in Sources */,
 				006EB57328AB3D0600BB9DCB /* HomeHeaderCollectionViewModel.swift in Sources */,
 				006EB51B28AB3CE300BB9DCB /* SlideInPresentationManager.swift in Sources */,
@@ -924,6 +928,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6JJ3HPPD4J;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Art-Project/Resources/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1044,6 +1049,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6JJ3HPPD4J;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Art-Project/Resources/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

@@ -29,6 +29,8 @@ class CustomTextView: UIView {
         tf.layer.borderWidth = 1
         tf.layer.cornerRadius = 5
         tf.backgroundColor = .white
+        tf.textColor = .black
+        tf.delegate = self
         return tf
     }()
     
@@ -161,6 +163,16 @@ class CustomTextView: UIView {
         
         return self.textField.text
         
+    }
+    
+}
+
+//MARK: UITextFieldDelegate
+extension CustomTextView: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return false
     }
     
 }

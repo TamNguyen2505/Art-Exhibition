@@ -19,7 +19,14 @@ class LogIn_SignUpViewModel: NSObject {
     @objc dynamic var logInUserSuccessfully = false
     @objc dynamic var createUserSuccessfully = false
     @objc dynamic var createUserWidthAvatarSuccessfully = false
+    @objc dynamic var didGetPasswordFromKeyChain: String?
     private let authenticationViewModel = AuthenticationViewModel()
+    private let faceID = BiometricIDAuth.shared
+    private var isRightHost = false {
+        didSet{
+            retrievePassword()
+        }
+    }
     
     enum AuthProvider {
         case authEmail
@@ -148,5 +155,27 @@ class LogIn_SignUpViewModel: NSObject {
         
     }
     
+    func loginByFaceID() async {
+        
+        self.isRightHost = await faceID.evaluate().success
+        
+    }
+    
+    private func retrievePassword() {
+
+        guard isRightHost else {return}
+        
+        let genericQuery = GenericPasswordQuery(service: KeychainKey.FirebasePassword.rawValue)
+        let keychainManager = KeychainManager(keychainQuery: genericQuery)
+        
+        do{
+            self.didGetPasswordFromKeyChain = try keychainManager.findPasswordInKeychains(key: .FirebasePassword)
+        }
+        
+        catch {
+            
+        }
+        
+    }
     
 }
