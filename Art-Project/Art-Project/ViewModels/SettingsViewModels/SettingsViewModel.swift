@@ -21,6 +21,7 @@ class SettingsViewModel: NSObject {
     @objc dynamic var didValidRightFace = false
     private var userInformation: UserModel? = nil
     var avtarImage: UIImage? = nil
+    private let userInformationViewModel = UserInformationViewModel()
     
     //MARK: Features
     func getUserInformation() async throws {
@@ -32,9 +33,12 @@ class SettingsViewModel: NSObject {
             case GoogleAuthProviderID:
                 guard let googleUser = GIDSignIn.sharedInstance.currentUser else {return}
                 let user = UserModel(googleUser: googleUser)
+                self.userInformation = user
                 
                 async let image = getImageFromUserInformation(urlString: user.profileImageURL)
                 self.avtarImage = await image
+                
+                userInformationViewModel.save(userName: user.userName, fullName: user.fullName, email: user.email, profileImage: avtarImage)
                 
                 self.didGetUserInformation = true
                 break
@@ -67,13 +71,22 @@ class SettingsViewModel: NSObject {
                 
                 async let image = getImageFromUserInformation(urlString: user.profileImageURL)
                 self.avtarImage = await image
+                self.userInformation = user
                 
+                self.userInformationViewModel.save(userName: user.userName, fullName: user.fullName, email: user.email, profileImage: avtarImage)
+
                 self.didGetUserInformation = true
                 break
             }
             
         }
         
+        
+    }
+    
+    func getEmailUserInformation() -> String {
+        
+        return userInformation?.email ?? ""
         
     }
     

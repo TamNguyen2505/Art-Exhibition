@@ -28,6 +28,7 @@ class LoginViewController: BaseViewController {
         iv.image = UIImage(named: "default-avatar")
         iv.layer.borderWidth = 1
         iv.layer.borderColor = UIColor.lightGray.cgColor
+        iv.clipsToBounds = true
         return iv
     }()
     
@@ -123,15 +124,8 @@ class LoginViewController: BaseViewController {
         btn.tintColor = #colorLiteral(red: 0.1597932875, green: 0.253477037, blue: 0.4077349007, alpha: 1)
         return btn
     }()
-    
-    private let faceID = BiometricIDAuth.shared
-    private var isRightHost = false {
-        didSet{
-            retrievePassword()
-        }
-    }
 
-    private let viewModel = LogIn_SignUpViewModel()
+    private let viewModel = LogInViewModel()
     
     //MARK: View cycle
     override func setupUI() {
@@ -235,6 +229,7 @@ class LoginViewController: BaseViewController {
                 
                 if valid {
                     
+                    UserDefaults.userIsSavedLogin = true
                     AppDelegate.switchToArtHomeViewController()
                     
                 } else {
@@ -260,6 +255,17 @@ class LoginViewController: BaseViewController {
         }
         self.observations.append(didGetPasswordFromKeyChain)
             
+    }
+    
+    override func setupVM() {
+        super.setupVM()
+        
+        guard UserDefaults.userIsSavedLogin, let user = viewModel.fetchUser() else {return}
+        
+        self.emailTextField.setText(string: user.email)
+        self.viewModel.email = user.email
+        self.avatarImageView.image = UIImage(data: user.profileImageURL ?? Data())
+        
     }
     
     //MARK: Actions
@@ -363,23 +369,6 @@ class LoginViewController: BaseViewController {
         alert.addAction(cancel)
         
         self.present(alert, animated: true, completion: nil)
-        
-    }
-    
-    private func retrievePassword() {
-
-        guard isRightHost else {return}
-        
-        let genericQuery = GenericPasswordQuery()
-        let keychainManager = KeychainManager(keychainQuery: genericQuery)
-        
-        do{
-            let password = try keychainManager.findPasswordInKeychains(key: .JWT)
-            passwordTextField.setText(string: password)
-        }
-        catch {
-            
-        }
         
     }
     

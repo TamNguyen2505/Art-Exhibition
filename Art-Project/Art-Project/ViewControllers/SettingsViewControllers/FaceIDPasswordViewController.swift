@@ -48,6 +48,7 @@ class FaceIDPasswordViewController: BaseViewController {
     }()
     
     private let viewModel = FaceIDPasswordViewModel()
+    var email: String? 
     
     //MARK: View cycle
     override func setupUI() {
@@ -129,9 +130,9 @@ class FaceIDPasswordViewController: BaseViewController {
     }
     
     @objc func handleEventFromEnrollButton(_ sender: UIButton) {
-        guard let password = passwordTextField.getString() else {return}
+        guard let password = passwordTextField.getString(), let email = email else {return}
         
-        viewModel.saveKeychain(password: password)
+        viewModel.saveKeychain(account: email, password: password)
         
     }
     

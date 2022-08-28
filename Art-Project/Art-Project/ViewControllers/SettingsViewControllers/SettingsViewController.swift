@@ -175,6 +175,7 @@ class SettingsViewController: BaseViewController {
                 
                 let targetVC = FaceIDPasswordViewController()
                 
+                targetVC.email = self.viewModel.getEmailUserInformation()
                 self.hideTabBarController = true
                 self.navigationController?.pushViewController(targetVC, animated: true)
                 

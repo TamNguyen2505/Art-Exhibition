@@ -93,7 +93,12 @@
 		009CB77028B3608F00CF714E /* AppleAuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009CB76F28B3608F00CF714E /* AppleAuthenticationViewModel.swift */; };
 		B88A09E6D1510819E8A71796 /* Pods_Art_Project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA7461D0FE8BB62956FB4B1 /* Pods_Art_Project.framework */; };
 		E9A4F00628B8B1C6006D60D6 /* FaceIDPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A4F00528B8B1C6006D60D6 /* FaceIDPasswordViewModel.swift */; };
-		E9A71DD528B1073E00A34351 /* LogIn_SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A71DD428B1073E00A34351 /* LogIn_SignUpViewModel.swift */; };
+		E9A4F00E28BA50D5006D60D6 /* UserInformation.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E9A4F00C28BA50D5006D60D6 /* UserInformation.xcdatamodeld */; };
+		E9A4F01F28BA562D006D60D6 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A4F01D28BA562D006D60D6 /* User+CoreDataClass.swift */; };
+		E9A4F02028BA562D006D60D6 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A4F01E28BA562D006D60D6 /* User+CoreDataProperties.swift */; };
+		E9A4F02228BA642A006D60D6 /* LogInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A4F02128BA642A006D60D6 /* LogInViewModel.swift */; };
+		E9A4F02528BA66DB006D60D6 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A4F02428BA66DB006D60D6 /* SignUpViewModel.swift */; };
+		E9A4F02728BA681B006D60D6 /* UserInformationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A4F02628BA681B006D60D6 /* UserInformationViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -190,7 +195,12 @@
 		24323F472A8849C512B1E5C2 /* Pods-Art-Project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Art-Project.debug.xcconfig"; path = "Target Support Files/Pods-Art-Project/Pods-Art-Project.debug.xcconfig"; sourceTree = "<group>"; };
 		BAA7461D0FE8BB62956FB4B1 /* Pods_Art_Project.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Art_Project.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9A4F00528B8B1C6006D60D6 /* FaceIDPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceIDPasswordViewModel.swift; sourceTree = "<group>"; };
-		E9A71DD428B1073E00A34351 /* LogIn_SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogIn_SignUpViewModel.swift; sourceTree = "<group>"; };
+		E9A4F00D28BA50D5006D60D6 /* UserInformation.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserInformation.xcdatamodel; sourceTree = "<group>"; };
+		E9A4F01D28BA562D006D60D6 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		E9A4F01E28BA562D006D60D6 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		E9A4F02128BA642A006D60D6 /* LogInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewModel.swift; sourceTree = "<group>"; };
+		E9A4F02428BA66DB006D60D6 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		E9A4F02628BA681B006D60D6 /* UserInformationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformationViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,7 +220,9 @@
 			children = (
 				0086BBCD28AF261E00C916D3 /* AuthenticationViewModel.swift */,
 				009CB76F28B3608F00CF714E /* AppleAuthenticationViewModel.swift */,
-				E9A71DD428B1073E00A34351 /* LogIn_SignUpViewModel.swift */,
+				E9A4F02628BA681B006D60D6 /* UserInformationViewModel.swift */,
+				E9A4F02128BA642A006D60D6 /* LogInViewModel.swift */,
+				E9A4F02428BA66DB006D60D6 /* SignUpViewModel.swift */,
 			);
 			path = LoginViewModels;
 			sourceTree = "<group>";
@@ -379,6 +391,7 @@
 		006EB54D28AB3CFC00BB9DCB /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E9A4F00B28BA50BA006D60D6 /* CoreData */,
 				006EB54E28AB3CFC00BB9DCB /* JSONNull.swift */,
 				006EB55228AB3CFC00BB9DCB /* Media.swift */,
 				0086BBD128AF4A6000C916D3 /* LoginModels */,
@@ -584,6 +597,16 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		E9A4F00B28BA50BA006D60D6 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				E9A4F01D28BA562D006D60D6 /* User+CoreDataClass.swift */,
+				E9A4F01E28BA562D006D60D6 /* User+CoreDataProperties.swift */,
+				E9A4F00C28BA50D5006D60D6 /* UserInformation.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -704,11 +727,13 @@
 				006EB58B28AB3E0000BB9DCB /* NetworkMonitor.swift in Sources */,
 				006EB54B28AB3CF100BB9DCB /* SignUpViewController.swift in Sources */,
 				006EB59328AB3E0000BB9DCB /* URLs.swift in Sources */,
+				E9A4F02028BA562D006D60D6 /* User+CoreDataProperties.swift in Sources */,
 				006EB54328AB3CF100BB9DCB /* BaseNavigationController.swift in Sources */,
 				006EB55928AB3CFC00BB9DCB /* JSONNull.swift in Sources */,
 				006EB5A828AB3E1B00BB9DCB /* AsyncAddOperation.swift in Sources */,
 				006EB58A28AB3E0000BB9DCB /* NetworkManager.swift in Sources */,
 				006EB51628AB3CE300BB9DCB /* ColorPalletCollectionCell.swift in Sources */,
+				E9A4F02728BA681B006D60D6 /* UserInformationViewModel.swift in Sources */,
 				006EB5B528AB3E1B00BB9DCB /* KeychainManager.swift in Sources */,
 				006EB57228AB3D0600BB9DCB /* HomeViewModel.swift in Sources */,
 				006EB5B628AB3E1B00BB9DCB /* BiometricIDAuth.swift in Sources */,
@@ -733,13 +758,14 @@
 				006EB51828AB3CE300BB9DCB /* CustomTabBar.swift in Sources */,
 				006EB59028AB3E0000BB9DCB /* NetworkLogger.swift in Sources */,
 				006EB55E28AB3CFC00BB9DCB /* AudioModel.swift in Sources */,
-				E9A71DD528B1073E00A34351 /* LogIn_SignUpViewModel.swift in Sources */,
+				E9A4F00E28BA50D5006D60D6 /* UserInformation.xcdatamodeld in Sources */,
 				006EB5AF28AB3E1B00BB9DCB /* AppDelegate + Extension.swift in Sources */,
 				006EB5B128AB3E1B00BB9DCB /* Data + Extension.swift in Sources */,
 				006EB56E28AB3D0600BB9DCB /* DetailedNewsViewModel.swift in Sources */,
 				006EB5B328AB3E1B00BB9DCB /* KeychainError.swift in Sources */,
 				0086BBCE28AF261E00C916D3 /* AuthenticationViewModel.swift in Sources */,
 				006EB55B28AB3CFC00BB9DCB /* HardvardMuseumObjectModel.swift in Sources */,
+				E9A4F02528BA66DB006D60D6 /* SignUpViewModel.swift in Sources */,
 				E9A4F00628B8B1C6006D60D6 /* FaceIDPasswordViewModel.swift in Sources */,
 				006EB4EA28AB395A00BB9DCB /* AppDelegate.swift in Sources */,
 				006EB57328AB3D0600BB9DCB /* HomeHeaderCollectionViewModel.swift in Sources */,
@@ -753,11 +779,13 @@
 				006EB51728AB3CE300BB9DCB /* Loader.swift in Sources */,
 				006EB51E28AB3CE300BB9DCB /* CustomTextView.swift in Sources */,
 				006EB58E28AB3E0000BB9DCB /* HTTPMethod.swift in Sources */,
+				E9A4F02228BA642A006D60D6 /* LogInViewModel.swift in Sources */,
 				006EB51528AB3CE300BB9DCB /* NewsTableCell.swift in Sources */,
 				006EB4EC28AB395A00BB9DCB /* SceneDelegate.swift in Sources */,
 				006EB51928AB3CE300BB9DCB /* VerticalSlider.swift in Sources */,
 				006EB4FF28AB3C4200BB9DCB /* main.swift in Sources */,
 				006EB54828AB3CF100BB9DCB /* RecordInformationViewController.swift in Sources */,
+				E9A4F01F28BA562D006D60D6 /* User+CoreDataClass.swift in Sources */,
 				006EB5B428AB3E1B00BB9DCB /* KeychainQuery.swift in Sources */,
 				006EB51228AB3CE300BB9DCB /* TopGradientCurvedView.swift in Sources */,
 				006EB59128AB3E0000BB9DCB /* EndPointType.swift in Sources */,
@@ -1183,6 +1211,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E9A4F00C28BA50D5006D60D6 /* UserInformation.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E9A4F00D28BA50D5006D60D6 /* UserInformation.xcdatamodel */,
+			);
+			currentVersion = E9A4F00D28BA50D5006D60D6 /* UserInformation.xcdatamodel */;
+			path = UserInformation.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 006EB4DE28AB395A00BB9DCB /* Project object */;
 }

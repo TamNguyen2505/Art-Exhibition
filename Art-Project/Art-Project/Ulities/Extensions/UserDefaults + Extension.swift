@@ -16,6 +16,16 @@ extension UserDefaults {
         
     }
     
+    static var userIsSavedLogin: Bool {
+        get {
+            return (UserDefaults.standard.value(forKey: Keys.isSavedLogin.rawValue) != nil)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: Keys.isSavedLogin.rawValue)
+        }
+        
+    }
+    
     static var userName: String {
         
         get {
