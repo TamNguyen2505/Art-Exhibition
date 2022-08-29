@@ -107,7 +107,7 @@ class SignUpViewController: BaseViewController {
         return btn
     }()
     
-    private let viewModel = LogIn_SignUpViewModel()
+    private let viewModel = SignUpViewModel()
     
     //MARK: View cycle
     override func setupUI() {

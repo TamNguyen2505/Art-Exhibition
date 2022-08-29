@@ -272,7 +272,7 @@ extension BaseViewController {
             
         } else {
             
-            title.text = titleName?.rawValue
+            title.text = titleName?.title
             title.font = UIFont.boldSystemFont(ofSize: 18)
             return title
             

@@ -32,7 +32,8 @@ public enum LocalizableKey: String {
     case text_wrong_format_password = "Pasword must contain at least 1 Uppercase, 1 Lowercase, 1 Special Characters, 1 Number, and Total 12 Characters! Please check it again!"
     case text_enroll = "ENROLL"
     case text_cancel = "CANCEL"
-    
+    case text_enroll_faceID_login = "FaceID Login Enroll"
+
 }
 
 extension LocalizableKey: Languages {
@@ -114,6 +115,9 @@ extension LocalizableKey: Languages {
             
         case .text_cancel:
             return "キャンセル"
+            
+        case .text_enroll_faceID_login:
+            return "FaceID ログイン 登録"
         }
         
     }

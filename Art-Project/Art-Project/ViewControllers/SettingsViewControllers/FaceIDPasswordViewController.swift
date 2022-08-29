@@ -31,6 +31,7 @@ class FaceIDPasswordViewController: BaseViewController {
         btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         btn.backgroundColor = .systemOrange
         btn.layer.cornerRadius = 5
+        btn.addTarget(self, action: #selector(handleEventFromEnrollButton(_:)), for: .touchUpInside)
         return btn
     }()
     
@@ -45,6 +46,9 @@ class FaceIDPasswordViewController: BaseViewController {
         btn.backgroundColor = .white
         return btn
     }()
+    
+    private let viewModel = FaceIDPasswordViewModel()
+    var email: String? 
     
     //MARK: View cycle
     override func setupUI() {
@@ -94,7 +98,41 @@ class FaceIDPasswordViewController: BaseViewController {
         super.setupNavigationStyle()
         
         let leftItem = setupUIForLeftItem(leftItemInfo: .backIcon)
-        constraintHeaderStack(accordingTo: .aLeftItem(leftItem: leftItem))
+        let title = setupUIForTitle(titleName: .faceIDPasswordViewController)
+        constraintHeaderStack(accordingTo: .aLeftItem_title(leftItem: leftItem, title: title))
+        
+    }
+    
+    override func observeVM() {
+        super.observeVM()
+        
+        let observationDidSavePasswordInKeychain = viewModel.observe(\.didSavePasswordInKeychain, options: [.new]) { [weak self] _ , receivedValue in
+            guard let self = self, let value = receivedValue.newValue, value else {return}
+            
+            DispatchQueue.main.async {
+                
+                self.navigationController?.popViewController(animated: true)
+                
+            }
+        
+        }
+        self.observations.append(observationDidSavePasswordInKeychain)
+        
+    }
+    
+    
+    //MARK: Actions
+    @objc override func handleEventFromLeftNavigationItem(_ sender: UIButton) {
+        super.handleEventFromLeftNavigationItem(sender)
+        
+        self.navigationController?.popViewController(animated: true)
+        
+    }
+    
+    @objc func handleEventFromEnrollButton(_ sender: UIButton) {
+        guard let password = passwordTextField.getString(), let email = email else {return}
+        
+        viewModel.saveKeychain(account: email, password: password)
         
     }
     
