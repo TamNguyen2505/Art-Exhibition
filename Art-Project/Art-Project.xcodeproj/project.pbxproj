@@ -93,7 +93,7 @@
 		009CB77028B3608F00CF714E /* AppleAuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009CB76F28B3608F00CF714E /* AppleAuthenticationViewModel.swift */; };
 		B88A09E6D1510819E8A71796 /* Pods_Art_Project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA7461D0FE8BB62956FB4B1 /* Pods_Art_Project.framework */; };
 		E94460C628BCFC7C006B5700 /* UserInformation.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E94460C428BCFC7C006B5700 /* UserInformation.xcdatamodeld */; };
-		E94460C828BD01BF006B5700 /* UserInformationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94460C728BD01BF006B5700 /* UserInformationViewModel.swift */; };
+		E94460CB28BD0ED0006B5700 /* UserInformationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94460C728BD01BF006B5700 /* UserInformationViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -720,7 +720,7 @@
 				006EB5B528AB3E1B00BB9DCB /* KeychainManager.swift in Sources */,
 				006EB57228AB3D0600BB9DCB /* HomeViewModel.swift in Sources */,
 				006EB5B628AB3E1B00BB9DCB /* BiometricIDAuth.swift in Sources */,
-				E94460C828BD01BF006B5700 /* UserInformationViewModel.swift in Sources */,
+				E94460CB28BD0ED0006B5700 /* UserInformationViewModel.swift in Sources */,
 				006EB5AB28AB3E1B00BB9DCB /* Double + Extension.swift in Sources */,
 				008EE30428B7793700723AAF /* FaceIDPasswordViewController.swift in Sources */,
 				006EB55D28AB3CFC00BB9DCB /* DetailedNewsModel.swift in Sources */,
