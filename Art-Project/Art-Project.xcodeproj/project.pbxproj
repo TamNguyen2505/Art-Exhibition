@@ -92,6 +92,7 @@
 		008EE30428B7793700723AAF /* FaceIDPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008EE30328B7793700723AAF /* FaceIDPasswordViewController.swift */; };
 		009CB77028B3608F00CF714E /* AppleAuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009CB76F28B3608F00CF714E /* AppleAuthenticationViewModel.swift */; };
 		B88A09E6D1510819E8A71796 /* Pods_Art_Project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA7461D0FE8BB62956FB4B1 /* Pods_Art_Project.framework */; };
+		E94460C628BCFC7C006B5700 /* UserInformation.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E94460C428BCFC7C006B5700 /* UserInformation.xcdatamodeld */; };
 		E9A71DD528B1073E00A34351 /* LogIn_SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A71DD428B1073E00A34351 /* LogIn_SignUpViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -188,6 +189,7 @@
 		032552EA5555A5C441FD6167 /* Pods-Art-Project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Art-Project.release.xcconfig"; path = "Target Support Files/Pods-Art-Project/Pods-Art-Project.release.xcconfig"; sourceTree = "<group>"; };
 		24323F472A8849C512B1E5C2 /* Pods-Art-Project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Art-Project.debug.xcconfig"; path = "Target Support Files/Pods-Art-Project/Pods-Art-Project.debug.xcconfig"; sourceTree = "<group>"; };
 		BAA7461D0FE8BB62956FB4B1 /* Pods_Art_Project.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Art_Project.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E94460C528BCFC7C006B5700 /* UserInformation.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserInformation.xcdatamodel; sourceTree = "<group>"; };
 		E9A71DD428B1073E00A34351 /* LogIn_SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogIn_SignUpViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -377,6 +379,7 @@
 		006EB54D28AB3CFC00BB9DCB /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E94460C328BCFC37006B5700 /* CoreData */,
 				006EB54E28AB3CFC00BB9DCB /* JSONNull.swift */,
 				006EB55228AB3CFC00BB9DCB /* Media.swift */,
 				0086BBD128AF4A6000C916D3 /* LoginModels */,
@@ -581,6 +584,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		E94460C328BCFC37006B5700 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				E94460C428BCFC7C006B5700 /* UserInformation.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -768,6 +779,7 @@
 				006EB51328AB3CE300BB9DCB /* CustomCircleSlider.swift in Sources */,
 				006EB5BD28AB42E900BB9DCB /* LocalizableKeys.swift in Sources */,
 				006EB58728AB3E0000BB9DCB /* ParameterEncoding.swift in Sources */,
+				E94460C628BCFC7C006B5700 /* UserInformation.xcdatamodeld in Sources */,
 				006EB5BF28AB42E900BB9DCB /* Languages.swift in Sources */,
 				006EB54C28AB3CF100BB9DCB /* LoginViewController.swift in Sources */,
 				006EB53E28AB3CF100BB9DCB /* NewsViewController.swift in Sources */,
@@ -1177,6 +1189,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E94460C428BCFC7C006B5700 /* UserInformation.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E94460C528BCFC7C006B5700 /* UserInformation.xcdatamodel */,
+			);
+			currentVersion = E94460C528BCFC7C006B5700 /* UserInformation.xcdatamodel */;
+			path = UserInformation.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 006EB4DE28AB395A00BB9DCB /* Project object */;
 }
