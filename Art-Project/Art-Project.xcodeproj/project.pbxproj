@@ -93,7 +93,7 @@
 		009CB77028B3608F00CF714E /* AppleAuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009CB76F28B3608F00CF714E /* AppleAuthenticationViewModel.swift */; };
 		B88A09E6D1510819E8A71796 /* Pods_Art_Project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA7461D0FE8BB62956FB4B1 /* Pods_Art_Project.framework */; };
 		E94460C628BCFC7C006B5700 /* UserInformation.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E94460C428BCFC7C006B5700 /* UserInformation.xcdatamodeld */; };
-		E9A71DD528B1073E00A34351 /* LogIn_SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A71DD428B1073E00A34351 /* LogIn_SignUpViewModel.swift */; };
+		E94460C828BD01BF006B5700 /* UserInformationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94460C728BD01BF006B5700 /* UserInformationViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -190,7 +190,7 @@
 		24323F472A8849C512B1E5C2 /* Pods-Art-Project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Art-Project.debug.xcconfig"; path = "Target Support Files/Pods-Art-Project/Pods-Art-Project.debug.xcconfig"; sourceTree = "<group>"; };
 		BAA7461D0FE8BB62956FB4B1 /* Pods_Art_Project.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Art_Project.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E94460C528BCFC7C006B5700 /* UserInformation.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserInformation.xcdatamodel; sourceTree = "<group>"; };
-		E9A71DD428B1073E00A34351 /* LogIn_SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogIn_SignUpViewModel.swift; sourceTree = "<group>"; };
+		E94460C728BD01BF006B5700 /* UserInformationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformationViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,7 +210,7 @@
 			children = (
 				0086BBCD28AF261E00C916D3 /* AuthenticationViewModel.swift */,
 				009CB76F28B3608F00CF714E /* AppleAuthenticationViewModel.swift */,
-				E9A71DD428B1073E00A34351 /* LogIn_SignUpViewModel.swift */,
+				E94460C728BD01BF006B5700 /* UserInformationViewModel.swift */,
 			);
 			path = LoginViewModels;
 			sourceTree = "<group>";
@@ -720,6 +720,7 @@
 				006EB5B528AB3E1B00BB9DCB /* KeychainManager.swift in Sources */,
 				006EB57228AB3D0600BB9DCB /* HomeViewModel.swift in Sources */,
 				006EB5B628AB3E1B00BB9DCB /* BiometricIDAuth.swift in Sources */,
+				E94460C828BD01BF006B5700 /* UserInformationViewModel.swift in Sources */,
 				006EB5AB28AB3E1B00BB9DCB /* Double + Extension.swift in Sources */,
 				008EE30428B7793700723AAF /* FaceIDPasswordViewController.swift in Sources */,
 				006EB55D28AB3CFC00BB9DCB /* DetailedNewsModel.swift in Sources */,
@@ -741,7 +742,6 @@
 				006EB51828AB3CE300BB9DCB /* CustomTabBar.swift in Sources */,
 				006EB59028AB3E0000BB9DCB /* NetworkLogger.swift in Sources */,
 				006EB55E28AB3CFC00BB9DCB /* AudioModel.swift in Sources */,
-				E9A71DD528B1073E00A34351 /* LogIn_SignUpViewModel.swift in Sources */,
 				006EB5AF28AB3E1B00BB9DCB /* AppDelegate + Extension.swift in Sources */,
 				006EB5B128AB3E1B00BB9DCB /* Data + Extension.swift in Sources */,
 				006EB56E28AB3D0600BB9DCB /* DetailedNewsViewModel.swift in Sources */,
