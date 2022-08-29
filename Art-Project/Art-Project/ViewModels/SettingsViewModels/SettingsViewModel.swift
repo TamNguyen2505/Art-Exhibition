@@ -140,7 +140,7 @@ class SettingsViewModel: NSObject {
         
         if switchOn {
             
-            LocalizableManager.setCurrentLanguage(LanguagesKeys.share.japanese)
+            LocalizableManager.setCurrentLanguage(Japanese.languageKey.rawValue)
             
         } else {
             

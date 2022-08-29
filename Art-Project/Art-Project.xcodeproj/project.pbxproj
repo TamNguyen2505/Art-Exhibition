@@ -89,6 +89,9 @@
 		006EB5C428AB4D1800BB9DCB /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EB5C328AB4D1800BB9DCB /* SettingsViewModel.swift */; };
 		0086BBCE28AF261E00C916D3 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0086BBCD28AF261E00C916D3 /* AuthenticationViewModel.swift */; };
 		0086BBD328AF4A8F00C916D3 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0086BBD228AF4A8F00C916D3 /* UserModel.swift */; };
+		008C0FB028BC8F090094863B /* English.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008C0FAF28BC8F090094863B /* English.swift */; };
+		008C0FB228BC95F20094863B /* LanguageKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008C0FB128BC95F20094863B /* LanguageKey.swift */; };
+		008C0FB428BC96730094863B /* Japanese.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008C0FB328BC96730094863B /* Japanese.swift */; };
 		008EE30428B7793700723AAF /* FaceIDPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008EE30328B7793700723AAF /* FaceIDPasswordViewController.swift */; };
 		009CB77028B3608F00CF714E /* AppleAuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009CB76F28B3608F00CF714E /* AppleAuthenticationViewModel.swift */; };
 		B88A09E6D1510819E8A71796 /* Pods_Art_Project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA7461D0FE8BB62956FB4B1 /* Pods_Art_Project.framework */; };
@@ -183,6 +186,9 @@
 		00860BF228B4729400DA0E75 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		0086BBCD28AF261E00C916D3 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		0086BBD228AF4A8F00C916D3 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		008C0FAF28BC8F090094863B /* English.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = English.swift; sourceTree = "<group>"; };
+		008C0FB128BC95F20094863B /* LanguageKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageKey.swift; sourceTree = "<group>"; };
+		008C0FB328BC96730094863B /* Japanese.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Japanese.swift; sourceTree = "<group>"; };
 		008EE30328B7793700723AAF /* FaceIDPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceIDPasswordViewController.swift; sourceTree = "<group>"; };
 		009CB76F28B3608F00CF714E /* AppleAuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleAuthenticationViewModel.swift; sourceTree = "<group>"; };
 		032552EA5555A5C441FD6167 /* Pods-Art-Project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Art-Project.release.xcconfig"; path = "Target Support Files/Pods-Art-Project/Pods-Art-Project.release.xcconfig"; sourceTree = "<group>"; };
@@ -539,9 +545,12 @@
 		006EB5B928AB42E900BB9DCB /* Localizable */ = {
 			isa = PBXGroup;
 			children = (
-				006EB5BA28AB42E900BB9DCB /* LocalizableKeys.swift */,
 				006EB5BB28AB42E900BB9DCB /* LocalizableManager.swift */,
+				008C0FB128BC95F20094863B /* LanguageKey.swift */,
+				006EB5BA28AB42E900BB9DCB /* LocalizableKeys.swift */,
 				006EB5BC28AB42E900BB9DCB /* Languages.swift */,
+				008C0FAF28BC8F090094863B /* English.swift */,
+				008C0FB328BC96730094863B /* Japanese.swift */,
 			);
 			path = Localizable;
 			sourceTree = "<group>";
@@ -703,6 +712,7 @@
 				006EB59328AB3E0000BB9DCB /* URLs.swift in Sources */,
 				006EB54328AB3CF100BB9DCB /* BaseNavigationController.swift in Sources */,
 				006EB55928AB3CFC00BB9DCB /* JSONNull.swift in Sources */,
+				008C0FB028BC8F090094863B /* English.swift in Sources */,
 				006EB5A828AB3E1B00BB9DCB /* AsyncAddOperation.swift in Sources */,
 				006EB58A28AB3E0000BB9DCB /* NetworkManager.swift in Sources */,
 				006EB51628AB3CE300BB9DCB /* ColorPalletCollectionCell.swift in Sources */,
@@ -713,6 +723,8 @@
 				008EE30428B7793700723AAF /* FaceIDPasswordViewController.swift in Sources */,
 				006EB55D28AB3CFC00BB9DCB /* DetailedNewsModel.swift in Sources */,
 				006EB59228AB3E0000BB9DCB /* NetworkError.swift in Sources */,
+				008C0FB228BC95F20094863B /* LanguageKey.swift in Sources */,
+				008C0FB428BC96730094863B /* Japanese.swift in Sources */,
 				006EB51A28AB3CE300BB9DCB /* SlideInPresentationAnimator.swift in Sources */,
 				006EB58828AB3E0000BB9DCB /* URLParameterEncoder.swift in Sources */,
 				006EB56F28AB3D0600BB9DCB /* NewsViewModel.swift in Sources */,

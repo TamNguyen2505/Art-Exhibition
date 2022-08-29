@@ -9,26 +9,9 @@ import Foundation
 
 protocol Languages {
     
-    var english: String {get}
-    var japanese: String {get}
+    static var languageKey: LanguageKey {get}
+    static func getString(key: LocalizableKey) -> String
     
 }
 
-struct LanguagesKeys {
-    //MARK: Properties
-    static let share = LanguagesKeys()
-    
-}
 
-//MARK: Languages confirmation
-extension LanguagesKeys: Languages {
-    
-    var english: String {
-        return "en"
-    }
-    
-    var japanese: String {
-        return "ja"
-    }
-    
-}
