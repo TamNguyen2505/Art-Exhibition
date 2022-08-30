@@ -94,7 +94,6 @@
 		008EE30428B7793700723AAF /* FaceIDPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008EE30328B7793700723AAF /* FaceIDPasswordViewController.swift */; };
 		009CB77028B3608F00CF714E /* AppleAuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009CB76F28B3608F00CF714E /* AppleAuthenticationViewModel.swift */; };
 		B88A09E6D1510819E8A71796 /* Pods_Art_Project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA7461D0FE8BB62956FB4B1 /* Pods_Art_Project.framework */; };
-		E9A71DD528B1073E00A34351 /* LogIn_SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A71DD428B1073E00A34351 /* LogIn_SignUpViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -192,7 +191,6 @@
 		032552EA5555A5C441FD6167 /* Pods-Art-Project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Art-Project.release.xcconfig"; path = "Target Support Files/Pods-Art-Project/Pods-Art-Project.release.xcconfig"; sourceTree = "<group>"; };
 		24323F472A8849C512B1E5C2 /* Pods-Art-Project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Art-Project.debug.xcconfig"; path = "Target Support Files/Pods-Art-Project/Pods-Art-Project.debug.xcconfig"; sourceTree = "<group>"; };
 		BAA7461D0FE8BB62956FB4B1 /* Pods_Art_Project.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Art_Project.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E9A71DD428B1073E00A34351 /* LogIn_SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogIn_SignUpViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,7 +210,6 @@
 			children = (
 				0086BBCD28AF261E00C916D3 /* AuthenticationViewModel.swift */,
 				009CB76F28B3608F00CF714E /* AppleAuthenticationViewModel.swift */,
-				E9A71DD428B1073E00A34351 /* LogIn_SignUpViewModel.swift */,
 				0084D6A028BDEEFD00331A54 /* LogInViewModel.swift */,
 				0084D6A228BDF02A00331A54 /* SignUpViewModel.swift */,
 			);
@@ -736,7 +733,6 @@
 				006EB51828AB3CE300BB9DCB /* CustomTabBar.swift in Sources */,
 				006EB59028AB3E0000BB9DCB /* NetworkLogger.swift in Sources */,
 				006EB55E28AB3CFC00BB9DCB /* AudioModel.swift in Sources */,
-				E9A71DD528B1073E00A34351 /* LogIn_SignUpViewModel.swift in Sources */,
 				0084D6A328BDF02A00331A54 /* SignUpViewModel.swift in Sources */,
 				006EB5AF28AB3E1B00BB9DCB /* AppDelegate + Extension.swift in Sources */,
 				006EB5B128AB3E1B00BB9DCB /* Data + Extension.swift in Sources */,
