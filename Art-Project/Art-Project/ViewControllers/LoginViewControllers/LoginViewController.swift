@@ -28,6 +28,7 @@ class LoginViewController: BaseViewController {
         iv.image = UIImage(named: "default-avatar")
         iv.layer.borderWidth = 1
         iv.layer.borderColor = UIColor.lightGray.cgColor
+        iv.clipsToBounds = true
         return iv
     }()
     
@@ -206,6 +207,8 @@ class LoginViewController: BaseViewController {
             
         }
         
+        checkUserDidLogInAndUpdateUI()
+    
         let switchUIForTrailingButton: ((UITextField, UIButton) -> Void) = { [weak self] (textField, sender) in
             guard let self = self else {return}
             
@@ -283,7 +286,7 @@ class LoginViewController: BaseViewController {
     
     @objc func handleEventFromFaceIdButton(_ sender: UIButton) {
         
-        
+        viewModel.validateFaceID()
         
     }
     
@@ -341,6 +344,30 @@ class LoginViewController: BaseViewController {
         alert.addAction(cancel)
         
         self.present(alert, animated: true, completion: nil)
+        
+    }
+    
+    private func checkUserDidLogInAndUpdateUI() {
+        
+        let group = DispatchGroup()
+        let queue = DispatchQueue.global(qos: .background)
+        
+        queue.async(group: group) {[weak self] in
+            group.enter()
+            guard UserDefaults.isSavedLogin, let self = self else {return}
+            
+            self.viewModel.fetchUserInCoreData()
+            
+            group.leave()
+        }
+        
+        group.notify(queue: .main) {[weak self] in
+            guard let self = self else {return}
+            
+            self.avatarImageView.image = self.viewModel.avatarImage
+            self.emailTextField.setText(string: self.viewModel.email)
+            
+        }
         
     }
     

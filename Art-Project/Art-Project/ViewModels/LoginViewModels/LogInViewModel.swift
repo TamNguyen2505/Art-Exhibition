@@ -11,9 +11,21 @@ import AuthenticationServices
 class LogInViewModel: NSObject {
     //MARK: Properties
     var email: String?
-    var password: String?
+    var password: String? {
+        didSet {
+            logInIfRightFace()
+        }
+    }
+    var avatarImage: UIImage?
     @objc dynamic var logInUserSuccessfully = false
+    private let userInformationViewModel = UserInformationViewModel.shared
+    private let faceID = BiometricIDAuth.shared
     private let authenticationViewModel = AuthenticationViewModel()
+    private var didValidRightFace = false {
+        didSet {
+            getPasswordInKeychain()
+        }
+    }
     
     enum AuthProvider {
         case authEmail
@@ -91,5 +103,50 @@ class LogInViewModel: NSObject {
         
     }
     
+    func fetchUserInCoreData() {
+        guard let user = userInformationViewModel.fetch()?.first else {return}
+
+        self.email = user.email
+        
+        guard let data = user.profileImage else {return}
+        self.avatarImage = UIImage(data: data)
+        
+    }
+    
+    func validateFaceID() {
+                
+        Task {
+            
+            async let isRightHost = await faceID.evaluate().success
+            self.didValidRightFace = await isRightHost
+            
+        }
+        
+    }
+    
+    private func getPasswordInKeychain() {
+        
+        guard let email = email, didValidRightFace else {return}
+        
+        let genericQuery = GenericPasswordQuery(accessGroup: .FirebasePassword)
+        let keychainManager = KeychainManager(keychainQuery: genericQuery)
+        
+        do {
+            self.password = try keychainManager.findPasswordInKeychains(key: email)
+            
+        }
+        catch {
+            
+        }
+        
+    }
+    
+    private func logInIfRightFace() {
+        
+        Task {
+            try await logInBasedOn(cases: .authEmail)
+        }
+        
+    }
     
 }
