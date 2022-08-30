@@ -131,7 +131,7 @@ class LoginViewController: BaseViewController {
         }
     }
 
-    private let viewModel = LogIn_SignUpViewModel()
+    private let viewModel = LogInViewModel()
     
     //MARK: View cycle
     override func setupUI() {

@@ -87,6 +87,8 @@
 		006EB5BE28AB42E900BB9DCB /* LocalizableManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EB5BB28AB42E900BB9DCB /* LocalizableManager.swift */; };
 		006EB5BF28AB42E900BB9DCB /* Languages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EB5BC28AB42E900BB9DCB /* Languages.swift */; };
 		006EB5C428AB4D1800BB9DCB /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EB5C328AB4D1800BB9DCB /* SettingsViewModel.swift */; };
+		0084D6A128BDEEFD00331A54 /* LogInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0084D6A028BDEEFD00331A54 /* LogInViewModel.swift */; };
+		0084D6A328BDF02A00331A54 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0084D6A228BDF02A00331A54 /* SignUpViewModel.swift */; };
 		0086BBCE28AF261E00C916D3 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0086BBCD28AF261E00C916D3 /* AuthenticationViewModel.swift */; };
 		0086BBD328AF4A8F00C916D3 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0086BBD228AF4A8F00C916D3 /* UserModel.swift */; };
 		008EE30428B7793700723AAF /* FaceIDPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008EE30328B7793700723AAF /* FaceIDPasswordViewController.swift */; };
@@ -179,6 +181,8 @@
 		006EB5BC28AB42E900BB9DCB /* Languages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Languages.swift; sourceTree = "<group>"; };
 		006EB5C028AB43F300BB9DCB /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ja; path = ja.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		006EB5C328AB4D1800BB9DCB /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		0084D6A028BDEEFD00331A54 /* LogInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewModel.swift; sourceTree = "<group>"; };
+		0084D6A228BDF02A00331A54 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		00860BF128B4726100DA0E75 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		00860BF228B4729400DA0E75 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		0086BBCD28AF261E00C916D3 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
@@ -209,6 +213,8 @@
 				0086BBCD28AF261E00C916D3 /* AuthenticationViewModel.swift */,
 				009CB76F28B3608F00CF714E /* AppleAuthenticationViewModel.swift */,
 				E9A71DD428B1073E00A34351 /* LogIn_SignUpViewModel.swift */,
+				0084D6A028BDEEFD00331A54 /* LogInViewModel.swift */,
+				0084D6A228BDF02A00331A54 /* SignUpViewModel.swift */,
 			);
 			path = LoginViewModels;
 			sourceTree = "<group>";
@@ -731,6 +737,7 @@
 				006EB59028AB3E0000BB9DCB /* NetworkLogger.swift in Sources */,
 				006EB55E28AB3CFC00BB9DCB /* AudioModel.swift in Sources */,
 				E9A71DD528B1073E00A34351 /* LogIn_SignUpViewModel.swift in Sources */,
+				0084D6A328BDF02A00331A54 /* SignUpViewModel.swift in Sources */,
 				006EB5AF28AB3E1B00BB9DCB /* AppDelegate + Extension.swift in Sources */,
 				006EB5B128AB3E1B00BB9DCB /* Data + Extension.swift in Sources */,
 				006EB56E28AB3D0600BB9DCB /* DetailedNewsViewModel.swift in Sources */,
@@ -772,6 +779,7 @@
 				006EB54C28AB3CF100BB9DCB /* LoginViewController.swift in Sources */,
 				006EB53E28AB3CF100BB9DCB /* NewsViewController.swift in Sources */,
 				006EB5AC28AB3E1B00BB9DCB /* UIView + Extension.swift in Sources */,
+				0084D6A128BDEEFD00331A54 /* LogInViewModel.swift in Sources */,
 				006EB58C28AB3E0000BB9DCB /* BaseEnpoint.swift in Sources */,
 				006EB58928AB3E0000BB9DCB /* JSONParameterEncoder.swift in Sources */,
 				006EB53D28AB3CF100BB9DCB /* DetailedNewsViewController.swift in Sources */,
