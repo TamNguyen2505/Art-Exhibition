@@ -15,18 +15,13 @@ import FBSDKCoreKit
 class SettingsViewModel: NSObject {
     //MARK: Properties
     private let faceID = BiometricIDAuth.shared
+    private let userInformationViewModel = UserInformationViewModel.shared
     private let networkManager = NetworkManager()
     private let Collection_User = Firestore.firestore().collection("users")
     @objc dynamic var didGetUserInformation = false
     @objc dynamic var didValidRightFace = false
     private var userInformation: UserModel? = nil
     var avtarImage: UIImage? = nil
-    private var isRightHost = false {
-        didSet{
-            saveKeychain()
-        }
-    }
-    
     
     //MARK: Features
     func getUserInformation() async throws {
@@ -42,7 +37,8 @@ class SettingsViewModel: NSObject {
                 async let image = getImageFromUserInformation(urlString: user.profileImageURL)
                 self.avtarImage = await image
                 
-                self.didGetUserInformation = true
+                self.didGetUserInformation = userInformationViewModel.save(userName: user.userName, fullName: user.fullName, email: user.email, profileImage: avtarImage)
+                
                 break
                 
             default:
@@ -74,7 +70,8 @@ class SettingsViewModel: NSObject {
                 async let image = getImageFromUserInformation(urlString: user.profileImageURL)
                 self.avtarImage = await image
                 
-                self.didGetUserInformation = true
+                self.didGetUserInformation = userInformationViewModel.save(userName: user.userName, fullName: user.fullName, email: user.email, profileImage: avtarImage)
+                
                 break
             }
             
@@ -112,25 +109,6 @@ class SettingsViewModel: NSObject {
             
             async let isRightHost = await faceID.evaluate().success
             self.didValidRightFace = await isRightHost
-            
-        }
-        
-    }
-    
-    private func saveKeychain() {
-        
-        guard isRightHost else {return}
-        
-        let genericQuery = GenericPasswordQuery(service: KeychainKey.FirebasePassword.rawValue)
-        let keychainManager = KeychainManager(keychainQuery: genericQuery)
-        
-        do{
-            
-            try keychainManager.addPasswordToKeychains(key: .JWT, password: "tamnm1996")
-            
-        }
-        
-        catch {
             
         }
         

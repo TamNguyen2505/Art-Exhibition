@@ -28,11 +28,11 @@ struct KeychainManager {
     }
     
     //MARK: Features
-    func addPasswordToKeychains(key: KeychainKey, password: String) throws {
+    func addPasswordToKeychains(key: String, password: String) throws -> Bool {
         guard let encodedPassword = password.data(using: .utf8) else {throw KeychainError.stringToDataConversionError}
         
         var basicQuery = keychainQuery.query
-        basicQuery.updateValue(key.rawValue, forKey: kSecAttrAccount as String)
+        basicQuery.updateValue(key, forKey: kSecAttrAccount as String)
         
         var status = SecItemCopyMatching(basicQuery as CFDictionary, nil)
         
@@ -43,7 +43,8 @@ struct KeychainManager {
             status = SecItemUpdate(basicQuery as CFDictionary, attributesToUpdate as CFDictionary)
             
             guard status == errSecSuccess else { throw error(from: status) }
-            break
+            
+            return true
             
         case errSecItemNotFound:
             basicQuery.updateValue(encodedPassword, forKey: kSecValueData as String)
@@ -51,7 +52,8 @@ struct KeychainManager {
             status = SecItemAdd(basicQuery as CFDictionary, nil)
             
             guard status == errSecSuccess else {throw error(from: status) }
-            break
+            
+            return true
 
         default:
             throw error(from: status)
@@ -60,14 +62,14 @@ struct KeychainManager {
         
     }
     
-    func findPasswordInKeychains(key: KeychainKey) throws -> String? {
+    func findPasswordInKeychains(key: String) throws -> String? {
         
         var basicQuery = keychainQuery.query
         
         basicQuery.updateValue(kSecMatchLimitOne, forKey: kSecMatchLimit as String)
         basicQuery.updateValue(true, forKey: kSecReturnAttributes as String)
         basicQuery.updateValue(true, forKey: kSecReturnData as String)
-        basicQuery.updateValue(key.rawValue, forKey: kSecAttrAccount as String)
+        basicQuery.updateValue(key, forKey: kSecAttrAccount as String)
         
         var item: CFTypeRef?
         let status = SecItemCopyMatching(basicQuery as CFDictionary, &item)
@@ -95,7 +97,7 @@ struct KeychainManager {
     
     }
     
-    func deleteKeychain(key: KeychainKey) throws {
+    func deleteKeychain(key: String) throws {
         
         let basicQuery = keychainQuery.query
 

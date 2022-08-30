@@ -91,6 +91,7 @@
 		0084D6A328BDF02A00331A54 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0084D6A228BDF02A00331A54 /* SignUpViewModel.swift */; };
 		0084D6A728BDF29000331A54 /* UserInformation.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0084D6A528BDF29000331A54 /* UserInformation.xcdatamodeld */; };
 		0084D6A928BDF41D00331A54 /* UserInformationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0084D6A828BDF41D00331A54 /* UserInformationViewModel.swift */; };
+		0084D6AB28BE055B00331A54 /* FaceIDPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0084D6AA28BE055B00331A54 /* FaceIDPasswordViewModel.swift */; };
 		0086BBCE28AF261E00C916D3 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0086BBCD28AF261E00C916D3 /* AuthenticationViewModel.swift */; };
 		0086BBD328AF4A8F00C916D3 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0086BBD228AF4A8F00C916D3 /* UserModel.swift */; };
 		008EE30428B7793700723AAF /* FaceIDPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008EE30328B7793700723AAF /* FaceIDPasswordViewController.swift */; };
@@ -186,6 +187,7 @@
 		0084D6A228BDF02A00331A54 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		0084D6A628BDF29000331A54 /* UserInformation.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserInformation.xcdatamodel; sourceTree = "<group>"; };
 		0084D6A828BDF41D00331A54 /* UserInformationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformationViewModel.swift; sourceTree = "<group>"; };
+		0084D6AA28BE055B00331A54 /* FaceIDPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceIDPasswordViewModel.swift; sourceTree = "<group>"; };
 		00860BF128B4726100DA0E75 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		00860BF228B4729400DA0E75 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		0086BBCD28AF261E00C916D3 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
@@ -559,6 +561,7 @@
 			isa = PBXGroup;
 			children = (
 				006EB5C328AB4D1800BB9DCB /* SettingsViewModel.swift */,
+				0084D6AA28BE055B00331A54 /* FaceIDPasswordViewModel.swift */,
 			);
 			path = SettingsViewModels;
 			sourceTree = "<group>";
@@ -781,6 +784,7 @@
 				006EB55A28AB3CFC00BB9DCB /* HardvardMuseumPersonModel.swift in Sources */,
 				006EB57128AB3D0600BB9DCB /* HomeCollectionCellViewModel.swift in Sources */,
 				006EB51C28AB3CE300BB9DCB /* SlideInPresentationController.swift in Sources */,
+				0084D6AB28BE055B00331A54 /* FaceIDPasswordViewModel.swift in Sources */,
 				006EB5A928AB3E1B00BB9DCB /* Enums.swift in Sources */,
 				006EB54628AB3CF100BB9DCB /* SettingsViewController.swift in Sources */,
 				006EB54228AB3CF100BB9DCB /* BaseViewController.swift in Sources */,

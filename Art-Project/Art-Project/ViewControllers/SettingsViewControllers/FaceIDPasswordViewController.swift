@@ -31,6 +31,7 @@ class FaceIDPasswordViewController: BaseViewController {
         btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         btn.backgroundColor = .systemOrange
         btn.layer.cornerRadius = 5
+        btn.addTarget(self, action: #selector(handleEventFromEnrollButton(_:)), for: .touchUpInside)
         return btn
     }()
     
@@ -45,6 +46,8 @@ class FaceIDPasswordViewController: BaseViewController {
         btn.backgroundColor = .white
         return btn
     }()
+    
+    private let viewModel = FaceIDPasswordViewModel()
     
     //MARK: View cycle
     override func setupUI() {
@@ -88,6 +91,16 @@ class FaceIDPasswordViewController: BaseViewController {
             
         }
         
+        let switchUIForTrailingButton: ((UITextField, UIButton) -> Void) = { [weak self] (textField, sender) in
+            guard let self = self else {return}
+            
+            textField.isSecureTextEntry.toggle()
+            sender.setImage(self.viewModel.trailingIconForPasswordTextField(securityOn: textField.isSecureTextEntry), for: .normal)
+            
+        }
+        
+        self.passwordTextField.handleEventFromTrailingButtonToTextField = switchUIForTrailingButton
+        
     }
     
     override func setupNavigationStyle() {
@@ -95,6 +108,40 @@ class FaceIDPasswordViewController: BaseViewController {
         
         let leftItem = setupUIForLeftItem(leftItemInfo: .backIcon)
         constraintHeaderStack(accordingTo: .aLeftItem(leftItem: leftItem))
+        
+    }
+    
+    override func observeVM() {
+        super.observeVM()
+        
+        let didSavePasswordInKeychain = viewModel.observe(\.didSavePasswordInKeychain, options: [.new]) { [unowned self] vm, receivedValue in
+            guard let receivedValue = receivedValue.newValue, receivedValue else {return}
+            
+            DispatchQueue.main.async {
+                
+                UserDefaults.isSavedLogin = true
+                self.hideTabBarController = false
+                self.navigationController?.popViewController(animated: true)
+                
+            }
+            
+        }
+        self.observations.append(didSavePasswordInKeychain)
+        
+    }
+    
+    //MARK: Actions
+    @objc override func handleEventFromLeftNavigationItem(_ sender: UIButton) {
+        super.handleEventFromLeftNavigationItem(sender)
+        
+        self.hideTabBarController = false
+        self.navigationController?.popViewController(animated: true)
+        
+    }
+    
+    @objc func handleEventFromEnrollButton(_ sender: UIButton) {
+        
+        viewModel.savePasswordInKeychain(password: passwordTextField.getString())
         
     }
     

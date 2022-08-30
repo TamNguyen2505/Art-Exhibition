@@ -22,7 +22,7 @@ class UserInformationViewModel {
     
     private lazy var fetchedResultsController: NSFetchedResultsController<User> = {
         let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "email", ascending: true)]
         
         let controller = NSFetchedResultsController(fetchRequest: fetchRequest,
                                                     managedObjectContext: managedContext,
@@ -50,14 +50,14 @@ class UserInformationViewModel {
         
     }
     
-    func save(user: User) -> Bool {
+    func save(userName: String? = nil, fullName: String? = nil, email: String? = nil, profileImage: UIImage? = nil) -> Bool {
         let entity = NSEntityDescription.entity(forEntityName: "User", in: managedContext)!
         let userEntity = User(entity: entity, insertInto: managedContext)
         
-        userEntity.userName = user.userName
-        userEntity.fullName = user.fullName
-        userEntity.email = user.email
-        userEntity.profileImage = user.profileImage
+        userEntity.userName = userName
+        userEntity.fullName = fullName
+        userEntity.email = email
+        userEntity.profileImage = profileImage?.jpegData(compressionQuality: 0.5)
         
         do {
             try managedContext.save()
