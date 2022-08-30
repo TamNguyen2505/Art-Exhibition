@@ -9,10 +9,10 @@ import Foundation
 
 public struct LocalizableManager {
     //MARK: Properties
-    private static let LCLCurrentLanguageKey = "LCLCurrentLanguageKey"
-    private static let LCLDefaultLanguage = English.languageKey.rawValue
-    private static let LCLBaseBundle = "Base"
-    private static let LCLLanguageChangeNotification = "LCLLanguageChangeNotification"
+    static let LCLCurrentLanguageKey = "LCLCurrentLanguageKey"
+    static let LCLDefaultLanguage = English.languageKey.rawValue
+    static let LCLBaseBundle = "Base"
+    static let LCLLanguageChangeNotification = "LCLLanguageChangeNotification"
     
     //MARK: Features
     static func availableLanguages(_ excludeBase: Bool = false) -> [String] {

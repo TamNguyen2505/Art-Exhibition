@@ -32,5 +32,11 @@ public enum LocalizableKey: String {
     case text_wrong_format_password = "Pasword must contain at least 1 Uppercase, 1 Lowercase, 1 Special Characters, 1 Number, and Total 12 Characters! Please check it again!"
     case text_enroll = "ENROLL"
     case text_cancel = "CANCEL"
+    case text_public_features = "Public features"
+    case text_advanced_features = "Advanced features"
+    case text_chat_feature = "Chat feature"
+    case text_map_feature = "Map feature"
+    case text_eKYC_feature = "EKYC feature"
+    case text_AR_feature = "AR feature"
     
 }

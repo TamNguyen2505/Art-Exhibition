@@ -83,6 +83,24 @@ struct Japanese: Languages {
             
         case .text_cancel:
             return "キャンセル"
+            
+        case .text_public_features:
+            return "公共の機能"
+            
+        case .text_advanced_features:
+            return "高度な機能"
+            
+        case .text_chat_feature:
+            return "チャット機能"
+            
+        case .text_map_feature:
+            return "マップ機能"
+            
+        case .text_eKYC_feature:
+            return "EKYC 機能"
+            
+        case .text_AR_feature:
+            return "AR 機能"
         }
         
     }
