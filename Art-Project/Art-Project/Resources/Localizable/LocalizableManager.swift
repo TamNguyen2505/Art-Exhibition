@@ -7,15 +7,15 @@
 
 import Foundation
 
-open class LocalizableManager: NSObject {
+public struct LocalizableManager {
     //MARK: Properties
     static let LCLCurrentLanguageKey = "LCLCurrentLanguageKey"
-    static let LCLDefaultLanguage = LanguagesKeys.share.english
+    static let LCLDefaultLanguage = English.languageKey.rawValue
     static let LCLBaseBundle = "Base"
     static let LCLLanguageChangeNotification = "LCLLanguageChangeNotification"
     
     //MARK: Features
-    open class func availableLanguages(_ excludeBase: Bool = false) -> [String] {
+    static func availableLanguages(_ excludeBase: Bool = false) -> [String] {
         var availableLanguages = Bundle.main.localizations
         if let indexOfBase = availableLanguages.firstIndex(of: "Base") , excludeBase == true {
             availableLanguages.remove(at: indexOfBase)
@@ -23,14 +23,14 @@ open class LocalizableManager: NSObject {
         return availableLanguages
     }
     
-    open class func currentLanguage() -> String {
+    static func currentLanguage() -> String {
         if let currentLanguage = UserDefaults.standard.object(forKey: LCLCurrentLanguageKey) as? String {
             return currentLanguage
         }
         return defaultLanguage()
     }
     
-    open class func setCurrentLanguage(_ language: String) {
+    static func setCurrentLanguage(_ language: String) {
         let selectedLanguage = availableLanguages().contains(language) ? language : defaultLanguage()
         if (selectedLanguage != currentLanguage()){
             UserDefaults.standard.set(selectedLanguage, forKey: LCLCurrentLanguageKey)
@@ -39,7 +39,7 @@ open class LocalizableManager: NSObject {
         }
     }
     
-    open class func defaultLanguage() -> String {
+    static func defaultLanguage() -> String {
         var defaultLanguage: String = String()
         guard let preferredLanguage = Bundle.main.preferredLocalizations.first else {
             return LCLDefaultLanguage
@@ -54,11 +54,11 @@ open class LocalizableManager: NSObject {
         return defaultLanguage
     }
     
-    open class func resetCurrentLanguageToDefault() {
+    static func resetCurrentLanguageToDefault() {
         setCurrentLanguage(self.defaultLanguage())
     }
     
-    open class func displayNameForLanguage(_ language: String) -> String {
+    static func displayNameForLanguage(_ language: String) -> String {
         let locale : NSLocale = NSLocale(localeIdentifier: currentLanguage())
         if let displayName = locale.displayName(forKey: NSLocale.Key.identifier, value: language) {
             return displayName
@@ -66,15 +66,15 @@ open class LocalizableManager: NSObject {
         return String()
     }
     
-    open class func getLocalizableString(key: LocalizableKey) -> String {
-        
-        if currentLanguage() == LanguagesKeys.share.english {
+    static func getLocalizableString(key: LocalizableKey) -> String {
+                
+        if currentLanguage() == English.languageKey.rawValue {
             
-            return key.english
+            return English.getString(key: key)
             
-        } else if currentLanguage() == LanguagesKeys.share.japanese {
+        } else if currentLanguage() == Japanese.languageKey.rawValue {
             
-            return key.japanese
+            return Japanese.getString(key: key)
              
         } else {
             
