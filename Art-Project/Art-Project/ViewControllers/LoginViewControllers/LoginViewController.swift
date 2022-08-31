@@ -207,6 +207,8 @@ class LoginViewController: BaseViewController {
             
         }
         
+        checkUserDidLogInAndUpdateUI()
+    
         let switchUIForTrailingButton: ((UITextField, UIButton) -> Void) = { [weak self] (textField, sender) in
             guard let self = self else {return}
             
@@ -242,30 +244,7 @@ class LoginViewController: BaseViewController {
             
         }
         self.observations.append(logInUSerSuccessfully)
-        
-        let didGetPasswordFromKeyChain = viewModel.observe(\.didGetPasswordFromKeyChain, options: [.new]) { [weak self] _ , receivedValue in
-            guard let self = self, let value = receivedValue.newValue else {return}
             
-            DispatchQueue.main.async {
-                
-                self.passwordTextField.setText(string: value)
-                
-            }
-            
-        }
-        self.observations.append(didGetPasswordFromKeyChain)
-            
-    }
-    
-    override func setupVM() {
-        super.setupVM()
-        
-        guard UserDefaults.userIsSavedLogin, let user = viewModel.fetchUser() else {return}
-        
-        self.emailTextField.setText(string: user.email)
-        self.viewModel.email = user.email
-        self.avatarImageView.image = UIImage(data: user.profileImageURL ?? Data())
-        
     }
     
     //MARK: Actions
@@ -307,11 +286,7 @@ class LoginViewController: BaseViewController {
     
     @objc func handleEventFromFaceIdButton(_ sender: UIButton) {
         
-        Task {
-            
-            await viewModel.loginByFaceID()
-            
-        }
+        viewModel.validateFaceID()
         
     }
     
@@ -369,6 +344,30 @@ class LoginViewController: BaseViewController {
         alert.addAction(cancel)
         
         self.present(alert, animated: true, completion: nil)
+        
+    }
+    
+    private func checkUserDidLogInAndUpdateUI() {
+        
+        let group = DispatchGroup()
+        let queue = DispatchQueue.global(qos: .background)
+        
+        queue.async(group: group) {[weak self] in
+            group.enter()
+            guard UserDefaults.isSavedLogin, let self = self else {return}
+            
+            self.viewModel.fetchUserInCoreData()
+            
+            group.leave()
+        }
+        
+        group.notify(queue: .main) {[weak self] in
+            guard let self = self else {return}
+            
+            self.avatarImageView.image = self.viewModel.avatarImage
+            self.emailTextField.setText(string: self.viewModel.email)
+            
+        }
         
     }
     

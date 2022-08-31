@@ -87,12 +87,23 @@
 		006EB5BE28AB42E900BB9DCB /* LocalizableManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EB5BB28AB42E900BB9DCB /* LocalizableManager.swift */; };
 		006EB5BF28AB42E900BB9DCB /* Languages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EB5BC28AB42E900BB9DCB /* Languages.swift */; };
 		006EB5C428AB4D1800BB9DCB /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EB5C328AB4D1800BB9DCB /* SettingsViewModel.swift */; };
+		0084D6A128BDEEFD00331A54 /* LogInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0084D6A028BDEEFD00331A54 /* LogInViewModel.swift */; };
+		0084D6A328BDF02A00331A54 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0084D6A228BDF02A00331A54 /* SignUpViewModel.swift */; };
+		0084D6A728BDF29000331A54 /* UserInformation.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0084D6A528BDF29000331A54 /* UserInformation.xcdatamodeld */; };
+		0084D6A928BDF41D00331A54 /* UserInformationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0084D6A828BDF41D00331A54 /* UserInformationViewModel.swift */; };
+		0084D6AB28BE055B00331A54 /* FaceIDPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0084D6AA28BE055B00331A54 /* FaceIDPasswordViewModel.swift */; };
+		0084D69F28BDA0E600331A54 /* SideBarHeadCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0084D69E28BDA0E600331A54 /* SideBarHeadCollectionCell.swift */; };
 		0086BBCE28AF261E00C916D3 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0086BBCD28AF261E00C916D3 /* AuthenticationViewModel.swift */; };
 		0086BBD328AF4A8F00C916D3 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0086BBD228AF4A8F00C916D3 /* UserModel.swift */; };
+		008C0FB028BC8F090094863B /* English.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008C0FAF28BC8F090094863B /* English.swift */; };
+		008C0FB228BC95F20094863B /* LanguageKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008C0FB128BC95F20094863B /* LanguageKey.swift */; };
+		008C0FB428BC96730094863B /* Japanese.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008C0FB328BC96730094863B /* Japanese.swift */; };
+		008C0FB828BCAE6B0094863B /* SideBarCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008C0FB728BCAE6B0094863B /* SideBarCollectionCell.swift */; };
+		008C0FBB28BCB08E0094863B /* SideBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008C0FBA28BCB08E0094863B /* SideBarViewModel.swift */; };
+		008C0FBE28BCB2AC0094863B /* SideBarSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008C0FBD28BCB2AC0094863B /* SideBarSectionModel.swift */; };
 		008EE30428B7793700723AAF /* FaceIDPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008EE30328B7793700723AAF /* FaceIDPasswordViewController.swift */; };
 		009CB77028B3608F00CF714E /* AppleAuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009CB76F28B3608F00CF714E /* AppleAuthenticationViewModel.swift */; };
 		B88A09E6D1510819E8A71796 /* Pods_Art_Project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA7461D0FE8BB62956FB4B1 /* Pods_Art_Project.framework */; };
-		E9A71DD528B1073E00A34351 /* LogIn_SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A71DD428B1073E00A34351 /* LogIn_SignUpViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -179,16 +190,27 @@
 		006EB5BC28AB42E900BB9DCB /* Languages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Languages.swift; sourceTree = "<group>"; };
 		006EB5C028AB43F300BB9DCB /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ja; path = ja.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		006EB5C328AB4D1800BB9DCB /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		0084D6A028BDEEFD00331A54 /* LogInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewModel.swift; sourceTree = "<group>"; };
+		0084D6A228BDF02A00331A54 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		0084D6A628BDF29000331A54 /* UserInformation.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserInformation.xcdatamodel; sourceTree = "<group>"; };
+		0084D6A828BDF41D00331A54 /* UserInformationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformationViewModel.swift; sourceTree = "<group>"; };
+		0084D6AA28BE055B00331A54 /* FaceIDPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceIDPasswordViewModel.swift; sourceTree = "<group>"; };
+		0084D69E28BDA0E600331A54 /* SideBarHeadCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarHeadCollectionCell.swift; sourceTree = "<group>"; };
 		00860BF128B4726100DA0E75 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		00860BF228B4729400DA0E75 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		0086BBCD28AF261E00C916D3 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		0086BBD228AF4A8F00C916D3 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		008C0FAF28BC8F090094863B /* English.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = English.swift; sourceTree = "<group>"; };
+		008C0FB128BC95F20094863B /* LanguageKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageKey.swift; sourceTree = "<group>"; };
+		008C0FB328BC96730094863B /* Japanese.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Japanese.swift; sourceTree = "<group>"; };
+		008C0FB728BCAE6B0094863B /* SideBarCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarCollectionCell.swift; sourceTree = "<group>"; };
+		008C0FBA28BCB08E0094863B /* SideBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarViewModel.swift; sourceTree = "<group>"; };
+		008C0FBD28BCB2AC0094863B /* SideBarSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarSectionModel.swift; sourceTree = "<group>"; };
 		008EE30328B7793700723AAF /* FaceIDPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceIDPasswordViewController.swift; sourceTree = "<group>"; };
 		009CB76F28B3608F00CF714E /* AppleAuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleAuthenticationViewModel.swift; sourceTree = "<group>"; };
 		032552EA5555A5C441FD6167 /* Pods-Art-Project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Art-Project.release.xcconfig"; path = "Target Support Files/Pods-Art-Project/Pods-Art-Project.release.xcconfig"; sourceTree = "<group>"; };
 		24323F472A8849C512B1E5C2 /* Pods-Art-Project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Art-Project.debug.xcconfig"; path = "Target Support Files/Pods-Art-Project/Pods-Art-Project.debug.xcconfig"; sourceTree = "<group>"; };
 		BAA7461D0FE8BB62956FB4B1 /* Pods_Art_Project.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Art_Project.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E9A71DD428B1073E00A34351 /* LogIn_SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogIn_SignUpViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,7 +230,9 @@
 			children = (
 				0086BBCD28AF261E00C916D3 /* AuthenticationViewModel.swift */,
 				009CB76F28B3608F00CF714E /* AppleAuthenticationViewModel.swift */,
-				E94460C728BD01BF006B5700 /* UserInformationViewModel.swift */,
+				0084D6A828BDF41D00331A54 /* UserInformationViewModel.swift */,
+				0084D6A028BDEEFD00331A54 /* LogInViewModel.swift */,
+				0084D6A228BDF02A00331A54 /* SignUpViewModel.swift */,
 			);
 			path = LoginViewModels;
 			sourceTree = "<group>";
@@ -272,16 +296,14 @@
 		006EB50328AB3CE300BB9DCB /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				008C0FC028BCBB920094863B /* Headers */,
+				006EB50C28AB3CE300BB9DCB /* SlideInPresentation */,
+				008C0FBF28BCBAFD0094863B /* Cells */,
 				006EB50428AB3CE300BB9DCB /* TopGradientCurvedView.swift */,
 				006EB50528AB3CE300BB9DCB /* CustomCircleSlider.swift */,
-				006EB50628AB3CE300BB9DCB /* HomeCollectionView.swift */,
-				006EB50728AB3CE300BB9DCB /* NewsTableCell.swift */,
-				006EB50828AB3CE300BB9DCB /* ColorPalletCollectionCell.swift */,
 				006EB50928AB3CE300BB9DCB /* Loader.swift */,
 				006EB50A28AB3CE300BB9DCB /* CustomTabBar.swift */,
 				006EB50B28AB3CE300BB9DCB /* VerticalSlider.swift */,
-				006EB50C28AB3CE300BB9DCB /* SlideInPresentation */,
-				006EB51028AB3CE300BB9DCB /* HomeHeaderCollectionView.swift */,
 				006EB51128AB3CE300BB9DCB /* CustomTextView.swift */,
 			);
 			path = Views;
@@ -377,11 +399,13 @@
 		006EB54D28AB3CFC00BB9DCB /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				0084D6A428BDF27200331A54 /* CoreData */,
 				006EB54E28AB3CFC00BB9DCB /* JSONNull.swift */,
 				006EB55228AB3CFC00BB9DCB /* Media.swift */,
 				0086BBD128AF4A6000C916D3 /* LoginModels */,
 				006EB55628AB3CFC00BB9DCB /* NewsModel */,
 				006EB54F28AB3CFC00BB9DCB /* HomeModels */,
+				008C0FBD28BCB2AC0094863B /* SideBarSectionModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -407,6 +431,7 @@
 		006EB55F28AB3D0600BB9DCB /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				008C0FB928BCB0720094863B /* BaseViewModels */,
 				0065156428ADE0050043BEA7 /* LoginViewModels */,
 				006EB5C228AB4CE100BB9DCB /* SettingsViewModels */,
 				006EB56328AB3D0600BB9DCB /* NewsViewModels */,
@@ -539,9 +564,12 @@
 		006EB5B928AB42E900BB9DCB /* Localizable */ = {
 			isa = PBXGroup;
 			children = (
-				006EB5BA28AB42E900BB9DCB /* LocalizableKeys.swift */,
 				006EB5BB28AB42E900BB9DCB /* LocalizableManager.swift */,
+				008C0FB128BC95F20094863B /* LanguageKey.swift */,
+				006EB5BA28AB42E900BB9DCB /* LocalizableKeys.swift */,
 				006EB5BC28AB42E900BB9DCB /* Languages.swift */,
+				008C0FAF28BC8F090094863B /* English.swift */,
+				008C0FB328BC96730094863B /* Japanese.swift */,
 			);
 			path = Localizable;
 			sourceTree = "<group>";
@@ -550,8 +578,17 @@
 			isa = PBXGroup;
 			children = (
 				006EB5C328AB4D1800BB9DCB /* SettingsViewModel.swift */,
+				0084D6AA28BE055B00331A54 /* FaceIDPasswordViewModel.swift */,
 			);
 			path = SettingsViewModels;
+			sourceTree = "<group>";
+		};
+		0084D6A428BDF27200331A54 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				0084D6A528BDF29000331A54 /* UserInformation.xcdatamodeld */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		0086BBD128AF4A6000C916D3 /* LoginModels */ = {
@@ -560,6 +597,34 @@
 				0086BBD228AF4A8F00C916D3 /* UserModel.swift */,
 			);
 			path = LoginModels;
+			sourceTree = "<group>";
+		};
+		008C0FB928BCB0720094863B /* BaseViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				008C0FBA28BCB08E0094863B /* SideBarViewModel.swift */,
+			);
+			path = BaseViewModels;
+			sourceTree = "<group>";
+		};
+		008C0FBF28BCBAFD0094863B /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				006EB50628AB3CE300BB9DCB /* HomeCollectionView.swift */,
+				006EB50728AB3CE300BB9DCB /* NewsTableCell.swift */,
+				006EB50828AB3CE300BB9DCB /* ColorPalletCollectionCell.swift */,
+				008C0FB728BCAE6B0094863B /* SideBarCollectionCell.swift */,
+				0084D69E28BDA0E600331A54 /* SideBarHeadCollectionCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		008C0FC028BCBB920094863B /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				006EB51028AB3CE300BB9DCB /* HomeHeaderCollectionView.swift */,
+			);
+			path = Headers;
 			sourceTree = "<group>";
 		};
 		124E23B46C2E53A56074661F /* Frameworks */ = {
@@ -703,17 +768,20 @@
 				006EB59328AB3E0000BB9DCB /* URLs.swift in Sources */,
 				006EB54328AB3CF100BB9DCB /* BaseNavigationController.swift in Sources */,
 				006EB55928AB3CFC00BB9DCB /* JSONNull.swift in Sources */,
+				008C0FB028BC8F090094863B /* English.swift in Sources */,
 				006EB5A828AB3E1B00BB9DCB /* AsyncAddOperation.swift in Sources */,
+				008C0FBB28BCB08E0094863B /* SideBarViewModel.swift in Sources */,
 				006EB58A28AB3E0000BB9DCB /* NetworkManager.swift in Sources */,
 				006EB51628AB3CE300BB9DCB /* ColorPalletCollectionCell.swift in Sources */,
 				006EB5B528AB3E1B00BB9DCB /* KeychainManager.swift in Sources */,
 				006EB57228AB3D0600BB9DCB /* HomeViewModel.swift in Sources */,
 				006EB5B628AB3E1B00BB9DCB /* BiometricIDAuth.swift in Sources */,
-				E94460CB28BD0ED0006B5700 /* UserInformationViewModel.swift in Sources */,
 				006EB5AB28AB3E1B00BB9DCB /* Double + Extension.swift in Sources */,
 				008EE30428B7793700723AAF /* FaceIDPasswordViewController.swift in Sources */,
 				006EB55D28AB3CFC00BB9DCB /* DetailedNewsModel.swift in Sources */,
 				006EB59228AB3E0000BB9DCB /* NetworkError.swift in Sources */,
+				008C0FB228BC95F20094863B /* LanguageKey.swift in Sources */,
+				008C0FB428BC96730094863B /* Japanese.swift in Sources */,
 				006EB51A28AB3CE300BB9DCB /* SlideInPresentationAnimator.swift in Sources */,
 				006EB58828AB3E0000BB9DCB /* URLParameterEncoder.swift in Sources */,
 				006EB56F28AB3D0600BB9DCB /* NewsViewModel.swift in Sources */,
@@ -722,6 +790,7 @@
 				006EB58F28AB3E0000BB9DCB /* Router.swift in Sources */,
 				006EB51D28AB3CE300BB9DCB /* HomeHeaderCollectionView.swift in Sources */,
 				006EB54928AB3CF100BB9DCB /* GraphViewController.swift in Sources */,
+				008C0FBE28BCB2AC0094863B /* SideBarSectionModel.swift in Sources */,
 				006EB54728AB3CF100BB9DCB /* HomeViewController.swift in Sources */,
 				006EB5B228AB3E1B00BB9DCB /* DataLoadOperation.swift in Sources */,
 				006EB51428AB3CE300BB9DCB /* HomeCollectionView.swift in Sources */,
@@ -731,6 +800,8 @@
 				006EB51828AB3CE300BB9DCB /* CustomTabBar.swift in Sources */,
 				006EB59028AB3E0000BB9DCB /* NetworkLogger.swift in Sources */,
 				006EB55E28AB3CFC00BB9DCB /* AudioModel.swift in Sources */,
+				0084D6A728BDF29000331A54 /* UserInformation.xcdatamodeld in Sources */,
+				0084D6A328BDF02A00331A54 /* SignUpViewModel.swift in Sources */,
 				006EB5AF28AB3E1B00BB9DCB /* AppDelegate + Extension.swift in Sources */,
 				006EB5B128AB3E1B00BB9DCB /* Data + Extension.swift in Sources */,
 				006EB56E28AB3D0600BB9DCB /* DetailedNewsViewModel.swift in Sources */,
@@ -740,6 +811,7 @@
 				006EB4EA28AB395A00BB9DCB /* AppDelegate.swift in Sources */,
 				006EB57328AB3D0600BB9DCB /* HomeHeaderCollectionViewModel.swift in Sources */,
 				006EB51B28AB3CE300BB9DCB /* SlideInPresentationManager.swift in Sources */,
+				0084D6A928BDF41D00331A54 /* UserInformationViewModel.swift in Sources */,
 				009CB77028B3608F00CF714E /* AppleAuthenticationViewModel.swift in Sources */,
 				0086BBD328AF4A8F00C916D3 /* UserModel.swift in Sources */,
 				006EB54128AB3CF100BB9DCB /* BaseTabBarController.swift in Sources */,
@@ -750,8 +822,10 @@
 				006EB51E28AB3CE300BB9DCB /* CustomTextView.swift in Sources */,
 				006EB58E28AB3E0000BB9DCB /* HTTPMethod.swift in Sources */,
 				006EB51528AB3CE300BB9DCB /* NewsTableCell.swift in Sources */,
+				008C0FB828BCAE6B0094863B /* SideBarCollectionCell.swift in Sources */,
 				006EB4EC28AB395A00BB9DCB /* SceneDelegate.swift in Sources */,
 				006EB51928AB3CE300BB9DCB /* VerticalSlider.swift in Sources */,
+				0084D69F28BDA0E600331A54 /* SideBarHeadCollectionCell.swift in Sources */,
 				006EB4FF28AB3C4200BB9DCB /* main.swift in Sources */,
 				006EB54828AB3CF100BB9DCB /* RecordInformationViewController.swift in Sources */,
 				006EB5B428AB3E1B00BB9DCB /* KeychainQuery.swift in Sources */,
@@ -762,6 +836,7 @@
 				006EB55A28AB3CFC00BB9DCB /* HardvardMuseumPersonModel.swift in Sources */,
 				006EB57128AB3D0600BB9DCB /* HomeCollectionCellViewModel.swift in Sources */,
 				006EB51C28AB3CE300BB9DCB /* SlideInPresentationController.swift in Sources */,
+				0084D6AB28BE055B00331A54 /* FaceIDPasswordViewModel.swift in Sources */,
 				006EB5A928AB3E1B00BB9DCB /* Enums.swift in Sources */,
 				006EB54628AB3CF100BB9DCB /* SettingsViewController.swift in Sources */,
 				006EB54228AB3CF100BB9DCB /* BaseViewController.swift in Sources */,
@@ -772,6 +847,7 @@
 				006EB54C28AB3CF100BB9DCB /* LoginViewController.swift in Sources */,
 				006EB53E28AB3CF100BB9DCB /* NewsViewController.swift in Sources */,
 				006EB5AC28AB3E1B00BB9DCB /* UIView + Extension.swift in Sources */,
+				0084D6A128BDEEFD00331A54 /* LogInViewModel.swift in Sources */,
 				006EB58C28AB3E0000BB9DCB /* BaseEnpoint.swift in Sources */,
 				006EB58928AB3E0000BB9DCB /* JSONParameterEncoder.swift in Sources */,
 				006EB53D28AB3CF100BB9DCB /* DetailedNewsViewController.swift in Sources */,
@@ -1179,6 +1255,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		0084D6A528BDF29000331A54 /* UserInformation.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				0084D6A628BDF29000331A54 /* UserInformation.xcdatamodel */,
+			);
+			currentVersion = 0084D6A628BDF29000331A54 /* UserInformation.xcdatamodel */;
+			path = UserInformation.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 006EB4DE28AB395A00BB9DCB /* Project object */;
 }

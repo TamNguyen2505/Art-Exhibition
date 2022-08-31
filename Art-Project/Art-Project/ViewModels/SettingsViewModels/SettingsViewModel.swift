@@ -15,13 +15,13 @@ import FBSDKCoreKit
 class SettingsViewModel: NSObject {
     //MARK: Properties
     private let faceID = BiometricIDAuth.shared
+    private let userInformationViewModel = UserInformationViewModel.shared
     private let networkManager = NetworkManager()
     private let Collection_User = Firestore.firestore().collection("users")
     @objc dynamic var didGetUserInformation = false
     @objc dynamic var didValidRightFace = false
     private var userInformation: UserModel? = nil
     var avtarImage: UIImage? = nil
-    private let userInformationViewModel = UserInformationViewModel()
     
     //MARK: Features
     func getUserInformation() async throws {
@@ -33,14 +33,12 @@ class SettingsViewModel: NSObject {
             case GoogleAuthProviderID:
                 guard let googleUser = GIDSignIn.sharedInstance.currentUser else {return}
                 let user = UserModel(googleUser: googleUser)
-                self.userInformation = user
                 
                 async let image = getImageFromUserInformation(urlString: user.profileImageURL)
                 self.avtarImage = await image
                 
-                userInformationViewModel.save(userName: user.userName, fullName: user.fullName, email: user.email, profileImage: avtarImage)
+                self.didGetUserInformation = userInformationViewModel.save(userName: user.userName, fullName: user.fullName, email: user.email, profileImage: avtarImage)
                 
-                self.didGetUserInformation = true
                 break
                 
             default:
@@ -71,22 +69,14 @@ class SettingsViewModel: NSObject {
                 
                 async let image = getImageFromUserInformation(urlString: user.profileImageURL)
                 self.avtarImage = await image
-                self.userInformation = user
                 
-                self.userInformationViewModel.save(userName: user.userName, fullName: user.fullName, email: user.email, profileImage: avtarImage)
-
-                self.didGetUserInformation = true
+                self.didGetUserInformation = userInformationViewModel.save(userName: user.userName, fullName: user.fullName, email: user.email, profileImage: avtarImage)
+                
                 break
             }
             
         }
         
-        
-    }
-    
-    func getEmailUserInformation() -> String {
-        
-        return userInformation?.email ?? ""
         
     }
     
@@ -128,7 +118,7 @@ class SettingsViewModel: NSObject {
         
         if switchOn {
             
-            LocalizableManager.setCurrentLanguage(LanguagesKeys.share.japanese)
+            LocalizableManager.setCurrentLanguage(Japanese.languageKey.rawValue)
             
         } else {
             

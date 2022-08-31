@@ -104,7 +104,7 @@ enum NavigationTitles: String {
             return nil
 
         case .faceIDPasswordViewController:
-            return LocalizableManager.getLocalizableString(key: .text_enroll_faceID_login)
+            return nil
         }
     }
     
