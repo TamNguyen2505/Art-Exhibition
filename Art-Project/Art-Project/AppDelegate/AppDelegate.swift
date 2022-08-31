@@ -10,25 +10,13 @@ import FirebaseCore
 import GoogleSignIn
 import FBSDKCoreKit
 import ZaloSDK
-import CoreData
 
 //@UIApplicationMain
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    //MARK: Properties
-    lazy var persistentContainer: NSPersistentContainer = {
-        
-        let container = NSPersistentContainer(name: "UserInformation")
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-            if let error = error as NSError? {
-                
-                fatalError("Unresolved error \(error), \(error.userInfo)")
-            }
-        })
-        return container
-    }()
     
-    //MARK: App cycle
+    
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         FirebaseApp.configure()
@@ -53,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             )
             
         }
-        
+                
         share = ZDKApplicationDelegate.sharedInstance().application(
             application,
             open: url,
@@ -78,18 +66,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
     
-    //MARK: Helpers
-    func saveContext () {
-        let context = persistentContainer.viewContext
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch {
-                fatalError("Unresolved error \(error)")
-            }
-        }
-        
-    }
     
 }
 
