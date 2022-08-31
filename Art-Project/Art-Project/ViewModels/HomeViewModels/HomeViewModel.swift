@@ -9,7 +9,7 @@ import UIKit
 
 class HomeViewModel: NSObject {
     //MARK: Properties
-    private let networkManager = NetworkManager()
+    private let networkManager = NetworkManager.shared
     private var hardvardMuseumObjectModel = [HardvardMuseumObject?]() {
         didSet {
             didGetAllHardvardMuseumObjectModel = true

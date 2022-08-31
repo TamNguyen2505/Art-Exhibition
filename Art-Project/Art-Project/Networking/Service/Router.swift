@@ -7,22 +7,16 @@
 
 import Foundation
 import UIKit
-import Combine
 
-public typealias NetworkRouterCompletion = (_ urlRequest: URLRequest?, _ data: Data?, _ response: URLResponse?, _ error: Error?)->()
-
-protocol NetworkRouter: AnyObject {
-    associatedtype EndPoint: EndPointType
-    func request(_ route: EndPoint) async throws -> (urlRequest: URLRequest?, data: Data?, response: URLResponse?, error: Error?)
-    func upload(_ route: EndPoint) async throws -> (urlRequest: URLRequest?, data: Data?, response: URLResponse?, error: Error?)
-    func download(_ route: EndPoint) async throws -> (urlRequest: URLRequest?, data: Data?, response: URLResponse?, error: Error?)
-    func cancel()
-}
-
-class Router<EndPoint: EndPointType>: NetworkRouter {
- 
+class Router {
     //MARK: Properties
+    typealias EndPoint = EndPointType
     private var task: URLSessionTask?
+    
+    static let shared = Router()
+    
+    //MARK: Init
+    private init() {}
     
     //MARK: Features
     func request(_ route: EndPoint) async throws -> (urlRequest: URLRequest?, data: Data?, response: URLResponse?, error: Error?) {

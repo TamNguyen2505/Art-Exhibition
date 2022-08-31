@@ -10,7 +10,7 @@ import UIKit
 //MARK: API
 class NewsViewModel: NSObject {
     //MARK: Properties
-    private let networkManager = NetworkManager()
+    private let networkManager = NetworkManager.shared
     private var hardvardMuseumObjectRecords: [HardvardMuseumObjectRecord]? = nil {
         didSet {
             didGetAllHardvardMuseumObjectModel = true

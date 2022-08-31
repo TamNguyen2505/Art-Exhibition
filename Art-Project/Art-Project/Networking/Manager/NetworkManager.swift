@@ -29,8 +29,12 @@ enum NetworkResult<String>{
 
 class NetworkManager {
     //MARK: Properties
-    private let router = Router<BaseEnpoint>()
+    private let router = Router.shared
     @Published var byte = UInt8()
+    static let shared = NetworkManager()
+    
+    //MARK: Init
+    private init() {}
     
     //MARK: Features
     public func callAndParseAPI<D: Codable>(accordingTo caseEndPoint: BaseEnpoint, parseInto model: D.Type) async throws -> D? {

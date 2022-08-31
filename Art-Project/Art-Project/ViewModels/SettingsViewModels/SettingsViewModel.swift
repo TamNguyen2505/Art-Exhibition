@@ -16,7 +16,7 @@ class SettingsViewModel: NSObject {
     //MARK: Properties
     private let faceID = BiometricIDAuth.shared
     private let userInformationViewModel = UserInformationViewModel.shared
-    private let networkManager = NetworkManager()
+    private let networkManager = NetworkManager.shared
     private let Collection_User = Firestore.firestore().collection("users")
     @objc dynamic var didGetUserInformation = false
     @objc dynamic var didValidRightFace = false

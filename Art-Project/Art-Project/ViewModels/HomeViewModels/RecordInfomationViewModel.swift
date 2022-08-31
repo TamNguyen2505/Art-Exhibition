@@ -9,7 +9,7 @@ import UIKit
 
 class RecordInfomationViewModel: NSObject {
     //MARK: Properties
-    private let networkManager = NetworkManager()
+    private let networkManager = NetworkManager.shared
     private var personalInfomationModel: HardvardMuseumPerson? {
         didSet {
             didGetAllHardvardPersonalInformation = true

@@ -11,7 +11,7 @@ import Combine
 //MARK: API
 class DetailedNewsViewModel {
     //MARK: Properties
-    private let networkManager = NetworkManager()
+    private let networkManager = NetworkManager.shared
     var detailedInformationOfObject = DetailedNewsModel()
     var cancellable: AnyCancellable?
     @Published var percent: Float = 0.0
