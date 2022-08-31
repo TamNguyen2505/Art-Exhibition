@@ -47,7 +47,7 @@ class SideBarViewController: BaseViewController {
         return button
     }()
     
-    private let authenticationViewModel = AuthenticationViewModel()
+    private let authenticationViewModel = AuthenticationViewModel.shared
     private let sideBarViewModel = SideBarViewModel()
     
     //MARK: View cycle

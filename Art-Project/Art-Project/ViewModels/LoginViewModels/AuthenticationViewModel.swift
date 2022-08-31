@@ -16,10 +16,14 @@ import CryptoKit
 import ZaloSDK
 import CommonCrypto
 
-class AuthenticationViewModel: NSObject {
+class AuthenticationViewModel {
     //MARK: Properties
     private let storage = Storage.storage()
     private let Collection_User = Firestore.firestore().collection("users")
+    static let shared = AuthenticationViewModel()
+    
+    //MARK: Init
+    private init() {}
     
     //MARK: Email
     func createNewUserNameInFireBase(email: String, password: String, fullName: String? = nil, userName: String? = nil, profileImage: UIImage? = nil) async throws -> Bool {

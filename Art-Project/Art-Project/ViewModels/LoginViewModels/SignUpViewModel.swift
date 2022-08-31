@@ -17,7 +17,7 @@ class SignUpViewModel: NSObject {
     var avatarImage: UIImage?
     @objc dynamic var createUserSuccessfully = false
     @objc dynamic var createUserWidthAvatarSuccessfully = false
-    private let authenticationViewModel = AuthenticationViewModel()
+    private let authenticationViewModel = AuthenticationViewModel.shared
     
     //MARK: Features
     func checkUserName() -> (alert: NSMutableAttributedString?, valid: Bool) {

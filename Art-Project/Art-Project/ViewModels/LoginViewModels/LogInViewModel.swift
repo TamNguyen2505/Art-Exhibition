@@ -20,7 +20,7 @@ class LogInViewModel: NSObject {
     @objc dynamic var logInUserSuccessfully = false
     private let userInformationViewModel = UserInformationViewModel.shared
     private let faceID = BiometricIDAuth.shared
-    private let authenticationViewModel = AuthenticationViewModel()
+    private let authenticationViewModel = AuthenticationViewModel.shared
     private var didValidRightFace = false {
         didSet {
             getPasswordInKeychain()
