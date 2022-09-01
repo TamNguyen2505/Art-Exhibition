@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum BaseEnpoint {
+public enum BaseEnpoint {
     
     case getExihibitionFromHardvardMuseum(parameters: Parameters)
     case getDetailedInformationOfObject(path: String, parameters: Parameters)

@@ -27,7 +27,7 @@ enum NetworkResult<String>{
     
 }
 
-class NetworkManager {
+public class NetworkManager {
     //MARK: Properties
     private let router = Router.shared
     @Published var byte = UInt8()
@@ -62,6 +62,7 @@ class NetworkManager {
             
         case .failure(_):
             
+            router.cancel()
             return nil
             
         }
@@ -93,6 +94,7 @@ class NetworkManager {
                                     
         case .failure(_):
             
+            router.cancel()
             return nil
             
         }
@@ -118,6 +120,7 @@ class NetworkManager {
                                     
         case .failure(_):
             
+            router.cancel()
             return nil
             
         }
@@ -128,7 +131,7 @@ class NetworkManager {
         
         let routerResponse = try await router.streamDownload(caseEndPoint)
         
-        guard let response = routerResponse.response as? HTTPURLResponse else {return nil}
+        guard let response = routerResponse.result.response as? HTTPURLResponse else {return nil}
         let result = handleNetworkResponse(response)
 
         switch result {
@@ -145,13 +148,14 @@ class NetworkManager {
                 
             }
                
-            let information = NetworkLogger(urlRequest: routerResponse.urlRequest, data: accumulatorData, httpURLResponse: response)
+            let information = NetworkLogger(urlRequest: routerResponse.result.urlRequest, data: accumulatorData, httpURLResponse: response)
             information.announce()
             
             return accumulatorData
                                     
         case .failure(_):
             
+            router.cancel()
             return nil
             
         }
