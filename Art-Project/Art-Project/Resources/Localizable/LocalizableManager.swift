@@ -10,7 +10,7 @@ import Foundation
 public struct LocalizableManager {
     //MARK: Properties
     static let LCLCurrentLanguageKey = "LCLCurrentLanguageKey"
-    static let LCLDefaultLanguage = English.languageKey.rawValue
+    static let LCLDefaultLanguage = English.getKeyLanguage(key: .english)
     static let LCLBaseBundle = "Base"
     static let LCLLanguageChangeNotification = "LCLLanguageChangeNotification"
     
@@ -67,21 +67,17 @@ public struct LocalizableManager {
     }
     
     static func getLocalizableString(key: LocalizableKey) -> String {
-                
-        if currentLanguage() == English.languageKey.rawValue {
-            
+        
+        switch currentLanguage() {
+        case English.getKeyLanguage(key: .english):
             return English.getString(key: key)
             
-        } else if currentLanguage() == Japanese.languageKey.rawValue {
-            
+        case Japanese.getKeyLanguage(key: .japanese):
             return Japanese.getString(key: key)
-             
-        } else {
             
-            return ""
-            
+        default:
+            return String()
         }
-        
         
     }
     

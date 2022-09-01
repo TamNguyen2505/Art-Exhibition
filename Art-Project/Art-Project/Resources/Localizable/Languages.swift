@@ -7,9 +7,9 @@
 
 import Foundation
 
-protocol Languages {
+public protocol Languages {
     
-    static var languageKey: LanguageKey {get}
+    static func getKeyLanguage(key: LanguageKey) -> String
     static func getString(key: LocalizableKey) -> String
     
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum LanguageKey: String {
+public enum LanguageKey: String {
     
     case english = "en"
     case japanese = "ja"

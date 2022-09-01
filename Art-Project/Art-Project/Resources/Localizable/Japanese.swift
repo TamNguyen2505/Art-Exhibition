@@ -9,8 +9,10 @@ import Foundation
 
 struct Japanese: Languages {
     
-    static var languageKey: LanguageKey {
-        return .japanese
+    static func getKeyLanguage(key: LanguageKey) -> String {
+        
+        return key.rawValue
+        
     }
 
     static func getString(key: LocalizableKey) -> String {
