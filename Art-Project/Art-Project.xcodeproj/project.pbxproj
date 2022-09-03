@@ -104,6 +104,7 @@
 		008EE30428B7793700723AAF /* FaceIDPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008EE30328B7793700723AAF /* FaceIDPasswordViewController.swift */; };
 		009CB77028B3608F00CF714E /* AppleAuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009CB76F28B3608F00CF714E /* AppleAuthenticationViewModel.swift */; };
 		B88A09E6D1510819E8A71796 /* Pods_Art_Project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA7461D0FE8BB62956FB4B1 /* Pods_Art_Project.framework */; };
+		E9CA452F28C3C3700065C373 /* Bundle + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CA452E28C3C3700065C373 /* Bundle + Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -211,6 +212,7 @@
 		032552EA5555A5C441FD6167 /* Pods-Art-Project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Art-Project.release.xcconfig"; path = "Target Support Files/Pods-Art-Project/Pods-Art-Project.release.xcconfig"; sourceTree = "<group>"; };
 		24323F472A8849C512B1E5C2 /* Pods-Art-Project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Art-Project.debug.xcconfig"; path = "Target Support Files/Pods-Art-Project/Pods-Art-Project.debug.xcconfig"; sourceTree = "<group>"; };
 		BAA7461D0FE8BB62956FB4B1 /* Pods_Art_Project.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Art_Project.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9CA452E28C3C3700065C373 /* Bundle + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle + Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -547,6 +549,7 @@
 				006EB59D28AB3E1B00BB9DCB /* AppDelegate + Extension.swift */,
 				006EB59E28AB3E1B00BB9DCB /* String + Extension.swift */,
 				006EB59F28AB3E1B00BB9DCB /* Data + Extension.swift */,
+				E9CA452E28C3C3700065C373 /* Bundle + Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -865,6 +868,7 @@
 				006EB54C28AB3CF100BB9DCB /* LoginViewController.swift in Sources */,
 				006EB53E28AB3CF100BB9DCB /* NewsViewController.swift in Sources */,
 				006EB5AC28AB3E1B00BB9DCB /* UIView + Extension.swift in Sources */,
+				E9CA452F28C3C3700065C373 /* Bundle + Extension.swift in Sources */,
 				0084D6A128BDEEFD00331A54 /* LogInViewModel.swift in Sources */,
 				006EB58C28AB3E0000BB9DCB /* BaseEnpoint.swift in Sources */,
 				006EB58928AB3E0000BB9DCB /* JSONParameterEncoder.swift in Sources */,
