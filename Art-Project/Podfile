@@ -16,7 +16,6 @@ target 'Art-Project' do
   pod 'FBSDKLoginKit'
   pod 'FBSDKShareKit'
   pod 'ZaloSDK'
-  pod 'GoogleMaps'
 
 end
 

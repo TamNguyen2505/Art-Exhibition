@@ -211,7 +211,6 @@
 		032552EA5555A5C441FD6167 /* Pods-Art-Project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Art-Project.release.xcconfig"; path = "Target Support Files/Pods-Art-Project/Pods-Art-Project.release.xcconfig"; sourceTree = "<group>"; };
 		24323F472A8849C512B1E5C2 /* Pods-Art-Project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Art-Project.debug.xcconfig"; path = "Target Support Files/Pods-Art-Project/Pods-Art-Project.debug.xcconfig"; sourceTree = "<group>"; };
 		BAA7461D0FE8BB62956FB4B1 /* Pods_Art_Project.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Art_Project.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E964231A28C36437000170D6 /* APIConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = APIConfig.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -290,7 +289,6 @@
 				006EB4F428AB395B00BB9DCB /* LaunchScreen.storyboard */,
 				006EB4F728AB395B00BB9DCB /* Info.plist */,
 				0065156228ADD9ED0043BEA7 /* GoogleService-Info.plist */,
-				E964231A28C36437000170D6 /* APIConfig.xcconfig */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -660,7 +658,6 @@
 				006EB4E328AB395A00BB9DCB /* Frameworks */,
 				006EB4E428AB395A00BB9DCB /* Resources */,
 				09D5D28F77C89C8A47E3B2B8 /* [CP] Embed Pods Frameworks */,
-				A730ABFE8246B99C9C6DABEF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -734,23 +731,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Art-Project/Pods-Art-Project-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A730ABFE8246B99C9C6DABEF /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Art-Project/Pods-Art-Project-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Art-Project/Pods-Art-Project-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Art-Project/Pods-Art-Project-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FE749AB00065EB04702A7FF2 /* [CP] Check Pods Manifest.lock */ = {
@@ -895,7 +875,6 @@
 /* Begin XCBuildConfiguration section */
 		006EB4F828AB395B00BB9DCB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E964231A28C36437000170D6 /* APIConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -958,7 +937,6 @@
 		};
 		006EB4F928AB395B00BB9DCB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E964231A28C36437000170D6 /* APIConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
