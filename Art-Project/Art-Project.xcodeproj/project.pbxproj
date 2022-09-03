@@ -87,12 +87,12 @@
 		006EB5BE28AB42E900BB9DCB /* LocalizableManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EB5BB28AB42E900BB9DCB /* LocalizableManager.swift */; };
 		006EB5BF28AB42E900BB9DCB /* Languages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EB5BC28AB42E900BB9DCB /* Languages.swift */; };
 		006EB5C428AB4D1800BB9DCB /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EB5C328AB4D1800BB9DCB /* SettingsViewModel.swift */; };
+		0084D69F28BDA0E600331A54 /* SideBarHeadCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0084D69E28BDA0E600331A54 /* SideBarHeadCollectionCell.swift */; };
 		0084D6A128BDEEFD00331A54 /* LogInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0084D6A028BDEEFD00331A54 /* LogInViewModel.swift */; };
 		0084D6A328BDF02A00331A54 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0084D6A228BDF02A00331A54 /* SignUpViewModel.swift */; };
 		0084D6A728BDF29000331A54 /* UserInformation.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0084D6A528BDF29000331A54 /* UserInformation.xcdatamodeld */; };
 		0084D6A928BDF41D00331A54 /* UserInformationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0084D6A828BDF41D00331A54 /* UserInformationViewModel.swift */; };
 		0084D6AB28BE055B00331A54 /* FaceIDPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0084D6AA28BE055B00331A54 /* FaceIDPasswordViewModel.swift */; };
-		0084D69F28BDA0E600331A54 /* SideBarHeadCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0084D69E28BDA0E600331A54 /* SideBarHeadCollectionCell.swift */; };
 		0086BBCE28AF261E00C916D3 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0086BBCD28AF261E00C916D3 /* AuthenticationViewModel.swift */; };
 		0086BBD328AF4A8F00C916D3 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0086BBD228AF4A8F00C916D3 /* UserModel.swift */; };
 		008C0FB028BC8F090094863B /* English.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008C0FAF28BC8F090094863B /* English.swift */; };
@@ -190,12 +190,12 @@
 		006EB5BC28AB42E900BB9DCB /* Languages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Languages.swift; sourceTree = "<group>"; };
 		006EB5C028AB43F300BB9DCB /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ja; path = ja.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		006EB5C328AB4D1800BB9DCB /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		0084D69E28BDA0E600331A54 /* SideBarHeadCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarHeadCollectionCell.swift; sourceTree = "<group>"; };
 		0084D6A028BDEEFD00331A54 /* LogInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewModel.swift; sourceTree = "<group>"; };
 		0084D6A228BDF02A00331A54 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		0084D6A628BDF29000331A54 /* UserInformation.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserInformation.xcdatamodel; sourceTree = "<group>"; };
 		0084D6A828BDF41D00331A54 /* UserInformationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformationViewModel.swift; sourceTree = "<group>"; };
 		0084D6AA28BE055B00331A54 /* FaceIDPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceIDPasswordViewModel.swift; sourceTree = "<group>"; };
-		0084D69E28BDA0E600331A54 /* SideBarHeadCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarHeadCollectionCell.swift; sourceTree = "<group>"; };
 		00860BF128B4726100DA0E75 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		00860BF228B4729400DA0E75 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		0086BBCD28AF261E00C916D3 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
@@ -658,6 +658,7 @@
 				006EB4E328AB395A00BB9DCB /* Frameworks */,
 				006EB4E428AB395A00BB9DCB /* Resources */,
 				09D5D28F77C89C8A47E3B2B8 /* [CP] Embed Pods Frameworks */,
+				A730ABFE8246B99C9C6DABEF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -731,6 +732,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Art-Project/Pods-Art-Project-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A730ABFE8246B99C9C6DABEF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Art-Project/Pods-Art-Project-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Art-Project/Pods-Art-Project-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Art-Project/Pods-Art-Project-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FE749AB00065EB04702A7FF2 /* [CP] Check Pods Manifest.lock */ = {
