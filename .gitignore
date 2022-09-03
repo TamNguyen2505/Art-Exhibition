@@ -91,3 +91,4 @@ fastlane/test_output
 iOSInjectionProject/
 *.xcscheme
 *.xcsettings
+*/Resources/APIConfig.xcconfig
